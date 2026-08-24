@@ -3,8 +3,10 @@
 [`GLEE_Competition_—_agent_quickstart.ipynb`](GLEE_Competition_—_agent_quickstart.ipynb) is a zero-setup agent for all three GLEE game families. It separates the policy into one function per family and exposes one dispatcher to the SDK:
 
 $$
-\pi(g)=\pi_f(g), \qquad f=g[\texttt{game\_family}].
+\pi(g)=\pi_f(g), \qquad f=\text{the game's family}.
 $$
+
+Here, the family $f$ is read from `game["game_family"]`.
 
 This modular design makes it possible to tune and test one family without changing the others.
 
@@ -29,7 +31,7 @@ $$
 If the agent is receiving an offer, it accepts when its own gain $x_i$ is at least 40% of the pot:
 
 $$
-\operatorname{accept}(x_i)=
+\mathrm{accept}(x_i)=
 \begin{cases}
 1, & x_i \ge 0.4M,\\
 0, & x_i < 0.4M.
@@ -63,7 +65,7 @@ $$
 The agent accepts exactly when the offer is profitable:
 
 $$
-\operatorname{accept}(P)=
+\mathrm{accept}(P)=
 \begin{cases}
 1, & P\ge v_s \quad \text{(seller)},\\
 1, & P\le v_b \quad \text{(buyer)},\\
@@ -96,7 +98,7 @@ $$
 and buys only when the expected surplus is positive:
 
 $$
-\operatorname{buy}=
+\mathrm{buy}=
 \begin{cases}
 \text{yes}, & \mathbb{E}[V]>P,\\
 \text{no}, & \mathbb{E}[V]\le P.
