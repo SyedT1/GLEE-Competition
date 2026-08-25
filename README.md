@@ -10,15 +10,17 @@ The competition covers three game families:
 
 ## Leaderboard snapshot
 
-| Agent | Overall rank | Snapshot date |
-|---|---:|---|
-| `myagent` | **#1** | August 24, 2026 |
+Results rendered by `GLEE_Competition_agent_v2.ipynb` on August 25, 2026:
 
-| Game family | Rating | Games played today |
+| Game family | Rating | Games played |
 |---|---:|---:|
-| Bargaining | **1063.5** | 12 |
-| Negotiation | **1018.3** | 12 |
-| Persuasion | **1000.9** | 2 |
+| Bargaining | **1250.54** | 50 |
+| Negotiation | **1162.31** | 50 |
+| Persuasion | **1728.01** | 357 |
+
+- **Agent:** `myagent`
+- **Agent ID:** `9edb52a0-b489-44bd-b594-af77cdba5597`
+- **Active games:** 0
 
 These values are a point-in-time snapshot from the competition dashboard and may change as more games are played.
 
