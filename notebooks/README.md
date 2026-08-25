@@ -1,6 +1,6 @@
 # GLEE agent notebook
 
-Use a family-specific portfolio rather than assuming the newest notebook is uniformly superior: V4 remains the stronger bargaining reference by mean batch delta, V3 remains the persuasion reference, and V8 now provides the latest negotiation evidence. By freezing V5's decision core and adding checkpointed execution and clean telemetry, V8 gained 50.96 negotiation points over 44 games with zero live fallbacks or telemetry diagnostics. V6 persuasion remains a documented negative result, while V7 bargaining was positive but weaker per game than V4.
+Use a family-specific portfolio rather than assuming the newest notebook is uniformly superior: V4 remains the bargaining reference, V3 remains the persuasion reference, and V5/V8 remains the negotiation decision core. V11 did not change that core, but its large-batch runner lost 44.84 negotiation points over 53 games after requesting 24 at concurrency 4. V11 is therefore rejected operationally; use very small, concurrency-1 checkpoints instead.
 
 [`GLEE_Competition_—_agent_quickstart.ipynb`](GLEE_Competition_—_agent_quickstart.ipynb) is a zero-setup agent for all three GLEE game families. It separates the policy into one function per family and exposes one dispatcher to the SDK:
 
@@ -24,6 +24,9 @@ This modular design makes it possible to tune and test one family without changi
 | [`GLEE_Competition_agent_v6.ipynb`](GLEE_Competition_agent_v6.ipynb) | Safety-strengthened experimental agent; persuasion rejected | Configuration-scoped profiles, purchased-only trust updates, credibility scheduling, negation-aware text parsing, strict contract validation |
 | [`GLEE_Competition_agent_v7.ipynb`](GLEE_Competition_agent_v7.ipynb) | Live-tested conservative portfolio | Protected V4/V5/V3 arms, whole-game arm assignment, 12% bounded exploration, 40/40 bargaining agreements, completed-game reward credit, confidence-bound promotion |
 | [`GLEE_Competition_agent_v8.ipynb`](GLEE_Competition_agent_v8.ipynb) | Role-gated checkpoint learner | Frozen V5 negotiation and V3 buyer, frozen Bob, Alice/seller-only exploration, persistent evidence, six-game checkpoints, clean fallback/telemetry separation; negotiation +50.96 over 44 games |
+| [`GLEE_Competition_agent_v9.ipynb`](GLEE_Competition_agent_v9.ipynb) | Champion-locked controlled agent | Champion-mode default, one-completion requests, exact evidence export; no separately identified live batch |
+| [`GLEE_Competition_agent_v10.ipynb`](GLEE_Competition_agent_v10.ipynb) | Rating-aligned conservative optimizer | Actual rating-delta evidence, one-game attribution guard, negotiation +3.03 over two overshot completions |
+| [`GLEE_Competition_agent_v11.ipynb`](GLEE_Competition_agent_v11.ipynb) | Large-batch runner; rejected operationally | Requested 24 games at concurrency 4, completed 53, negotiation -44.84 despite zero fallbacks |
 
 All notebook policies are rule-based and require no LLM inference. Each reads only the game state visible under the competition's information rules.
 
@@ -636,10 +639,26 @@ The final checkpoint contained 21 games and moved negotiation from 1383.62 to 13
 
 Outcome-level means were +2.35 for agreements, +0.68 for no-deals, and -0.39 for walkaways. Positive no-deal deltas reinforce that V8 optimizes individually rational, configuration-relative payoff rather than agreement rate. Both roles were positive, although the seller remained stronger.
 
+### V10 negotiation follow-up
+
+V10 started at **1395.13 after 173 games** and finished at **1398.16 after 175 games**, an exact gain of **+3.03**. Both games were buyer walkaways with rounded changes +2.9 and +0.2. The SDK completed two games after a one-game request, so V10 correctly withheld ambiguous live arm credit and stopped. It harvested both terminal diagnostics with zero action fallbacks and zero telemetry diagnostics.
+
+### V11 negotiation batch
+
+V11 requested 24 champion-mode negotiation games at concurrency 4, but the SDK completed **53**. All used `v5_safe`. The displayed rating fell from **1398.16 after 175 games** to **1353.32 after 228 games**, an exact loss of **-44.84**.
+
+| Role | Games | Agreements | No-deals | Walkaways | Positive / negative | Rounded sum | Mean |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Buyer | 30 | 19 | 9 | 2 | 15 / 15 | **-19.4** | **-0.65** |
+| Seller | 23 | 10 | 11 | 2 | 8 / 15 | **-25.5** | **-1.11** |
+| Complete batch | 53 | 29 | 20 | 4 | 23 / 30 | **-44.9** | **-0.85** |
+
+All 53 terminal diagnostics were harvested with zero action fallbacks and zero telemetry diagnostics. Agreements summed to -26.6, no-deals to -23.9, and walkaways to +5.6. Because V11 retained the exact negotiation core, this does not isolate a policy-code regression. It does reject the 24-game, concurrency-4 runner: the oversized uninterruptible batch created 29 excess completions and unacceptable rating exposure.
+
 ## Evaluation and further improvement
 
 - A/B test one family at a time and record the rating and game count immediately before and after each sufficiently large batch.
-- Use V8 in bounded, single-family, concurrency-1 checkpoints. Its V5 negotiation core is now supported by two positive sequential batches, including V8's +50.96 over 44 games. Pause bargaining calibration until arm-level assignments are exported, and evaluate persuasion seller arms most cautiously; do not continue V6 persuasion.
+- Do not rerun V11's 24-game/concurrency-4 configuration. Use single-family, concurrency-1 checkpoints with an authoritative count check after every SDK return. The V5/V8 negotiation core has positive earlier batches but also V11's -44.84 sequential result, so current performance should be treated as unstable rather than guaranteed.
 - Retrieve completed games after each bounded run, when practical, so terminal acceptances can supplement the profiles that are learned only from pending-move states.
 - Replace point estimates with credible intervals and choose more conservative actions when opponent evidence is sparse.
 - Segment priors by disclosed opponent type only after enough samples exist to avoid overfitting identities or short streaks.

@@ -10,12 +10,12 @@ The competition covers three game families:
 
 ## Leaderboard snapshot
 
-Latest results rendered after a `GLEE_Competition_agent_v10.ipynb` negotiation evaluation on August 25, 2026:
+Latest results rendered after a `GLEE_Competition_agent_v11.ipynb` negotiation evaluation on August 25, 2026:
 
 | Game family | Rating | Games played |
 |---|---:|---:|
 | Bargaining | **1361.95** | 137 |
-| Negotiation | **1398.16** | 175 |
+| Negotiation | **1353.32** | 228 |
 | Persuasion | **1741.90** | 414 |
 
 - **Agent:** `myagent`
@@ -118,6 +118,20 @@ The displayed negotiation rating increased from **1395.13 after 173 games** to *
 
 V10 harvested both terminal-payoff diagnostics with **zero live action fallbacks and zero telemetry diagnostics**. Because the completion delta was two rather than one, its rating-alignment guard correctly recorded `Rating credit: None`, declined to attribute the aggregate rating change to either game, and stopped immediately with `completion overshoot: 2`. The console's `Rating-attributed outcomes: 1` is the synthetic record created by V10's offline rating-credit test, not a live attributed outcome. Thus this run supports the locked negotiation policy's continued positive performance, but it supplies no arm-promotion evidence and is far too small for a new causal claim.
 
+### V11 negotiation evaluation
+
+V11 deliberately replaced the one-completion driver with a larger champion-mode batch. It requested 24 negotiation games at concurrency 4, but the SDK completed **53 games** before returning. All 53 used the locked `v5_safe` arm. The displayed negotiation rating fell from **1398.16 after 175 games** to **1353.32 after 228 games**, an exact change of **-44.84**. Bargaining and persuasion were unchanged, so the unweighted three-family average fell from **1500.67** to **1485.72** (**-14.95**).
+
+| Split | Games | Agreements | No-deals | Walkaways | Positive / negative | Rounded sum | Mean rounded delta |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Buyer | 30 | 19 | 9 | 2 | 15 / 15 | **-19.4** | **-0.65** |
+| Seller | 23 | 10 | 11 | 2 | 8 / 15 | **-25.5** | **-1.11** |
+| Complete batch | 53 | 29 | 20 | 4 | 23 / 30 | **-44.9** | **-0.85** |
+
+Agreements summed to -26.6 across 29 games (mean -0.92), no-deals summed to -23.9 across 20 games (mean -1.20), and four walkaways summed to +5.6 (mean +1.40). The rounded total differs from the exact snapshot change by 0.06 because dashboard deltas have one decimal place. V11 harvested all 53 terminal diagnostics with **zero action fallbacks and zero telemetry diagnostics**, so the loss is not explained by malformed actions or execution exceptions.
+
+This is not evidence that V11 changed the negotiation decision policy: every game used the same `v5_safe` core as V5, V8, and V10. It is evidence that the V11 batch runner created unacceptable exposure. The SDK completed more than twice the requested count, and aggregate batch accounting could not stop during the run. V11's 24-game/concurrency-4 execution configuration is therefore rejected. Do not rerun it unchanged; return to concurrency 1, very small checkpoints, and an external authoritative-count stop between SDK calls.
+
 ## Agent implementation
 
 The evidence-backed deployment portfolio is family-specific: [`notebooks/GLEE_Competition_agent_v4.ipynb`](notebooks/GLEE_Competition_agent_v4.ipynb) for bargaining, [`notebooks/GLEE_Competition_agent_v5.ipynb`](notebooks/GLEE_Competition_agent_v5.ipynb) for negotiation, and V3 for persuasion. [`notebooks/GLEE_Competition_agent_v6.ipynb`](notebooks/GLEE_Competition_agent_v6.ipynb) adds stronger validation and configuration-safe memory, but its live persuasion policy is rejected after the negative 35-game batch.
@@ -127,6 +141,8 @@ The evidence-backed deployment portfolio is family-specific: [`notebooks/GLEE_Co
 [`notebooks/GLEE_Competition_agent_v8.ipynb`](notebooks/GLEE_Competition_agent_v8.ipynb) tightens exploration to the weak roles only, freezes the V5 negotiation core and V3 persuasion buyer, persists terminal evidence, evaluates in checkpoints, and separates gameplay fallbacks from telemetry. Its first negotiation run gained **50.96** points over 44 games; buyer and seller means were both positive, and all 44 rewards were harvested with zero action fallbacks or telemetry errors. V8 remains the strongest larger-sample negotiation record, while the family policy references remain V4 bargaining, V5 negotiation, and V3 persuasion.
 
 [`notebooks/GLEE_Competition_agent_v10.ipynb`](notebooks/GLEE_Competition_agent_v10.ipynb) is the current recommended unified execution notebook. It preserves the same family champions, uses actual unambiguous one-game dashboard rating changes rather than normalized payoff proxies for calibration evidence, and defaults to the replicated negotiation champion. Its first supplied run gained **3.03** negotiation points over two buyer games with zero fallbacks or telemetry errors. The SDK nevertheless completed two games after a one-game request, so V10 correctly withheld rating credit and stopped; future runs should continue from zero active games with concurrency 1 and retain the overshoot guard.
+
+[`notebooks/GLEE_Competition_agent_v11.ipynb`](notebooks/GLEE_Competition_agent_v11.ipynb) is retained as a documented negative operational result, not a recommended runner. Its unchanged negotiation core lost **44.84** points over 53 games after a request for 24 at concurrency 4. The run had zero policy fallbacks and telemetry errors, but its inability to interrupt the oversized batch exposed the agent to 29 excess completions. V10's small-checkpoint execution remains preferred pending stronger server-side game-count control.
 
 For the methods, techniques, equations, usage instructions, and limitations, see the [notebook documentation](notebooks/README.md).
 
