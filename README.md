@@ -10,17 +10,17 @@ The competition covers three game families:
 
 ## Leaderboard snapshot
 
-Latest results rendered after a `GLEE_Competition_agent_v5.ipynb` negotiation evaluation batch on August 25, 2026:
+Latest results rendered after a `GLEE_Competition_agent_v6.ipynb` persuasion evaluation batch on August 25, 2026:
 
 | Game family | Rating | Games played |
 |---|---:|---:|
 | Bargaining | **1352.06** | 97 |
 | Negotiation | **1344.87** | 127 |
-| Persuasion | **1756.91** | 379 |
+| Persuasion | **1741.90** | 414 |
 
 - **Agent:** `myagent`
 - **Agent ID:** `9edb52a0-b489-44bd-b594-af77cdba5597`
-- **Dashboard position at the supplied snapshot:** #1
+- **Dashboard position in the earlier supplied V5 snapshot:** #1
 - **Dashboard short identifier shown:** `8903a6e897cd`
 - **Active games:** 0
 
@@ -68,9 +68,23 @@ The notebook reported **zero fallbacks**, 46 named or game-local negotiation pro
 
 The rounded per-game sum of **+101.6** differs from the exact two-decimal snapshot change of **+101.56** by only 0.04 because the dashboard rounds each game to one decimal place. Seller performance remained stronger, but both roles had positive mean deltas.
 
+### V6 persuasion evaluation
+
+V6 then played a persuasion-only batch of 35 games. The displayed persuasion rating decreased from **1756.91** after 379 games to **1741.90** after 414 games, an exact snapshot change of **-15.01**. Bargaining and negotiation were unchanged. The unweighted three-family average consequently moved from **1484.61** to **1479.61** (**-5.00**).
+
+| Persuasion role | Games | Positive deltas | Negative deltas | Rounded sum | Mean rounded delta |
+|---|---:|---:|---:|---:|---:|
+| Buyer | 21 | 11 | 10 | **+0.3** | **+0.01** |
+| Seller | 14 | 3 | 11 | **-15.3** | **-1.09** |
+| Complete batch | 35 | 14 | 21 | **-15.0** | **-0.43** |
+
+The notebook again reported **zero fallbacks**, so the decline is evidence of a strategy regression rather than malformed actions or execution failures. Seller play accounts for essentially the entire rounded loss. V6's buyer was approximately neutral but also materially weaker than the earlier V3 buyer sample. V6 persuasion should therefore not be deployed further without revision.
+
 ## Agent implementation
 
-The current live-tested candidate is [`notebooks/GLEE_Competition_agent_v5.ipynb`](notebooks/GLEE_Competition_agent_v5.ipynb). It preserves V4's cycle-safe bargaining but targets the weak Alice role, makes negotiation buyers more agreement-oriented without accepting negative surplus, and replaces conservative seller pooling with a bounded recency model and sequential trust ledger. V5 is now the strongest live-tested negotiation version in this repository; [`notebooks/GLEE_Competition_agent_v4.ipynb`](notebooks/GLEE_Competition_agent_v4.ipynb) remains the bargaining reference, and V3 remains the persuasion reference until the corresponding V5 family batches are run.
+The evidence-backed deployment portfolio is family-specific: [`notebooks/GLEE_Competition_agent_v4.ipynb`](notebooks/GLEE_Competition_agent_v4.ipynb) for bargaining, [`notebooks/GLEE_Competition_agent_v5.ipynb`](notebooks/GLEE_Competition_agent_v5.ipynb) for negotiation, and V3 for persuasion. [`notebooks/GLEE_Competition_agent_v6.ipynb`](notebooks/GLEE_Competition_agent_v6.ipynb) adds stronger validation and configuration-safe memory, but its live persuasion policy is rejected after the negative 35-game batch.
+
+[`notebooks/GLEE_Competition_agent_v7.ipynb`](notebooks/GLEE_Competition_agent_v7.ipynb) packages those three protected policies into one conservative portfolio. It assigns one arm for the entire game, limits under-sampled challenger exploration to 12%, records completed-game payoff when the installed SDK exposes it, and permits promotion only from role- and configuration-local evidence. Its challengers are a quantal-response bargaining calibration, a bounded buyer-only negotiation residual, and separate empirical-seller/lower-confidence buyer persuasion policies. V7 has passed offline contract and policy-isolation tests but has no live score result yet; it should be evaluated in small, single-family batches with concurrency 1.
 
 For the methods, techniques, equations, usage instructions, and limitations, see the [notebook documentation](notebooks/README.md).
 
@@ -86,7 +100,7 @@ import os
 from glee_sdk import GleeClient
 
 client = GleeClient(api_key=os.environ["GLEE_API_KEY"])
-client.run(strategy, concurrency=4, max_games=20)
+client.run(strategy, game_families=["bargaining"], concurrency=1, max_games=12)
 ```
 
 ## References

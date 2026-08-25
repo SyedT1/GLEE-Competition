@@ -1,6 +1,6 @@
 # GLEE agent notebook
 
-For the current role-calibrated version, use [`GLEE_Competition_agent_v5.ipynb`](GLEE_Competition_agent_v5.ipynb). It combines V4's cycle-safe bargaining with Alice-specific surplus capture, buyer-specific negotiation concessions, capped persistent trust, recency-weighted persuasion learning, and a seller trust ledger that spends credibility near the horizon. V5 is now the live-tested negotiation reference after a 55-game batch raised the displayed negotiation rating by 101.56 points with zero fallbacks. V4 remains the bargaining reference, while V3 remains the persuasion reference until those V5 family batches are evaluated.
+Use a family-specific portfolio rather than assuming the newest notebook is uniformly superior: V4 is the live-tested bargaining reference, V5 is the negotiation reference after gaining 101.56 points in 55 games with zero fallbacks, and V3 remains the persuasion reference. V6 adds configuration-scoped learning, observation-correct seller trust, strict action validation, and property tests, but its 35-game persuasion batch lost 15.01 displayed rating points and is a documented negative result. V7 preserves the three evidence-backed policies as protected arms and tests bounded challengers without making them universal defaults.
 
 [`GLEE_Competition_—_agent_quickstart.ipynb`](GLEE_Competition_—_agent_quickstart.ipynb) is a zero-setup agent for all three GLEE game families. It separates the policy into one function per family and exposes one dispatcher to the SDK:
 
@@ -21,6 +21,8 @@ This modular design makes it possible to tune and test one family without changi
 | [`GLEE_Competition_agent_v3.ipynb`](GLEE_Competition_agent_v3.ipynb) | Live-tested adaptive reference | Bounded demand learning, continuation values, hidden-value concession inference, direct signal-precision learning, credibility budgeting |
 | [`GLEE_Competition_agent_v4.ipynb`](GLEE_Competition_agent_v4.ipynb) | Bargaining-tested history-calibrated agent | Uncapped visible equilibrium, cycle escape, trend-aware negotiation, role-separated persuasion memory, hidden-value seller exploration |
 | [`GLEE_Competition_agent_v5.ipynb`](GLEE_Competition_agent_v5.ipynb) | Negotiation-tested role-calibrated agent | Alice payoff shading, buyer-specific negotiation capture, capped stale trust, recency weighting, sequential seller credibility spending |
+| [`GLEE_Competition_agent_v6.ipynb`](GLEE_Competition_agent_v6.ipynb) | Safety-strengthened experimental agent; persuasion rejected | Configuration-scoped profiles, purchased-only trust updates, credibility scheduling, negation-aware text parsing, strict contract validation |
+| [`GLEE_Competition_agent_v7.ipynb`](GLEE_Competition_agent_v7.ipynb) | Conservative evidence-gated portfolio | Protected V4/V5/V3 arms, whole-game arm assignment, 12% bounded exploration, completed-game reward credit, confidence-bound promotion, V6 validation |
 
 All notebook policies are rule-based and require no LLM inference. Each reads only the game state visible under the competition's information rules.
 
@@ -375,15 +377,122 @@ With visible values, early low-quality pooling requires $T_t$ to exceed the buye
 
 When buyer values are hidden, V5 records the trust levels at which positive recommendations were bought or passed, derives a conservative cutoff estimate, and applies the same shrinking-margin rule. Hidden-value pooling remains capped at 0.70.
 
+## V6 methods and diagnosed regression
+
+V6 isolates bargaining rejection evidence by role, information condition, and visible discount signature. This prevents a threshold learned in one configuration from being applied as a hard floor in an incompatible game. It preserves the live-tested V5 negotiation decision core and strengthens local validation against undeclared keys, Boolean values passed as numbers, missing counteroffers, invalid decisions, and messages over 2,000 characters.
+
+In persuasion, V6 correctly models the official information rule that a buyer observes quality only after purchasing. Passed products therefore do not update modeled buyer trust. For a positive-message cutoff $c$, define
+
+$$
+A=4\rho_{+,0}+n_H,
+\qquad
+N=4+n_H+n_L.
+$$
+
+V6 estimated the remaining low-quality credibility budget as
+
+$$
+B=\max\left(0,\frac{A}{c}-N\right)
+$$
+
+and scheduled that budget across the current and expected future low-quality opportunities. Although observation-correct, this scheduler performed poorly against the live opponent mix. In the 35-game batch, seller play averaged $-1.09$ and accounted for $-15.3$ of the rounded $-15.0$ total. This mechanism is retained as a documented negative result, not as the recommended persuasion policy.
+
+## V7 methods: conservative policy portfolio
+
+V7 does not assume that one new parameter vector dominates every role and configuration. It protects the strongest observed family policies—V4 bargaining, V5 negotiation, and V3 persuasion—and assigns one policy arm for the entire game. This avoids contaminating terminal credit by switching policies mid-game.
+
+### Context-local selection and promotion
+
+Evidence is separated by family, role, information condition, horizon bucket, economically relevant value or discount bucket, message mode, and disclosed opponent type. For an arm with normalized completed-game rewards $r_1,\ldots,r_n$, V7 stores
+
+$$
+\bar r=\frac{1}{n}\sum_{i=1}^{n}r_i,
+\qquad
+s^2=\max\left(0,\frac{1}{n}\sum_{i=1}^{n}r_i^2-\bar r^2\right),
+$$
+
+and computes the conservative interval
+
+$$
+L=\bar r-1.64\sqrt{\frac{s^2+0.02}{\max(1,n)}},
+\qquad
+U=\bar r+1.64\sqrt{\frac{s^2+0.02}{\max(1,n)}}.
+$$
+
+An under-sampled challenger is selected in at most 12% of eligible games. It is promoted only after at least eight local challenger games, at least four baseline games, a challenger mean more than 0.01 above the baseline mean, and a challenger lower bound no more than 0.03 below the baseline lower bound. If completed-game payoff cannot be extracted from the installed SDK response, V7 records no fabricated reward and retains the baseline.
+
+### Bargaining: V4 baseline and QRE challenger
+
+The protected arm is V4. For a proposed responder share $s$, estimated acceptance floor $\tau$, and logistic width $w$, it evaluates
+
+$$
+a(s)=\frac{1}{1+\exp\left(-(s-\tau+0.008)/w\right)},
+$$
+
+$$
+J(s)=a(s)(1-s)^{1.15}-(1-a(s))C_t,
+\qquad
+C_t=0.04+0.24t+0.55(1-\delta).
+$$
+
+The configuration-local challenger uses V5-style role calibration: small floor shading, Alice-specific payoff curvature, and a lower Alice failure-cost multiplier. V4's unshaded rule remains the default because its live batch gained 46.19 points with 25/25 agreements.
+
+### Negotiation: frozen V5 seller and bounded buyer residual
+
+The protected arm exactly retains V5's decision constants. With visible surplus $S=v_b-v_s$, seller and buyer targets are
+
+$$
+P_{s,t}=v_s+(0.74-0.14t)S,
+\qquad
+P_{b,t}=v_b-(0.66-0.10t)S.
+$$
+
+The seller has no challenger. The buyer challenger changes requested capture by at most four percentage points,
+
+$$
+c^{\mathrm{trial}}_{b,t}=0.62-0.08t,
+$$
+
+uses $0.58-0.08t$ for its hidden-value claim, and changes continuation weighting from 0.75 to 0.72. These bounded residuals target the weaker buyer split without disturbing the seller arm that averaged +2.72 per visible V5 game.
+
+### Persuasion: V3 baseline and role-specific caution
+
+V7 retires V6's failed credibility-budget scheduler. The protected buyer restores V3's direct precision estimate
+
+$$
+\widehat\rho_m=\frac{4\rho_{m,0}+n_{m,H}}
+{4+n_{m,H}+n_{m,L}},
+\qquad
+\mathbb E[V\mid m]=\widehat\rho_m v+(1-\widehat\rho_m)u.
+$$
+
+The protected seller restores V3's credibility-constrained pooling probability. The seller challenger never pools more aggressively than V3; it multiplies V3's rate by an empirical receiver-response factor that falls to zero for sufficiently skeptical buyers. The buyer challenger uses a mild one-sided lower estimate. With Beta parameters $\alpha$ and $\beta$,
+
+$$
+\rho_{\mathrm{LCB}}=
+\max\left(0,\min\left(1,
+\frac{\alpha}{\alpha+\beta}
+-0.55\sqrt{\frac{\alpha\beta}
+{(\alpha+\beta)^2(\alpha+\beta+1)}}\right)\right).
+$$
+
+Seller-response and buyer-reliability memories are separate. A buyer's reliability counts include quality only after purchase, while the informed seller may use all realized qualities in its own response model.
+
+### Terminal reward credit and tests
+
+V7 attempts to retrieve every assigned game after a bounded run. Bargaining payoff is normalized by the pot; negotiation and persuasion use bounded scale-normalized transformations. Re-harvesting is idempotent. The notebook's offline suite covers both bargaining players, extreme discounts, both negotiation roles, feasible prices, persuasion censoring, deterministic whole-game arm assignment, candidate isolation, normalized reward credit, and strict schema validation.
+
 ## Safety and limitations
 
-- V2, V3, V4, and V5 validate every proposed action and use conservative legal fallbacks after unexpected schemas or strategy exceptions.
+- V2 through V7 validate every proposed action and use conservative legal fallbacks after unexpected schemas or strategy exceptions; V6 and V7 add stricter contract checks.
 - Stable hashes make persuasion mixing reproducible across concurrent games.
 - Named opponents receive cross-game profiles; hidden identities receive only game-local profiles.
 - No hand-coded strategy guarantees a rating increase. Matchmaking, configuration draws, opponent adaptation, and rating shrinkage create substantial short-run variance.
 - V3 and V4 learn only from states delivered while a move is pending; a game-ending acceptance may not produce another strategy call.
 - V4 increased the live bargaining rating in its first 25-game batch, but its negotiation and persuasion changes remain offline-tested only.
 - V5 negotiation has one live 55-game batch; V5 bargaining and persuasion remain offline-tested. Its role-specific constants are hypotheses derived from limited, non-randomized samples, not guaranteed improvements.
+- V6 persuasion lost 15.01 displayed rating points over 35 games despite zero fallbacks. Do not deploy its persuasion policy without revision.
+- V7 has passed offline tests but has no live evaluation result yet. Its 12% exploration cap limits exposure; it does not guarantee rating protection or improvement.
 
 ## Architecture and execution
 
@@ -468,10 +577,28 @@ The notebook reported a fallback count of **0** and retained 46 named or game-lo
 
 The 55 displayed one-decimal deltas sum to +101.6, only 0.04 above the exact snapshot change of +101.56 because individual dashboard deltas are rounded. The complete batch supports a strong descriptive V5 negotiation gain and continued buyer calibration, but it still does not constitute a controlled causal comparison.
 
+### V6 persuasion batch
+
+V6 played 35 persuasion games on August 25, 2026. The displayed rating decreased from **1756.91** after 379 games to **1741.90** after 414 games.
+
+| Metric | Before | After | Change |
+|---|---:|---:|---:|
+| Persuasion rating | 1756.91 | **1741.90** | **-15.01** |
+| Persuasion games | 379 | **414** | **+35** |
+| Three-family average | 1484.61 | **1479.61** | **-5.00** |
+
+| Role | Games | Positive / negative | Rounded sum | Mean rounded delta | Median delta |
+|---|---:|---:|---:|---:|---:|
+| Buyer | 21 | 11 / 10 | **+0.3** | **+0.01** | **+1.3** |
+| Seller | 14 | 3 / 11 | **-15.3** | **-1.09** | **-1.8** |
+| Complete batch | 35 | 14 / 21 | **-15.0** | **-0.43** | **-0.8** |
+
+The exact snapshot change and rounded game sum differ by 0.01 because individual deltas are displayed to one decimal place. The fallback count was zero. Thus the seller loss is a policy failure rather than evidence of invalid actions or crashes. The buyer was approximately neutral in this batch but well below V3's earlier buyer mean of +4.09. V6 persuasion is rejected; retain V3 as the persuasion reference while preserving V6's validation safeguards for future versions.
+
 ## Evaluation and further improvement
 
 - A/B test one family at a time and record the rating and game count immediately before and after each sufficiently large batch.
-- Retain V5 as the negotiation reference, evaluate persuasion next and bargaining last, and compare role-stratified results with the V3/V4 references before changing multiple constants together.
+- Use V7 only in bounded, single-family, concurrency-1 batches. Its default arms retain V4 bargaining, V5 negotiation, and V3 persuasion; do not continue V6 persuasion.
 - Retrieve completed games after each bounded run, when practical, so terminal acceptances can supplement the profiles that are learned only from pending-move states.
 - Replace point estimates with credible intervals and choose more conservative actions when opponent evidence is sparse.
 - Segment priors by disclosed opponent type only after enough samples exist to avoid overfitting identities or short streaks.
