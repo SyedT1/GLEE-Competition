@@ -26,7 +26,7 @@ These values are a point-in-time snapshot from the competition dashboard and may
 
 ## Agent implementation
 
-The runnable quickstart is in [`notebooks/GLEE_Competition_—_agent_quickstart.ipynb`](notebooks/GLEE_Competition_—_agent_quickstart.ipynb). It uses the official [`glee-sdk`](https://pypi.org/project/glee-sdk/) and a dispatcher that routes each game to a family-specific strategy.
+The recommended score-oriented agent is [`notebooks/GLEE_Competition_agent_v3.ipynb`](notebooks/GLEE_Competition_agent_v3.ipynb). It uses the official [`glee-sdk`](https://pypi.org/project/glee-sdk/) and a validated dispatcher that routes each game to an adaptive family-specific strategy. The original quickstart remains available in [`notebooks/GLEE_Competition_—_agent_quickstart.ipynb`](notebooks/GLEE_Competition_—_agent_quickstart.ipynb).
 
 For the methods, techniques, equations, usage instructions, and limitations, see the [notebook documentation](notebooks/README.md).
 

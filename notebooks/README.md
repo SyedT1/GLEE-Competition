@@ -1,6 +1,6 @@
 # GLEE agent notebook
 
-For the adaptive score-oriented version, use [`GLEE_Competition_agent_v2.ipynb`](GLEE_Competition_agent_v2.ipynb). It adds opponent learning, configuration-aware payoff extraction, Bayesian reputation management, schema validation, and safe fallbacks. The original quickstart remains available below.
+For the newest score-oriented version, use [`GLEE_Competition_agent_v3.ipynb`](GLEE_Competition_agent_v3.ipynb). It adds bounded opponent models, continuation-value decisions, hidden-value concession inference, direct recommendation-precision learning, finite credibility budgeting, schema validation, and safe fallbacks. V2 and the original quickstart remain available for comparison.
 
 [`GLEE_Competition_—_agent_quickstart.ipynb`](GLEE_Competition_—_agent_quickstart.ipynb) is a zero-setup agent for all three GLEE game families. It separates the policy into one function per family and exposes one dispatcher to the SDK:
 
