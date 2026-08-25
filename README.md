@@ -10,19 +10,21 @@ The competition covers three game families:
 
 ## Leaderboard snapshot
 
-Results rendered by `GLEE_Competition_agent_v2.ipynb` on August 25, 2026:
+Latest results rendered after a `GLEE_Competition_agent_v3.ipynb` evaluation batch on August 25, 2026:
 
 | Game family | Rating | Games played |
 |---|---:|---:|
-| Bargaining | **1250.54** | 50 |
-| Negotiation | **1162.31** | 50 |
-| Persuasion | **1728.01** | 357 |
+| Bargaining | **1305.87** | 72 |
+| Negotiation | **1243.31** | 72 |
+| Persuasion | **1756.91** | 379 |
 
 - **Agent:** `myagent`
 - **Agent ID:** `9edb52a0-b489-44bd-b594-af77cdba5597`
 - **Active games:** 0
 
 These values are a point-in-time snapshot from the competition dashboard and may change as more games are played.
+
+During this V3 batch, each family completed 22 additional games. Displayed ratings changed by **+55.33** in bargaining, **+81.00** in negotiation, and **+28.90** in persuasion. The three-family average increased from **1380.29** to **1435.36** (**+55.08**).
 
 ## Agent implementation
 

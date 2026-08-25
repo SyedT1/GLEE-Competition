@@ -12,106 +12,225 @@ Here, the family $f$ is read from `game["game_family"]`.
 
 This modular design makes it possible to tune and test one family without changing the others.
 
-## Method
+## Notebook comparison
 
-The notebook uses a **Bayesian and game-theoretic hybrid policy**. Each policy reads the visible game state, information structure, deadline, and legal action type. No model training or LLM inference is required.
+| Notebook | Purpose | Main additions |
+|---|---|---|
+| [`GLEE_Competition_—_agent_quickstart.ipynb`](GLEE_Competition_—_agent_quickstart.ipynb) | Transparent reference policy | Game-theoretic targets, deadline awareness, Bayesian signal learning |
+| [`GLEE_Competition_agent_v2.ipynb`](GLEE_Competition_agent_v2.ipynb) | First score-oriented agent | Persistent opponent profiles, aggressive surplus capture, finite-horizon reputation management, validation and fallbacks |
+| [`GLEE_Competition_agent_v3.ipynb`](GLEE_Competition_agent_v3.ipynb) | Recommended adaptive agent | Bounded demand learning, continuation values, hidden-value concession inference, direct signal-precision learning, credibility budgeting |
 
-### 1. Bargaining: fairness plus an acceptance threshold
+All three are rule-based and require no LLM inference. Each reads only the game state visible under the competition's information rules.
 
-Let $M$ be the available money and let $x_A,x_B$ be the proposed gains. Every valid offer must satisfy
+## Common notation and constraints
+
+Let $M$ denote the bargaining pot, $x_A$ and $x_B$ the two allocations, $v_s$ the seller's reservation value, $v_b$ the buyer's valuation, $P$ a negotiated or fixed product price, and $t\in[0,1]$ normalized progress toward a known deadline.
+
+Every bargaining offer must satisfy
 
 $$
 x_A+x_B=M.
 $$
 
-Under complete information, the proposer starts from the Rubinstein alternating-offers share. If $d_p$ and $d_r$ are the proposer and responder discount multipliers, respectively, the proposer's equilibrium share is
+Negotiation utilities and feasible surplus are
+
+$$
+U_s(P)=P-v_s,
+\qquad
+U_b(P)=v_b-P,
+\qquad
+S=v_b-v_s.
+$$
+
+A trade is individually rational only when the acting player's utility is non-negative. On the final round, all notebooks accept a profitable negotiation offer because continuation value is zero.
+
+## Quickstart methods
+
+### Bargaining
+
+Under complete information, the proposer starts from the Rubinstein alternating-offers solution. If $d_p$ and $d_r$ are the proposer and responder discount multipliers, the proposer's reference share is
 
 $$
 s_p=\frac{1-d_r}{1-d_pd_r}.
 $$
 
-The implemented offer is bounded for robustness and converges toward an equal split as the deadline approaches. When the opponent's multiplier is hidden, the policy starts at 58% for itself and concedes toward 50%.
-
-As responder, the agent compares the current gain with the discounted value of becoming proposer next round:
+The actual share moves toward one half as the deadline approaches. Under incomplete information, the proposer begins near a 58% personal share and gradually concedes. A responder accepts when the current gain $x_i$ reaches the discounted value of proposing next:
 
 $$
-\mathrm{accept}(x_i)=
-\begin{cases}
-1, & x_i \ge d_iMs_i^{\mathrm{next}},\\
-0, & \text{otherwise}.
-\end{cases}
+x_i \ge d_i M s_i^{\mathrm{next}}.
 $$
 
-On the final round, any non-negative offer is accepted because continuation has zero value.
+### Negotiation
 
-**Techniques:** alternating-offers equilibrium, continuation-value acceptance, deadline-aware concession, incomplete-information fallback, and valid-budget enforcement.
-
-**Current limitation:** the incomplete-information policy uses a conservative prior rather than learning an opponent-specific acceptance threshold from rejected offers.
-
-### 2. Negotiation: valuation anchoring and individual rationality
-
-Let $v_s$ be the seller's minimum valuation, $v_b$ the buyer's maximum valuation, and $P$ the proposed price. A trade is individually rational when the relevant surplus is non-negative:
+With both valuations visible, the quickstart uses a midpoint target with a temporary first-mover advantage:
 
 $$
-U_s(P)=P-v_s \ge 0,
+P_t^{\mathrm{seller}}=v_s+0.5S+0.15S(1-t),
+$$
+
+$$
+P_t^{\mathrm{buyer}}=v_s+0.5S-0.15S(1-t).
+$$
+
+With hidden values, role-specific valuation anchors replace the full-information surplus calculation. After rejection, the counteroffer is blended toward the opponent's latest price with increasing weight near the deadline.
+
+### Persuasion
+
+The buyer estimates the seller's positive-signal rates $q_H=P(m^+\mid H)$ and $q_L=P(m^+\mid L)$ from revealed outcomes using Beta smoothing. After a positive signal, Bayes' rule gives
+
+$$
+\widehat p=P(H\mid m^+)=\frac{p q_H}{p q_H+(1-p)q_L}.
+$$
+
+Posterior expected value is
+
+$$
+\mathbb{E}[V\mid m]=\widehat p v+(1-\widehat p)u.
+$$
+
+The decision rule is deliberately written without a `cases` environment for compatibility with GitHub and notebook Markdown renderers:
+
+$$
+\mathrm{buy}=\mathrm{yes}
+\quad\Longleftrightarrow\quad
+\mathbb{E}[V\mid m]\ge P;
 \qquad
-U_b(P)=v_b-P \ge 0.
+\mathrm{buy}=\mathrm{no}\ \text{otherwise}.
 $$
 
-When both valuations are visible, the policy divides the feasible surplus $S=v_b-v_s$. It targets the midpoint plus a temporary first-mover advantage that disappears by the deadline:
+The seller always recommends high quality. When $u<P<v$, it can pool some low-quality products while preserving the buyer's purchase threshold. If
 
 $$
-P_t=
-\begin{cases}
-v_s+0.5S+0.15S(1-t), & \text{seller},\\
-v_s+0.5S-0.15S(1-t), & \text{buyer},
-\end{cases}
+c=\frac{P-u}{v-u},
 $$
 
-where $t$ is normalized progress toward the final round. With hidden valuations, time-varying versions of the original valuation anchors provide a conservative fallback.
-
-The agent accepts when the offer is profitable and reaches its current target. On the final round, it accepts every profitable offer:
+the maximum static low-quality pooling probability is
 
 $$
-\mathrm{accept}(P)=
-\begin{cases}
-1, & P\ge \max(v_s,P_t) \quad \text{(seller)},\\
-1, & P\le \min(v_b,P_t) \quad \text{(buyer)},\\
-0, & \text{otherwise}.
-\end{cases}
+q_L^*=\frac{p(1-c)}{c(1-p)},
 $$
 
-The final-round rule drops the $P_t$ requirement and retains only individual rationality.
+clipped to $[0,1]$.
 
-After rejecting, it blends its target toward the opponent's latest price, with the weight on that price increasing as the deadline approaches.
+## V2 methods
 
-**Techniques:** Nash-style surplus division, role-conditioned logic, continuation value, deadline-aware acceptance, and concession.
+### Bargaining: acceptance-probability optimization
 
-**Current limitation:** under incomplete information, the policy does not yet estimate the opponent's reservation value from its sequence of counteroffers.
-
-### 3. Persuasion: expected-value purchasing
-
-Let $p$ be the prior probability of high quality, $v$ the buyer's value for high quality, $u$ the value for low quality, and $P$ the product price. After observing message $m$, the buyer estimates
+V2 records the largest opponent share that the opponent rejected, denoted $r_{\max}$. It combines that evidence with a configuration-aware prior to form a threshold $\tau$. Candidate responder shares $s$ receive logistic acceptance probabilities
 
 $$
-\widehat p=P(H\mid m), \qquad \mathbb{E}[V\mid m]=\widehat p v+(1-\widehat p)u.
+a(s)=\frac{1}{1+\exp\left(-\frac{s-\tau+0.04}{0.02}\right)}.
 $$
 
-The buyer estimates the seller's positive-recommendation rates conditional on previously revealed high and low quality, using Beta smoothing. It applies Bayes' rule to the current signal, then buys only when posterior expected surplus is non-negative:
+The proposer searches for the share maximizing probability-weighted, mildly convex personal payoff:
 
 $$
-\mathrm{buy}=
-\begin{cases}
-\text{yes}, & \mathbb{E}[V\mid m]\ge P,\\
-\text{no}, & \mathbb{E}[V\mid m]<P.
-\end{cases}
+s^*=\underset{s}{\operatorname{argmax}}\;a(s)(1-s)^{1.25}.
 $$
 
-The seller recommends every high-quality product. When buyer values are visible, it pools a calculated fraction of low-quality products into the positive signal while keeping a Bayesian buyer's posterior at or above its purchasing threshold. The notebook uses a stable hash of game and round identifiers for reproducible mixing.
+As responder, V2 compares the current allocation with a discount-adjusted estimate of the payoff from rejecting and proposing next.
 
-**Techniques:** Bayesian updating, Beta-smoothed likelihood estimation, Bayesian persuasion, reproducible mixed strategies, and action-mode handling.
+### Negotiation: asymmetric surplus capture
 
-**Current limitation:** posterior learning depends on history records containing both a revealed outcome and its associated seller signal. Unrevealed quality cannot contribute evidence.
+Under complete information, V2 targets the personal surplus fraction
+
+$$
+c_t=0.85-0.25t.
+$$
+
+The seller target is $P_t=v_s+c_tS$; the buyer target is $P_t=v_s+(1-c_t)S$. Under hidden information, observed opponent prices replace some fixed valuation anchors. Acceptance requires non-negative utility and a decreasing fraction of target utility:
+
+$$
+U_{\mathrm{offer}}\ge (0.90-0.25t)U_{\mathrm{target}}.
+$$
+
+### Persuasion: Bayesian trust and finite-horizon pooling
+
+V2 carries Beta-smoothed estimates of $q_H$ and $q_L$ across games against disclosed sellers. Its seller protects reputation early and approaches the static pooling rate near the end:
+
+$$
+q_{L,t}=q_L^*\left(0.15+0.85t^{1.5}\right).
+$$
+
+The buyer applies Bayes' rule to positive and negative signals and adds a small information bonus when an early purchase can reveal seller reliability.
+
+## V3 methods
+
+### Bargaining: bounded demand learning
+
+V3 augments rejection evidence with the opponent's recent demanded shares. Its estimated acceptance floor is
+
+$$
+\tau_t=\operatorname{clip}\!\left(
+\max\{\tau_{\mathrm{prior}},\ r_{\max}+0.012,\ \operatorname{median}(d)-\mu_t\},
+0.30,0.62
+\right),
+$$
+
+where $d$ contains recent opponent demands and $\mu_t$ is a shrinking aspiration margin. It evaluates each proposed responder share using
+
+$$
+J(s)=a(s)(1-s)^{1.18}-\bigl(1-a(s)\bigr)C_t,
+$$
+
+where $C_t$ increases with deadline pressure and delay cost. The responder accepts when the current allocation is at least the larger of a risk floor and the discounted, probability-adjusted payoff from proposing next.
+
+### Negotiation: concession inference inside the feasible interval
+
+Under complete information, V3 starts with a less brittle capture schedule than V2:
+
+$$
+c_t=0.74-0.14t.
+$$
+
+Observed opponent offers adjust this target. With hidden values, V3 does not multiply beyond an opponent's revealed price. If a seller with value $v_s$ observes buyer price $P_o\ge v_s$, its target is
+
+$$
+P_t=v_s+c_t(P_o-v_s).
+$$
+
+If a buyer with value $v_b$ observes seller price $P_o\le v_b$, its target is
+
+$$
+P_t=v_b-c_t(v_b-P_o).
+$$
+
+Thus the counteroffer remains inside the interval already shown to be individually rational for the agent. Acceptance compares offered utility with risk-adjusted continuation utility rather than demanding the full target.
+
+### Persuasion: direct precision learning and credibility budgeting
+
+Purchase history is censored because the buyer normally learns quality only after buying. Instead of treating that history as an unbiased estimate of $P(m\mid H)$ and $P(m\mid L)$, V3 directly estimates the decision-relevant precision $P(H\mid m)$. For a positive signal, it shrinks observed counts toward a strategic prior:
+
+$$
+\widehat\rho_+=\frac{\kappa\rho_{+,0}+n_{+,H}}{\kappa+n_{+,H}+n_{+,L}},
+$$
+
+where $\kappa=4$, $n_{+,H}$ and $n_{+,L}$ count revealed high- and low-quality positive recommendations, and
+
+$$
+\rho_{+,0}=\frac{0.90p}{0.90p+0.24(1-p)}.
+$$
+
+The buyer substitutes $\widehat\rho_+$ directly for $P(H\mid m^+)$ in the expected-value rule. Negative signals use analogous priors.
+
+As seller, V3 scales the static pooling probability by deadline progress and observed buyer response:
+
+$$
+q_{L,t}=\operatorname{clip}\!\left(
+q_L^*\left(0.12+0.88t^{1.65}\right)
+\left(0.55+0.60r_{\mathrm{buy}}\right),0,1
+\right).
+$$
+
+A low-quality positive signal is permitted only after a short truthful prefix and only if the resulting empirical positive-signal precision remains above the buyer's value threshold plus a safety margin. This is V3's finite credibility budget.
+
+## Safety and limitations
+
+- V2 and V3 validate every proposed action and use conservative legal fallbacks after unexpected schemas or strategy exceptions.
+- Stable hashes make persuasion mixing reproducible across concurrent games.
+- Named opponents receive cross-game profiles; hidden identities receive only game-local profiles.
+- No hand-coded strategy guarantees a rating increase. Matchmaking, configuration draws, opponent adaptation, and rating shrinkage create substantial short-run variance.
+- V3's opponent models learn only from states delivered while a move is pending; a game-ending acceptance may not produce another strategy call.
 
 ## Architecture and execution
 
@@ -138,33 +257,30 @@ $$
 
 ## Results snapshot
 
-Results rendered by `GLEE_Competition_agent_v2.ipynb` on August 25, 2026:
+Results rendered before and after a `GLEE_Competition_agent_v3.ipynb` evaluation batch on August 25, 2026:
 
-| Game family | Rating | Games played |
-|---|---:|---:|
-| Bargaining | **1250.54** | 50 |
-| Negotiation | **1162.31** | 50 |
-| Persuasion | **1728.01** | 357 |
+| Game family | Before rating | Before games | After rating | After games | Rating change |
+|---|---:|---:|---:|---:|---:|
+| Bargaining | 1250.54 | 50 | **1305.87** | 72 | **+55.33** |
+| Negotiation | 1162.31 | 50 | **1243.31** | 72 | **+81.00** |
+| Persuasion | 1728.01 | 357 | **1756.91** | 379 | **+28.90** |
+
+The batch completed 22 additional games per family, or 66 total. The unweighted three-family average rose from **1380.29** to **1435.36**, a change of **+55.08**.
 
 - **Agent:** `myagent`
 - **Agent ID:** `9edb52a0-b489-44bd-b594-af77cdba5597`
 - **Active games:** 0
 
-Ratings are live and can change after every game.
+All three displayed ratings increased during this batch. Ratings are live, however, and this single before/after observation does not isolate policy quality from opponent mix, configuration draws, rating shrinkage, or normal variance.
 
-## Improvement directions
+## Evaluation and further improvement
 
-- Use `game_state["history"]` to estimate opponent thresholds and concession rates.
-- Make offers time-aware using the round, horizon, and inflation/discount parameters.
-- Replace fixed negotiation multipliers with an adaptive reservation-value estimate.
-- In persuasion, update the buyer's belief with Bayes' rule after observing recommendation accuracy:
-
-  $$
-  P(H\mid m)=\frac{P(m\mid H)P(H)}{P(m\mid H)P(H)+P(m\mid L)P(L)}.
-  $$
-
-- A/B test changes by family and compare rating over a sufficiently large game sample.
-- Add an LLM only where language or history interpretation improves on the safe rule-based fallback.
+- A/B test one family at a time and record the rating and game count immediately before and after each sufficiently large batch.
+- Calibrate V3's bargaining acceptance curve and negotiation continuation discount from observed outcomes rather than changing several constants together.
+- Retrieve completed games after each bounded run, when practical, so terminal acceptances can supplement the profiles that are learned only from pending-move states.
+- Replace point estimates with credible intervals and choose more conservative actions when opponent evidence is sparse.
+- Segment priors by disclosed opponent type only after enough samples exist to avoid overfitting identities or short streaks.
+- Introduce an LLM only for genuinely ambiguous text messages, retaining the deterministic validated fallback for latency and schema safety.
 
 ## Security
 
