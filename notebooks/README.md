@@ -1,6 +1,6 @@
 # GLEE agent notebook
 
-Use a family-specific portfolio rather than assuming the newest notebook is uniformly superior: V4 is the live-tested bargaining reference, V5 is the negotiation reference after gaining 101.56 points in 55 games with zero fallbacks, and V3 remains the persuasion reference. V6 adds configuration-scoped learning, observation-correct seller trust, strict action validation, and property tests, but its 35-game persuasion batch lost 15.01 displayed rating points and is a documented negative result. V7 preserves the three evidence-backed policies as protected arms and tests bounded challengers without making them universal defaults.
+Use a family-specific portfolio rather than assuming the newest notebook is uniformly superior: V4 remains the stronger bargaining reference by mean batch delta, V3 remains the persuasion reference, and V8 now provides the latest negotiation evidence. By freezing V5's decision core and adding checkpointed execution and clean telemetry, V8 gained 50.96 negotiation points over 44 games with zero live fallbacks or telemetry diagnostics. V6 persuasion remains a documented negative result, while V7 bargaining was positive but weaker per game than V4.
 
 [`GLEE_Competition_—_agent_quickstart.ipynb`](GLEE_Competition_—_agent_quickstart.ipynb) is a zero-setup agent for all three GLEE game families. It separates the policy into one function per family and exposes one dispatcher to the SDK:
 
@@ -22,7 +22,8 @@ This modular design makes it possible to tune and test one family without changi
 | [`GLEE_Competition_agent_v4.ipynb`](GLEE_Competition_agent_v4.ipynb) | Bargaining-tested history-calibrated agent | Uncapped visible equilibrium, cycle escape, trend-aware negotiation, role-separated persuasion memory, hidden-value seller exploration |
 | [`GLEE_Competition_agent_v5.ipynb`](GLEE_Competition_agent_v5.ipynb) | Negotiation-tested role-calibrated agent | Alice payoff shading, buyer-specific negotiation capture, capped stale trust, recency weighting, sequential seller credibility spending |
 | [`GLEE_Competition_agent_v6.ipynb`](GLEE_Competition_agent_v6.ipynb) | Safety-strengthened experimental agent; persuasion rejected | Configuration-scoped profiles, purchased-only trust updates, credibility scheduling, negation-aware text parsing, strict contract validation |
-| [`GLEE_Competition_agent_v7.ipynb`](GLEE_Competition_agent_v7.ipynb) | Conservative evidence-gated portfolio | Protected V4/V5/V3 arms, whole-game arm assignment, 12% bounded exploration, completed-game reward credit, confidence-bound promotion, V6 validation |
+| [`GLEE_Competition_agent_v7.ipynb`](GLEE_Competition_agent_v7.ipynb) | Live-tested conservative portfolio | Protected V4/V5/V3 arms, whole-game arm assignment, 12% bounded exploration, 40/40 bargaining agreements, completed-game reward credit, confidence-bound promotion |
+| [`GLEE_Competition_agent_v8.ipynb`](GLEE_Competition_agent_v8.ipynb) | Role-gated checkpoint learner | Frozen V5 negotiation and V3 buyer, frozen Bob, Alice/seller-only exploration, persistent evidence, six-game checkpoints, clean fallback/telemetry separation; negotiation +50.96 over 44 games |
 
 All notebook policies are rule-based and require no LLM inference. Each reads only the game state visible under the competition's information rules.
 
@@ -484,7 +485,7 @@ V7 attempts to retrieve every assigned game after a bounded run. Bargaining payo
 
 ## Safety and limitations
 
-- V2 through V7 validate every proposed action and use conservative legal fallbacks after unexpected schemas or strategy exceptions; V6 and V7 add stricter contract checks.
+- V2 through V8 validate every proposed action and use conservative legal fallbacks after unexpected schemas or strategy exceptions; V6 through V8 add stricter contract checks, and V8 separates gameplay fallbacks from telemetry.
 - Stable hashes make persuasion mixing reproducible across concurrent games.
 - Named opponents receive cross-game profiles; hidden identities receive only game-local profiles.
 - No hand-coded strategy guarantees a rating increase. Matchmaking, configuration draws, opponent adaptation, and rating shrinkage create substantial short-run variance.
@@ -492,7 +493,7 @@ V7 attempts to retrieve every assigned game after a bounded run. Bargaining payo
 - V4 increased the live bargaining rating in its first 25-game batch, but its negotiation and persuasion changes remain offline-tested only.
 - V5 negotiation has one live 55-game batch; V5 bargaining and persuasion remain offline-tested. Its role-specific constants are hypotheses derived from limited, non-randomized samples, not guaranteed improvements.
 - V6 persuasion lost 15.01 displayed rating points over 35 games despite zero fallbacks. Do not deploy its persuasion policy without revision.
-- V7 has passed offline tests but has no live evaluation result yet. Its 12% exploration cap limits exposure; it does not guarantee rating protection or improvement.
+- V7 gained 9.89 displayed bargaining points over 40 games with 40/40 agreements, but Alice averaged -0.37 and its overall rounded mean (+0.25) was well below V4's earlier +1.85. Its 12% exploration cap limits exposure; it does not guarantee rating protection or improvement.
 
 ## Architecture and execution
 
@@ -595,10 +596,50 @@ V6 played 35 persuasion games on August 25, 2026. The displayed rating decreased
 
 The exact snapshot change and rounded game sum differ by 0.01 because individual deltas are displayed to one decimal place. The fallback count was zero. Thus the seller loss is a policy failure rather than evidence of invalid actions or crashes. The buyer was approximately neutral in this batch but well below V3's earlier buyer mean of +4.09. V6 persuasion is rejected; retain V3 as the persuasion reference while preserving V6's validation safeguards for future versions.
 
+### V7 bargaining batch
+
+V7 played 40 bargaining games on August 25, 2026. Every game reached agreement. The displayed rating increased from **1352.06** after 97 games to **1361.95** after 137 games.
+
+| Metric | Before | After | Change |
+|---|---:|---:|---:|
+| Bargaining rating | 1352.06 | **1361.95** | **+9.89** |
+| Bargaining games | 97 | **137** | **+40** |
+| Three-family average | 1479.61 | **1482.91** | **+3.30** |
+
+| Role | Games | Positive / negative / zero | Rounded sum | Mean rounded delta | Median |
+|---|---:|---:|---:|---:|---:|
+| Alice | 27 | 8 / 19 / 0 | **-9.9** | **-0.37** | **-1.3** |
+| Bob | 13 | 7 / 5 / 1 | **+19.7** | **+1.52** | **+0.4** |
+| Complete batch | 40 | 15 / 24 / 1 | **+9.8** | **+0.25** | **-1.3** |
+
+The exact snapshot gain exceeds the rounded game sum by 0.09 because individual deltas are displayed to one decimal place. Completed-game rewards were harvested for all 40 games. The notebook displayed a diagnostic count of five because reward harvesting also queried five synthetic game IDs created by offline candidate tests; these were API lookup errors, not five malformed live actions. All live games completed with agreement.
+
+The result is positive but weaker than V4's earlier bargaining batch, which averaged +1.85 in rounded delta. Alice again remained negative, while Bob supplied more than the entire batch gain. Without the displayed assignment/evidence rows, the dashboard summary cannot identify which games used `v4_safe` and which used `qre_adaptive`; no causal challenger claim is made.
+
+### V8 negotiation batch
+
+V8 played 44 negotiation games on August 25, 2026 while preserving the exact V5 negotiation decision constants. The displayed rating increased from **1344.87** after 127 games to **1395.83** after 171 games.
+
+| Metric | Before | After | Change |
+|---|---:|---:|---:|
+| Negotiation rating | 1344.87 | **1395.83** | **+50.96** |
+| Negotiation games | 127 | **171** | **+44** |
+| Three-family average | 1482.91 | **1499.89** | **+16.99** |
+
+| Role | Games | Agreements | No-deals | Walkaways | Positive / negative | Rounded sum | Mean |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Buyer | 15 | 5 | 8 | 2 | 11 / 4 | **+10.7** | **+0.71** |
+| Seller | 29 | 12 | 12 | 5 | 18 / 11 | **+40.2** | **+1.39** |
+| Complete batch | 44 | 17 | 20 | 7 | 29 / 15 | **+50.9** | **+1.16** |
+
+The final checkpoint contained 21 games and moved negotiation from 1383.62 to 1395.83 (+12.21), harvesting 21 new terminal rewards. Across the complete run, the notebook harvested 44 terminal rewards with zero action fallbacks and zero telemetry diagnostics. The 0.06 difference between the rounded per-game sum and exact snapshot change is dashboard rounding.
+
+Outcome-level means were +2.35 for agreements, +0.68 for no-deals, and -0.39 for walkaways. Positive no-deal deltas reinforce that V8 optimizes individually rational, configuration-relative payoff rather than agreement rate. Both roles were positive, although the seller remained stronger.
+
 ## Evaluation and further improvement
 
 - A/B test one family at a time and record the rating and game count immediately before and after each sufficiently large batch.
-- Use V7 only in bounded, single-family, concurrency-1 batches. Its default arms retain V4 bargaining, V5 negotiation, and V3 persuasion; do not continue V6 persuasion.
+- Use V8 in bounded, single-family, concurrency-1 checkpoints. Its V5 negotiation core is now supported by two positive sequential batches, including V8's +50.96 over 44 games. Pause bargaining calibration until arm-level assignments are exported, and evaluate persuasion seller arms most cautiously; do not continue V6 persuasion.
 - Retrieve completed games after each bounded run, when practical, so terminal acceptances can supplement the profiles that are learned only from pending-move states.
 - Replace point estimates with credible intervals and choose more conservative actions when opponent evidence is sparse.
 - Segment priors by disclosed opponent type only after enough samples exist to avoid overfitting identities or short streaks.

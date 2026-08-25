@@ -10,12 +10,12 @@ The competition covers three game families:
 
 ## Leaderboard snapshot
 
-Latest results rendered after a `GLEE_Competition_agent_v6.ipynb` persuasion evaluation batch on August 25, 2026:
+Latest results rendered after a `GLEE_Competition_agent_v10.ipynb` negotiation evaluation on August 25, 2026:
 
 | Game family | Rating | Games played |
 |---|---:|---:|
-| Bargaining | **1352.06** | 97 |
-| Negotiation | **1344.87** | 127 |
+| Bargaining | **1361.95** | 137 |
+| Negotiation | **1398.16** | 175 |
 | Persuasion | **1741.90** | 414 |
 
 - **Agent:** `myagent`
@@ -80,11 +80,53 @@ V6 then played a persuasion-only batch of 35 games. The displayed persuasion rat
 
 The notebook again reported **zero fallbacks**, so the decline is evidence of a strategy regression rather than malformed actions or execution failures. Seller play accounts for essentially the entire rounded loss. V6's buyer was approximately neutral but also materially weaker than the earlier V3 buyer sample. V6 persuasion should therefore not be deployed further without revision.
 
+### V7 bargaining evaluation
+
+V7 played a bargaining-only batch of 40 games. All 40 reached agreement, and the displayed bargaining rating increased from **1352.06** after 97 games to **1361.95** after 137 games, an exact snapshot change of **+9.89**. Negotiation and persuasion were unchanged. The unweighted three-family average increased from **1479.61** to **1482.91** (**+3.30**).
+
+| Bargaining role | Games | Positive | Negative | Zero | Rounded sum | Mean rounded delta |
+|---|---:|---:|---:|---:|---:|---:|
+| Alice | 27 | 8 | 19 | 0 | **-9.9** | **-0.37** |
+| Bob | 13 | 7 | 5 | 1 | **+19.7** | **+1.52** |
+| Complete batch | 40 | 15 | 24 | 1 | **+9.8** | **+0.25** |
+
+The 0.09 difference between the rounded sum and exact rating change comes from one-decimal dashboard deltas. V7 harvested completed-game rewards for all 40 live games. Its displayed diagnostic count of five is not evidence of five live action fallbacks: the reward harvester attempted to query five synthetic IDs installed by the offline candidate tests. The batch remained positive with 100% agreement, but its mean rounded gain was much smaller than V4's earlier +1.85, and Alice remained negative. V7 therefore supplies a cautious positive result, not evidence that its challenger dominates V4.
+
+### V8 negotiation evaluation
+
+V8 froze the successful V5 negotiation decision core and ran negotiation in checkpointed batches. Across the complete 44-game run, the displayed negotiation rating increased from **1344.87** after 127 games to **1395.83** after 171 games, an exact change of **+50.96**. The final 21-game checkpoint alone moved from 1383.62 to 1395.83 (**+12.21**). Bargaining and persuasion were unchanged. The unweighted three-family average increased from **1482.91** to **1499.89** (**+16.99**).
+
+| Negotiation role | Games | Agreements | No-deals | Walkaways | Rounded sum | Mean rounded delta |
+|---|---:|---:|---:|---:|---:|---:|
+| Buyer | 15 | 5 | 8 | 2 | **+10.7** | **+0.71** |
+| Seller | 29 | 12 | 12 | 5 | **+40.2** | **+1.39** |
+| Complete batch | 44 | 17 | 20 | 7 | **+50.9** | **+1.16** |
+
+Twenty-nine deltas were positive and 15 negative. Agreements averaged +2.35, no-deals +0.68, and walkaways -0.39, showing that agreement count alone is not the competition objective. V8 harvested all 44 terminal rewards across the full run, including 21 in the final checkpoint, with **zero live action fallbacks and zero telemetry diagnostics**. Both roles were positive, although seller performance remained stronger.
+
+### V10 negotiation evaluation
+
+V10 ran the locked V5/V8 negotiation champion in `champion` mode. The authoritative pre-run snapshot was **1395.13 after 173 games**; this differs from V8's documented endpoint because two intervening negotiation games moved the rating by -0.70 before the supplied V10 run. The V10 SDK call requested one completion, but two games completed before control returned. Both games assigned the agent the buyer role and ended in walkaways:
+
+| Role | Outcome | Rounded rating change |
+|---|---|---:|
+| Buyer | Walkaway | **+2.9** |
+| Buyer | Walkaway | **+0.2** |
+| Complete V10 run | 2 walkaways | **+3.1** |
+
+The displayed negotiation rating increased from **1395.13 after 173 games** to **1398.16 after 175 games**, an exact snapshot gain of **+3.03**. The rounded game deltas sum to +3.1; the 0.07 difference is dashboard rounding. Bargaining and persuasion were unchanged, and the unweighted three-family average increased from **1499.66** to **1500.67** (**+1.01**).
+
+V10 harvested both terminal-payoff diagnostics with **zero live action fallbacks and zero telemetry diagnostics**. Because the completion delta was two rather than one, its rating-alignment guard correctly recorded `Rating credit: None`, declined to attribute the aggregate rating change to either game, and stopped immediately with `completion overshoot: 2`. The console's `Rating-attributed outcomes: 1` is the synthetic record created by V10's offline rating-credit test, not a live attributed outcome. Thus this run supports the locked negotiation policy's continued positive performance, but it supplies no arm-promotion evidence and is far too small for a new causal claim.
+
 ## Agent implementation
 
 The evidence-backed deployment portfolio is family-specific: [`notebooks/GLEE_Competition_agent_v4.ipynb`](notebooks/GLEE_Competition_agent_v4.ipynb) for bargaining, [`notebooks/GLEE_Competition_agent_v5.ipynb`](notebooks/GLEE_Competition_agent_v5.ipynb) for negotiation, and V3 for persuasion. [`notebooks/GLEE_Competition_agent_v6.ipynb`](notebooks/GLEE_Competition_agent_v6.ipynb) adds stronger validation and configuration-safe memory, but its live persuasion policy is rejected after the negative 35-game batch.
 
-[`notebooks/GLEE_Competition_agent_v7.ipynb`](notebooks/GLEE_Competition_agent_v7.ipynb) packages those three protected policies into one conservative portfolio. It assigns one arm for the entire game, limits under-sampled challenger exploration to 12%, records completed-game payoff when the installed SDK exposes it, and permits promotion only from role- and configuration-local evidence. Its challengers are a quantal-response bargaining calibration, a bounded buyer-only negotiation residual, and separate empirical-seller/lower-confidence buyer persuasion policies. V7 has passed offline contract and policy-isolation tests but has no live score result yet; it should be evaluated in small, single-family batches with concurrency 1.
+[`notebooks/GLEE_Competition_agent_v7.ipynb`](notebooks/GLEE_Competition_agent_v7.ipynb) packages those three protected policies into one conservative portfolio. It assigns one arm for the entire game, limits under-sampled challenger exploration to 12%, records completed-game payoff when the installed SDK exposes it, and permits promotion only from role- and configuration-local evidence. Its challengers are a quantal-response bargaining calibration, a bounded buyer-only negotiation residual, and separate empirical-seller/lower-confidence buyer persuasion policies. Its first live bargaining batch gained 9.89 points over 40 games with 40/40 agreements, but Alice averaged -0.37 and the overall per-game gain was weaker than V4's earlier batch. Continue to evaluate one family at a time with concurrency 1.
+
+[`notebooks/GLEE_Competition_agent_v8.ipynb`](notebooks/GLEE_Competition_agent_v8.ipynb) tightens exploration to the weak roles only, freezes the V5 negotiation core and V3 persuasion buyer, persists terminal evidence, evaluates in checkpoints, and separates gameplay fallbacks from telemetry. Its first negotiation run gained **50.96** points over 44 games; buyer and seller means were both positive, and all 44 rewards were harvested with zero action fallbacks or telemetry errors. V8 remains the strongest larger-sample negotiation record, while the family policy references remain V4 bargaining, V5 negotiation, and V3 persuasion.
+
+[`notebooks/GLEE_Competition_agent_v10.ipynb`](notebooks/GLEE_Competition_agent_v10.ipynb) is the current recommended unified execution notebook. It preserves the same family champions, uses actual unambiguous one-game dashboard rating changes rather than normalized payoff proxies for calibration evidence, and defaults to the replicated negotiation champion. Its first supplied run gained **3.03** negotiation points over two buyer games with zero fallbacks or telemetry errors. The SDK nevertheless completed two games after a one-game request, so V10 correctly withheld rating credit and stopped; future runs should continue from zero active games with concurrency 1 and retain the overshoot guard.
 
 For the methods, techniques, equations, usage instructions, and limitations, see the [notebook documentation](notebooks/README.md).
 
