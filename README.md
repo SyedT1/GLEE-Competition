@@ -26,6 +26,20 @@ These values are a point-in-time snapshot from the competition dashboard and may
 
 During this V3 batch, each family completed 22 additional games. Displayed ratings changed by **+55.33** in bargaining, **+81.00** in negotiation, and **+28.90** in persuasion. The three-family average increased from **1380.29** to **1435.36** (**+55.08**).
 
+### V3 game-history analysis
+
+The saved [V3 game history](game_history.txt) contains the 66-game batch summary plus selected detailed transcripts. The summary provides the following descriptive behavior evidence:
+
+| Family | Outcomes | Mean per-game rating change | Role-level mean change |
+|---|---|---:|---|
+| Bargaining | 21 agreements, 1 no-deal | **+2.52** | Alice +1.95; Bob +3.34 |
+| Negotiation | 12 agreements, 7 no-deals, 3 walkaways | **+3.68** | Buyer +2.28; Seller +6.14 |
+| Persuasion | 22 completed | **+1.31** | Buyer +4.09; Seller -0.61 |
+
+Across the batch, 42 game entries had positive rating changes, 23 had negative changes, and one was unchanged. The transcripts also expose meaningful deviations: an unlimited-horizon bargaining match cycled for 99 rounds and ended without agreement, while persuasion performed substantially better in the buyer role than the seller role. These observations motivate cycle detection, a more flexible unknown-horizon reservation floor, and further calibration of the persuasion seller's pooling policy.
+
+This is a single live batch rather than a controlled V2-versus-V3 experiment. Opponent mix, configuration draws, role assignment, rating shrinkage, and normal variance prevent a causal performance claim.
+
 ## Agent implementation
 
 The recommended score-oriented agent is [`notebooks/GLEE_Competition_agent_v3.ipynb`](notebooks/GLEE_Competition_agent_v3.ipynb). It uses the official [`glee-sdk`](https://pypi.org/project/glee-sdk/) and a validated dispatcher that routes each game to an adaptive family-specific strategy. The original quickstart remains available in [`notebooks/GLEE_Competition_—_agent_quickstart.ipynb`](notebooks/GLEE_Competition_—_agent_quickstart.ipynb).

@@ -122,10 +122,16 @@ $$
 a(s)=\frac{1}{1+\exp\left(-\frac{s-\tau+0.04}{0.02}\right)}.
 $$
 
-The proposer searches for the share maximizing probability-weighted, mildly convex personal payoff:
+Define the probability-weighted, mildly convex personal payoff
 
 $$
-s^*=\underset{s}{\operatorname{argmax}}\;a(s)(1-s)^{1.25}.
+F(s)=a(s)(1-s)^{1.25}.
+$$
+
+The selected share $s^*$ satisfies
+
+$$
+F(s^*)=\max_{0.20\le s\le 0.65}F(s).
 $$
 
 As responder, V2 compares the current allocation with a discount-adjusted estimate of the payoff from rejecting and proposing next.
@@ -158,16 +164,16 @@ The buyer applies Bayes' rule to positive and negative signals and adds a small 
 
 ### Bargaining: bounded demand learning
 
-V3 augments rejection evidence with the opponent's recent demanded shares. Its estimated acceptance floor is
+V3 augments rejection evidence with the opponent's recent demanded shares. Let $\widetilde d$ denote the median of the recent demands. Its bounded acceptance floor is
 
 $$
-\tau_t=\operatorname{clip}\!\left(
-\max\{\tau_{\mathrm{prior}},\ r_{\max}+0.012,\ \operatorname{median}(d)-\mu_t\},
-0.30,0.62
-\right),
+\tau_t=\min\!\left(
+0.62,
+\max\!\left(0.30,\tau_{\mathrm{prior}},r_{\max}+0.012,\widetilde d-\mu_t\right)
+\right).
 $$
 
-where $d$ contains recent opponent demands and $\mu_t$ is a shrinking aspiration margin. It evaluates each proposed responder share using
+Here $\mu_t$ is a shrinking aspiration margin. V3 evaluates each proposed responder share using
 
 $$
 J(s)=a(s)(1-s)^{1.18}-\bigl(1-a(s)\bigr)C_t,
@@ -213,13 +219,17 @@ $$
 
 The buyer substitutes $\widehat\rho_+$ directly for $P(H\mid m^+)$ in the expected-value rule. Negative signals use analogous priors.
 
-As seller, V3 scales the static pooling probability by deadline progress and observed buyer response:
+As seller, V3 first computes a raw pooling rate from deadline progress and observed buyer response:
 
 $$
-q_{L,t}=\operatorname{clip}\!\left(
-q_L^*\left(0.12+0.88t^{1.65}\right)
-\left(0.55+0.60r_{\mathrm{buy}}\right),0,1
-\right).
+z_t=q_L^*\left(0.12+0.88t^{1.65}\right)
+\left(0.55+0.60r_{\mathrm{buy}}\right).
+$$
+
+It then bounds that rate to a valid probability:
+
+$$
+q_{L,t}=\min\!\left(1,\max\!\left(0,z_t\right)\right).
 $$
 
 A low-quality positive signal is permitted only after a short truthful prefix and only if the resulting empirical positive-signal precision remains above the buyer's value threshold plus a safety margin. This is V3's finite credibility budget.
