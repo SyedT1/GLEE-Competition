@@ -1,6 +1,6 @@
 # GLEE agent notebook
 
-For the newest score-oriented version, use [`GLEE_Competition_agent_v3.ipynb`](GLEE_Competition_agent_v3.ipynb). It adds bounded opponent models, continuation-value decisions, hidden-value concession inference, direct recommendation-precision learning, finite credibility budgeting, schema validation, and safe fallbacks. V2 and the original quickstart remain available for comparison.
+For the experimental history-calibrated version, use [`GLEE_Competition_agent_v4.ipynb`](GLEE_Competition_agent_v4.ipynb). It directly addresses the V3 live-history failures: extreme discount asymmetry, unknown-horizon cycles, negotiation stalls, persuasion role-memory contamination, and weak hidden-value seller adaptation. [`GLEE_Competition_agent_v3.ipynb`](GLEE_Competition_agent_v3.ipynb) remains the live-tested reference until V4 completes comparable controlled batches.
 
 [`GLEE_Competition_—_agent_quickstart.ipynb`](GLEE_Competition_—_agent_quickstart.ipynb) is a zero-setup agent for all three GLEE game families. It separates the policy into one function per family and exposes one dispatcher to the SDK:
 
@@ -18,7 +18,8 @@ This modular design makes it possible to tune and test one family without changi
 |---|---|---|
 | [`GLEE_Competition_—_agent_quickstart.ipynb`](GLEE_Competition_—_agent_quickstart.ipynb) | Transparent reference policy | Game-theoretic targets, deadline awareness, Bayesian signal learning |
 | [`GLEE_Competition_agent_v2.ipynb`](GLEE_Competition_agent_v2.ipynb) | First score-oriented agent | Persistent opponent profiles, aggressive surplus capture, finite-horizon reputation management, validation and fallbacks |
-| [`GLEE_Competition_agent_v3.ipynb`](GLEE_Competition_agent_v3.ipynb) | Recommended adaptive agent | Bounded demand learning, continuation values, hidden-value concession inference, direct signal-precision learning, credibility budgeting |
+| [`GLEE_Competition_agent_v3.ipynb`](GLEE_Competition_agent_v3.ipynb) | Live-tested adaptive reference | Bounded demand learning, continuation values, hidden-value concession inference, direct signal-precision learning, credibility budgeting |
+| [`GLEE_Competition_agent_v4.ipynb`](GLEE_Competition_agent_v4.ipynb) | Experimental history-calibrated agent | Uncapped visible equilibrium, cycle escape, trend-aware negotiation, role-separated persuasion memory, hidden-value seller exploration |
 
 All three are rule-based and require no LLM inference. Each reads only the game state visible under the competition's information rules.
 
@@ -234,13 +235,61 @@ $$
 
 A low-quality positive signal is permitted only after a short truthful prefix and only if the resulting empirical positive-signal precision remains above the buyer's value threshold plus a safety margin. This is V3's finite credibility budget.
 
+## V4 methods
+
+### Bargaining: uncapped visible equilibrium and cycle escape
+
+V3 bounded the complete-information responder prior near one half. The saved history showed that this was inappropriate when the proposer discounted at 10% per round and the responder did not discount: the Rubinstein responder share was close to one, but V3 repeatedly offered only 65%. V4 retains the visible equilibrium without that fairness cap:
+
+$$
+s_r=1-\frac{1-d_r}{1-d_pd_r},
+\qquad
+0.001\le s_r\le 0.999.
+$$
+
+Its candidate grid extends to a 99.5% responder share. V4 also counts repeated, nearly identical demands by both players. After at least three stagnant cycles, the proposer matches the opponent's last revealed demand within the legal allocation range. As responder, it accepts any strictly positive allocation after the same repeated-state threshold. This turns a persistent zero-payoff loop into a terminating outcome while leaving ordinary finite bargaining unchanged.
+
+### Negotiation: projected concessions and safe stall termination
+
+For hidden-value negotiation, V4 projects only concessions in the economically expected direction. If the opponent's two latest prices are $P_{o,t-1}$ and $P_{o,t}$, its short projection is
+
+$$
+\widetilde P_{o,t+1}=P_{o,t}+0.6\Delta_t,
+\qquad
+\Delta_t=P_{o,t}-P_{o,t-1},
+$$
+
+where a seller's $\Delta_t$ is capped above by zero and a buyer's is capped below by zero. The target stays inside the interval between this projected price and the agent's own valuation. V4 uses a hidden-value claim beginning near 70% as seller and 62% as buyer, reflecting the V3 history's weaker buyer results.
+
+If two profitable prices repeat, V4 accepts instead of preserving a zero-surplus cycle. If an unprofitable pair repeats at least three times in an unknown-horizon game, it uses `WalkAway`. This does not convert a negative-utility trade into an agreement; it safely terminates an infeasible path that would otherwise risk a timeout.
+
+### Persuasion: role-separated memory and hidden-value seller adaptation
+
+V3 keyed persuasion memory only by opponent identity. If the same named opponent appeared once as buyer and later as seller, the agent could treat its own past recommendations as evidence about that opponent's reliability. V4 uses two namespaces:
+
+$$
+\mathcal M_{\mathrm{buyer\ response}}
+\quad\text{and}\quad
+\mathcal M_{\mathrm{seller\ reliability}}.
+$$
+
+The buyer retains V3's direct precision estimator because the V3 batch averaged $+4.09$ per game in that role. The seller changes more substantially. With visible buyer values, it uses the Bayesian pooling bound but begins from a less conservative horizon ramp:
+
+$$
+q_{L,t}=q_L^*\left(0.28+0.72t^{1.35}\right)
+\left(0.60+0.55r_{\mathrm{buy}}\right),
+$$
+
+subject to credibility and probability bounds. When buyer values are hidden, V4 permits cautious low-quality exploration only after a truthful prefix, at least one revealed successful high-quality recommendation, sufficient positive-message purchase response, and adequate empirical precision. The hidden-value exploration probability never exceeds 0.34.
+
 ## Safety and limitations
 
-- V2 and V3 validate every proposed action and use conservative legal fallbacks after unexpected schemas or strategy exceptions.
+- V2, V3, and V4 validate every proposed action and use conservative legal fallbacks after unexpected schemas or strategy exceptions.
 - Stable hashes make persuasion mixing reproducible across concurrent games.
 - Named opponents receive cross-game profiles; hidden identities receive only game-local profiles.
 - No hand-coded strategy guarantees a rating increase. Matchmaking, configuration draws, opponent adaptation, and rating shrinkage create substantial short-run variance.
-- V3's opponent models learn only from states delivered while a move is pending; a game-ending acceptance may not produce another strategy call.
+- V3 and V4 learn only from states delivered while a move is pending; a game-ending acceptance may not produce another strategy call.
+- V4 is regression-tested against observed failures but has not yet established a live rating advantage over V3.
 
 ## Architecture and execution
 

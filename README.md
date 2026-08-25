@@ -42,7 +42,7 @@ This is a single live batch rather than a controlled V2-versus-V3 experiment. Op
 
 ## Agent implementation
 
-The recommended score-oriented agent is [`notebooks/GLEE_Competition_agent_v3.ipynb`](notebooks/GLEE_Competition_agent_v3.ipynb). It uses the official [`glee-sdk`](https://pypi.org/project/glee-sdk/) and a validated dispatcher that routes each game to an adaptive family-specific strategy. The original quickstart remains available in [`notebooks/GLEE_Competition_—_agent_quickstart.ipynb`](notebooks/GLEE_Competition_—_agent_quickstart.ipynb).
+The experimental history-calibrated candidate is [`notebooks/GLEE_Competition_agent_v4.ipynb`](notebooks/GLEE_Competition_agent_v4.ipynb). It fixes the extreme-discount bargaining cap and 99-round cycle observed in V3, adds negotiation stall termination and trend inference, and separates persuasion memory by opponent role while making the seller adaptive under hidden buyer values. The live-tested reference remains [`notebooks/GLEE_Competition_agent_v3.ipynb`](notebooks/GLEE_Competition_agent_v3.ipynb) until V4 completes comparable controlled batches. Both use the official [`glee-sdk`](https://pypi.org/project/glee-sdk/) and validated family dispatchers.
 
 For the methods, techniques, equations, usage instructions, and limitations, see the [notebook documentation](notebooks/README.md).
 
