@@ -10,21 +10,23 @@ The competition covers three game families:
 
 ## Leaderboard snapshot
 
-Latest results rendered after a `GLEE_Competition_agent_v3.ipynb` evaluation batch on August 25, 2026:
+Latest results rendered after a `GLEE_Competition_agent_v5.ipynb` negotiation evaluation batch on August 25, 2026:
 
 | Game family | Rating | Games played |
 |---|---:|---:|
-| Bargaining | **1305.87** | 72 |
-| Negotiation | **1243.31** | 72 |
+| Bargaining | **1352.06** | 97 |
+| Negotiation | **1344.87** | 127 |
 | Persuasion | **1756.91** | 379 |
 
 - **Agent:** `myagent`
 - **Agent ID:** `9edb52a0-b489-44bd-b594-af77cdba5597`
+- **Dashboard position at the supplied snapshot:** #1
+- **Dashboard short identifier shown:** `8903a6e897cd`
 - **Active games:** 0
 
 These values are a point-in-time snapshot from the competition dashboard and may change as more games are played.
 
-During this V3 batch, each family completed 22 additional games. Displayed ratings changed by **+55.33** in bargaining, **+81.00** in negotiation, and **+28.90** in persuasion. The three-family average increased from **1380.29** to **1435.36** (**+55.08**).
+During the earlier V3 batch, each family completed 22 additional games. Displayed ratings changed by **+55.33** in bargaining, **+81.00** in negotiation, and **+28.90** in persuasion. The three-family average increased from **1380.29** to **1435.36** (**+55.08**).
 
 ### V3 game-history analysis
 
@@ -40,9 +42,35 @@ Across the batch, 42 game entries had positive rating changes, 23 had negative c
 
 This is a single live batch rather than a controlled V2-versus-V3 experiment. Opponent mix, configuration draws, role assignment, rating shrinkage, and normal variance prevent a causal performance claim.
 
+### V4 bargaining evaluation
+
+V4 then played a bargaining-only batch of 25 games. Every game reached agreement, and the displayed bargaining rating increased from **1305.87** after 72 games to **1352.06** after 97 games, an exact snapshot change of **+46.19**.
+
+| Role | Games | Positive deltas | Negative deltas | Mean rounded per-game delta |
+|---|---:|---:|---:|---:|
+| Alice | 9 | 4 | 5 | **-0.10** |
+| Bob | 16 | 9 | 7 | **+2.94** |
+| All bargaining games | 25 | 13 | 12 | **+1.85** |
+
+The rounded per-game changes sum to **+46.2**; the small difference from **+46.19** comes from dashboard rounding. The overall three-family average is now **1450.76**. Although agreement reached 100%, the role split shows that V4's Alice policy still needs calibration.
+
+### V5 negotiation evaluation
+
+V5 then played a negotiation-only batch of 55 games. The displayed negotiation rating increased from **1243.31** after 72 games to **1344.87** after 127 games, an exact snapshot change of **+101.56**. Bargaining and persuasion were not run and therefore remained unchanged. The unweighted three-family rating average increased from **1450.76** to **1484.61** (**+33.85**).
+
+The notebook reported **zero fallbacks**, 46 named or game-local negotiation profiles, five bargaining profiles, and six role-separated persuasion profiles. The complete supplied dashboard list contains all 55 games. Its one-decimal deltas sum to **+101.6** and show the following descriptive split:
+
+| Negotiation role | Visible games | Agreements | No-deals | Walkaways | Mean rounded delta |
+|---|---:|---:|---:|---:|---:|
+| Buyer | 29 | 19 | 3 | 7 | **+1.07** |
+| Seller | 26 | 17 | 6 | 3 | **+2.72** |
+| Complete batch | 55 | 36 | 9 | 10 | **+1.85** |
+
+The rounded per-game sum of **+101.6** differs from the exact two-decimal snapshot change of **+101.56** by only 0.04 because the dashboard rounds each game to one decimal place. Seller performance remained stronger, but both roles had positive mean deltas.
+
 ## Agent implementation
 
-The experimental history-calibrated candidate is [`notebooks/GLEE_Competition_agent_v4.ipynb`](notebooks/GLEE_Competition_agent_v4.ipynb). It fixes the extreme-discount bargaining cap and 99-round cycle observed in V3, adds negotiation stall termination and trend inference, and separates persuasion memory by opponent role while making the seller adaptive under hidden buyer values. The live-tested reference remains [`notebooks/GLEE_Competition_agent_v3.ipynb`](notebooks/GLEE_Competition_agent_v3.ipynb) until V4 completes comparable controlled batches. Both use the official [`glee-sdk`](https://pypi.org/project/glee-sdk/) and validated family dispatchers.
+The current live-tested candidate is [`notebooks/GLEE_Competition_agent_v5.ipynb`](notebooks/GLEE_Competition_agent_v5.ipynb). It preserves V4's cycle-safe bargaining but targets the weak Alice role, makes negotiation buyers more agreement-oriented without accepting negative surplus, and replaces conservative seller pooling with a bounded recency model and sequential trust ledger. V5 is now the strongest live-tested negotiation version in this repository; [`notebooks/GLEE_Competition_agent_v4.ipynb`](notebooks/GLEE_Competition_agent_v4.ipynb) remains the bargaining reference, and V3 remains the persuasion reference until the corresponding V5 family batches are run.
 
 For the methods, techniques, equations, usage instructions, and limitations, see the [notebook documentation](notebooks/README.md).
 

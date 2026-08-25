@@ -1,6 +1,6 @@
 # GLEE agent notebook
 
-For the experimental history-calibrated version, use [`GLEE_Competition_agent_v4.ipynb`](GLEE_Competition_agent_v4.ipynb). It directly addresses the V3 live-history failures: extreme discount asymmetry, unknown-horizon cycles, negotiation stalls, persuasion role-memory contamination, and weak hidden-value seller adaptation. [`GLEE_Competition_agent_v3.ipynb`](GLEE_Competition_agent_v3.ipynb) remains the live-tested reference until V4 completes comparable controlled batches.
+For the current role-calibrated version, use [`GLEE_Competition_agent_v5.ipynb`](GLEE_Competition_agent_v5.ipynb). It combines V4's cycle-safe bargaining with Alice-specific surplus capture, buyer-specific negotiation concessions, capped persistent trust, recency-weighted persuasion learning, and a seller trust ledger that spends credibility near the horizon. V5 is now the live-tested negotiation reference after a 55-game batch raised the displayed negotiation rating by 101.56 points with zero fallbacks. V4 remains the bargaining reference, while V3 remains the persuasion reference until those V5 family batches are evaluated.
 
 [`GLEE_Competition_—_agent_quickstart.ipynb`](GLEE_Competition_—_agent_quickstart.ipynb) is a zero-setup agent for all three GLEE game families. It separates the policy into one function per family and exposes one dispatcher to the SDK:
 
@@ -19,9 +19,10 @@ This modular design makes it possible to tune and test one family without changi
 | [`GLEE_Competition_—_agent_quickstart.ipynb`](GLEE_Competition_—_agent_quickstart.ipynb) | Transparent reference policy | Game-theoretic targets, deadline awareness, Bayesian signal learning |
 | [`GLEE_Competition_agent_v2.ipynb`](GLEE_Competition_agent_v2.ipynb) | First score-oriented agent | Persistent opponent profiles, aggressive surplus capture, finite-horizon reputation management, validation and fallbacks |
 | [`GLEE_Competition_agent_v3.ipynb`](GLEE_Competition_agent_v3.ipynb) | Live-tested adaptive reference | Bounded demand learning, continuation values, hidden-value concession inference, direct signal-precision learning, credibility budgeting |
-| [`GLEE_Competition_agent_v4.ipynb`](GLEE_Competition_agent_v4.ipynb) | Experimental history-calibrated agent | Uncapped visible equilibrium, cycle escape, trend-aware negotiation, role-separated persuasion memory, hidden-value seller exploration |
+| [`GLEE_Competition_agent_v4.ipynb`](GLEE_Competition_agent_v4.ipynb) | Bargaining-tested history-calibrated agent | Uncapped visible equilibrium, cycle escape, trend-aware negotiation, role-separated persuasion memory, hidden-value seller exploration |
+| [`GLEE_Competition_agent_v5.ipynb`](GLEE_Competition_agent_v5.ipynb) | Negotiation-tested role-calibrated agent | Alice payoff shading, buyer-specific negotiation capture, capped stale trust, recency weighting, sequential seller credibility spending |
 
-All three are rule-based and require no LLM inference. Each reads only the game state visible under the competition's information rules.
+All notebook policies are rule-based and require no LLM inference. Each reads only the game state visible under the competition's information rules.
 
 ## Common notation and constraints
 
@@ -282,14 +283,107 @@ $$
 
 subject to credibility and probability bounds. When buyer values are hidden, V4 permits cautious low-quality exploration only after a truthful prefix, at least one revealed successful high-quality recommendation, sufficient positive-message purchase response, and adequate empirical precision. The hidden-value exploration probability never exceeds 0.34.
 
+## V5 methods
+
+### Bargaining: Alice calibration with V4 cycle insurance
+
+V4's 25-game bargaining batch reached agreement in every game, but Alice averaged $-0.10$ rounded rating change while Bob averaged $+2.94$. V5 therefore changes only pre-stall aggressiveness. If $\tau_t$ is V4's responder floor, the offer search uses
+
+$$
+\tau_t^{\mathrm{search}}=
+\tau_t-\epsilon_i,
+$$
+
+with $\epsilon_A=0.018$ for Alice and $\epsilon_B=0.006$ for Bob. Alice's personal payoff exponent increases from 1.15 to 1.22, and her modeled rejection cost is multiplied by 0.40 before a stall. In the reconstructed extreme-discount state, this changes the initial split from V4's 0.5/99.5 to 1.5/98.5. The three-cycle demand match and positive-offer acceptance rules remain unchanged, preserving V4's termination insurance.
+
+### Negotiation: role-specific capture and continuation
+
+V3 negotiation improved strongly overall, but its seller role outperformed its buyer role. V5 retains the seller's complete-information capture schedule and gives the buyer a less aggressive schedule:
+
+$$
+c_t^{\mathrm{seller}}=0.74-0.14t,
+\qquad
+c_t^{\mathrm{buyer}}=0.66-0.10t.
+$$
+
+Before observing an opponent price under hidden information, the buyer opens at
+
+$$
+P_t=v_b(0.80+0.10t),
+$$
+
+instead of V4's $v_b(0.76+0.12t)$. Buyer continuation utility is also multiplied from a 0.75 rather than 0.80 base. These changes trade some buyer surplus for a higher probability of agreement while retaining individual rationality, concession forecasting, and stall termination.
+
+More precisely, when both values are visible and the opponent has revealed a price, V5 converts that price into an opponent surplus demand $d_o$. It estimates a feasible personal capture
+
+$$
+c_t^{\mathrm{feasible}}
+=1-\min\!\left(1,\max\!\left(0,d_o-(0.05+0.04t)\right)\right)
+$$
+
+and blends it with the role prior:
+
+$$
+c_t=0.58c_t^{\mathrm{role}}+0.42c_t^{\mathrm{feasible}},
+\qquad 0.52\le c_t\le0.82.
+$$
+
+With hidden opponent value, let $P_o$ be the latest opponent price and let
+
+$$
+\Delta_t=P_{o,t}-P_{o,t-1}.
+$$
+
+V5 projects only economically plausible concessions:
+
+$$
+\widetilde P_{o,t+1}=P_{o,t}+0.6\Delta_t,
+$$
+
+where $\Delta_t\le0$ for an opponent seller and $\Delta_t\ge0$ for an opponent buyer. Seller and buyer claims are respectively $0.70-0.12t$ and $0.62-0.10t$, keeping the target between the projected offer and the agent's own valuation.
+
+For a profitable received offer, target utility $U_t$, and repeated-price count $k$, the continuation threshold is
+
+$$
+U_{\mathrm{cont}}
+=U_t\left(b_i-0.12t-0.08\min(k,2)\right),
+\qquad
+b_{\mathrm{seller}}=0.80,
+\quad b_{\mathrm{buyer}}=0.75.
+$$
+
+V5 accepts when offered utility reaches this threshold or, under complete information, when its offered surplus share reaches $0.50+0.05(1-t)$. It accepts any profitable price after two repeated cycles, walks away from an unprofitable unknown-horizon path after three, and never knowingly accepts negative utility.
+
+### Persuasion: bounded recency and sequential credibility
+
+For a named seller, unlimited persistent history can make the buyer slow to react to a changed strategy. V5 caps persistent effective sample size at 12 and gives revealed current-game outcomes an additional weight of 1.5. If $n_H,n_L$ are capped persistent counts and $r_H,r_L$ are current-game counts, positive-signal precision is
+
+$$
+\widehat\rho_+=
+\frac{4\rho_{+,0}+n_H+1.5r_H}
+{4+n_H+n_L+1.5(r_H+r_L)}.
+$$
+
+The seller evaluates trust before the current outcome is revealed:
+
+$$
+T_t=\frac{4\rho_{+,0}+n_{+,H}}
+{4+n_{+,H}+n_{+,L}}.
+$$
+
+With visible values, early low-quality pooling requires $T_t$ to exceed the buyer cutoff by a margin that shrinks with $t$. On the final round, V5 recommends a low-quality product whenever existing trust is within 0.03 of the cutoff and positive recommendations are being purchased, because there is no future reputation to preserve. In a representative trusted final-round state, this raises pooling probability from V4's 0.278 to 1.0.
+
+When buyer values are hidden, V5 records the trust levels at which positive recommendations were bought or passed, derives a conservative cutoff estimate, and applies the same shrinking-margin rule. Hidden-value pooling remains capped at 0.70.
+
 ## Safety and limitations
 
-- V2, V3, and V4 validate every proposed action and use conservative legal fallbacks after unexpected schemas or strategy exceptions.
+- V2, V3, V4, and V5 validate every proposed action and use conservative legal fallbacks after unexpected schemas or strategy exceptions.
 - Stable hashes make persuasion mixing reproducible across concurrent games.
 - Named opponents receive cross-game profiles; hidden identities receive only game-local profiles.
 - No hand-coded strategy guarantees a rating increase. Matchmaking, configuration draws, opponent adaptation, and rating shrinkage create substantial short-run variance.
 - V3 and V4 learn only from states delivered while a move is pending; a game-ending acceptance may not produce another strategy call.
-- V4 is regression-tested against observed failures but has not yet established a live rating advantage over V3.
+- V4 increased the live bargaining rating in its first 25-game batch, but its negotiation and persuasion changes remain offline-tested only.
+- V5 negotiation has one live 55-game batch; V5 bargaining and persuasion remain offline-tested. Its role-specific constants are hypotheses derived from limited, non-randomized samples, not guaranteed improvements.
 
 ## Architecture and execution
 
@@ -314,7 +408,9 @@ $$
 \rightarrow \text{legal action}.
 $$
 
-## Results snapshot
+## Evaluation results
+
+### V3 three-family batch
 
 Results rendered before and after a `GLEE_Competition_agent_v3.ipynb` evaluation batch on August 25, 2026:
 
@@ -332,10 +428,50 @@ The batch completed 22 additional games per family, or 66 total. The unweighted 
 
 All three displayed ratings increased during this batch. Ratings are live, however, and this single before/after observation does not isolate policy quality from opponent mix, configuration draws, rating shrinkage, or normal variance.
 
+### V4 bargaining batch
+
+V4 played 25 bargaining games from approximately 10:06 AM to 10:14 AM on August 25, 2026. All 25 reached agreement.
+
+| Metric | Before | After | Change |
+|---|---:|---:|---:|
+| Bargaining rating | 1305.87 | **1352.06** | **+46.19** |
+| Bargaining games | 72 | **97** | **+25** |
+| Three-family average | 1435.36 | **1450.76** | **+15.40** |
+
+The dashboard's rounded per-game rating changes contained 13 positive and 12 negative results, summed to **+46.2**, and averaged **+1.85** per game. Role-level behavior was asymmetric:
+
+| Bargaining role | Games | Agreements | Mean rounded rating change |
+|---|---:|---:|---:|
+| Alice | 9 | 9 | **-0.10** |
+| Bob | 16 | 16 | **+2.94** |
+| Overall | 25 | 25 | **+1.85** |
+
+This batch supports the claim that V4 eliminated the observed bargaining non-termination in this sample and improved the displayed bargaining rating during the run. It does not yet establish whether the gain comes specifically from extreme-discount handling, cycle escape, opponent composition, configuration mix, or normal live-rating variance. The negative Alice mean is the clearest target for the next controlled calibration.
+
+### V5 negotiation batch
+
+V5 played 55 negotiation games on August 25, 2026. The displayed rating increased from **1243.31** after 72 games to **1344.87** after 127 games.
+
+| Metric | Before | After | Change |
+|---|---:|---:|---:|
+| Negotiation rating | 1243.31 | **1344.87** | **+101.56** |
+| Negotiation games | 72 | **127** | **+55** |
+| Three-family average | 1450.76 | **1484.61** | **+33.85** |
+
+The notebook reported a fallback count of **0** and retained 46 named or game-local negotiation profiles. The complete user-supplied dashboard list contains all 55 games:
+
+| Role | Visible games | Agreements | No-deals | Walkaways | Positive / negative | Mean rounded delta |
+|---|---:|---:|---:|---:|---:|---:|
+| Buyer | 29 | 19 | 3 | 7 | 14 / 15 | **+1.07** |
+| Seller | 26 | 17 | 6 | 3 | 18 / 8 | **+2.72** |
+| Complete batch | 55 | 36 | 9 | 10 | 32 / 23 | **+1.85** |
+
+The 55 displayed one-decimal deltas sum to +101.6, only 0.04 above the exact snapshot change of +101.56 because individual dashboard deltas are rounded. The complete batch supports a strong descriptive V5 negotiation gain and continued buyer calibration, but it still does not constitute a controlled causal comparison.
+
 ## Evaluation and further improvement
 
 - A/B test one family at a time and record the rating and game count immediately before and after each sufficiently large batch.
-- Calibrate V3's bargaining acceptance curve and negotiation continuation discount from observed outcomes rather than changing several constants together.
+- Retain V5 as the negotiation reference, evaluate persuasion next and bargaining last, and compare role-stratified results with the V3/V4 references before changing multiple constants together.
 - Retrieve completed games after each bounded run, when practical, so terminal acceptances can supplement the profiles that are learned only from pending-move states.
 - Replace point estimates with credible intervals and choose more conservative actions when opponent evidence is sparse.
 - Segment priors by disclosed opponent type only after enough samples exist to avoid overfitting identities or short streaks.
