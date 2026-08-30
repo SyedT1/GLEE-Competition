@@ -1,0 +1,256 @@
+{
+  "version": 13,
+  "objective": "dashboard_rating_delta",
+  "stats": {
+    "[\"global\",\"negotiation\",\"seller\",null,\"v5_safe\"]": {
+      "n": 1,
+      "sum": 0.6224593312018546,
+      "sum_sq": 0.3874556190002601
+    },
+    "[\"local\",\"negotiation\",\"seller\",[\"seller\",\"full\",1],\"v5_safe\"]": {
+      "n": 1,
+      "sum": 0.6224593312018546,
+      "sum_sq": 0.3874556190002601
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"full\",2,3],\"v27_context_repair\"]": {
+      "n": 1,
+      "sum": 0.19662867146553653,
+      "sum_sq": 0.0386628344423019
+    },
+    "[\"global\",\"bargaining\",\"player_2\",null,\"v27_context_repair\"]": {
+      "n": 27,
+      "sum": 11.668866113061418,
+      "sum_sq": 6.62635145190886
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"hidden\",0,2],\"v27_context_repair\"]": {
+      "n": 4,
+      "sum": 1.7217271528160194,
+      "sum_sq": 0.9115052395422447
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"hidden\",2,2],\"v27_context_repair\"]": {
+      "n": 2,
+      "sum": 0.873963295843271,
+      "sum_sq": 0.4318951339880651
+    },
+    "[\"global\",\"bargaining\",\"player_1\",null,\"v27_context_repair\"]": {
+      "n": 14,
+      "sum": 8.837022139420208,
+      "sum_sq": 6.3464514959974
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"hidden\",0,3],\"v27_context_repair\"]": {
+      "n": 3,
+      "sum": 1.3643122932567775,
+      "sum_sq": 0.8620315320363298
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"full\",0,3],\"v27_context_repair\"]": {
+      "n": 2,
+      "sum": 0.9418937826188696,
+      "sum_sq": 0.5732962073817426
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"full\",0,2],\"v27_context_repair\"]": {
+      "n": 3,
+      "sum": 1.7538980892021505,
+      "sum_sq": 1.226467527835104
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"full\",0,1],\"v27_context_repair\"]": {
+      "n": 3,
+      "sum": 0.7614862551100092,
+      "sum_sq": 0.19943558460076657
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"hidden\",2,3],\"v27_context_repair\"]": {
+      "n": 2,
+      "sum": 1.1625633001913467,
+      "sum_sq": 0.7088728361419131
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"hidden\",2,1],\"v27_context_repair\"]": {
+      "n": 3,
+      "sum": 2.3240009178495296,
+      "sum_sq": 1.8627174605303327
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"hidden\",0,1],\"v27_context_repair\"]": {
+      "n": 1,
+      "sum": 0.761786681046305,
+      "sum_sq": 0.5803189474195448
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"full\",2,1],\"v27_context_repair\"]": {
+      "n": 2,
+      "sum": 1.1059114191602721,
+      "sum_sq": 0.8073615981130744
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"full\",0,1],\"v27_context_repair\"]": {
+      "n": 1,
+      "sum": 0.8815822836575467,
+      "sum_sq": 0.7771873228588551
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"hidden\",0,1],\"v27_context_repair\"]": {
+      "n": 5,
+      "sum": 2.110877013238638,
+      "sum_sq": 1.051252440033977
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"hidden\",2,1],\"v27_context_repair\"]": {
+      "n": 2,
+      "sum": 1.1370950136758347,
+      "sum_sq": 0.7823766899757929
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"hidden\",2,3],\"v27_context_repair\"]": {
+      "n": 1,
+      "sum": 0.22183581507530034,
+      "sum_sq": 0.04921112885012285
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"hidden\",2,2],\"v27_context_repair\"]": {
+      "n": 1,
+      "sum": 0.3532006074420102,
+      "sum_sq": 0.124750669097405
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"full\",2,1],\"v27_context_repair\"]": {
+      "n": 2,
+      "sum": 1.089524672706227,
+      "sum_sq": 0.8232275334938512
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"full\",0,2],\"v27_context_repair\"]": {
+      "n": 2,
+      "sum": 1.2061711427822361,
+      "sum_sq": 0.8734014228986373
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"hidden\",0,2],\"v27_context_repair\"]": {
+      "n": 1,
+      "sum": 0.5374298453437439,
+      "sum_sq": 0.2888308386662005
+    },
+    "[\"local\",\"negotiation\",\"buyer\",[\"buyer\",\"hidden\",1],\"v27_context_repair\"]": {
+      "n": 5,
+      "sum": 2.7438797838639375,
+      "sum_sq": 1.6680145375114361
+    },
+    "[\"global\",\"negotiation\",\"buyer\",null,\"v27_context_repair\"]": {
+      "n": 29,
+      "sum": 11.944638916694638,
+      "sum_sq": 6.1925382039611465
+    },
+    "[\"local\",\"negotiation\",\"seller\",[\"seller\",\"hidden\",0],\"v27_context_repair\"]": {
+      "n": 23,
+      "sum": 14.496853764820932,
+      "sum_sq": 9.537870054022244
+    },
+    "[\"global\",\"negotiation\",\"seller\",null,\"v27_context_repair\"]": {
+      "n": 39,
+      "sum": 23.688868984318958,
+      "sum_sq": 15.704367516868139
+    },
+    "[\"local\",\"negotiation\",\"buyer\",[\"buyer\",\"hidden\",0],\"v27_context_repair\"]": {
+      "n": 13,
+      "sum": 5.854427676219583,
+      "sum_sq": 3.132009706836515
+    },
+    "[\"local\",\"negotiation\",\"buyer\",[\"buyer\",\"full\",0],\"v27_context_repair\"]": {
+      "n": 8,
+      "sum": 2.5756475494611166,
+      "sum_sq": 1.1943818606690124
+    },
+    "[\"local\",\"negotiation\",\"seller\",[\"seller\",\"full\",1],\"v27_context_repair\"]": {
+      "n": 1,
+      "sum": 0.8458609673024213,
+      "sum_sq": 0.7154807760057879
+    },
+    "[\"local\",\"negotiation\",\"buyer\",[\"buyer\",\"full\",1],\"v27_context_repair\"]": {
+      "n": 3,
+      "sum": 0.7706839071500032,
+      "sum_sq": 0.19813209894418315
+    },
+    "[\"local\",\"negotiation\",\"seller\",[\"seller\",\"hidden\",1],\"v27_context_repair\"]": {
+      "n": 8,
+      "sum": 4.0784599494299485,
+      "sum_sq": 2.402772290978129
+    },
+    "[\"local\",\"negotiation\",\"seller\",[\"seller\",\"full\",0],\"v27_context_repair\"]": {
+      "n": 7,
+      "sum": 4.267694302765657,
+      "sum_sq": 3.048244395861978
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"text\",\"known\",2,1,0],\"v27_context_repair\"]": {
+      "n": 1,
+      "sum": 0.17653527477911374,
+      "sum_sq": 0.031164703241337192
+    },
+    "[\"global\",\"persuasion\",\"seller\",null,\"v27_context_repair\"]": {
+      "n": 19,
+      "sum": 7.876554148102878,
+      "sum_sq": 4.733945208635703
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"binary\",\"known\",2,1,0],\"v27_context_repair\"]": {
+      "n": 2,
+      "sum": 0.3123547546061334,
+      "sum_sq": 0.04883828669752406
+    },
+    "[\"local\",\"persuasion\",\"buyer\",[\"buyer\",\"text\",\"known\",2,1,0],\"v27_context_repair\"]": {
+      "n": 4,
+      "sum": 2.225456555095417,
+      "sum_sq": 1.3194242375213092
+    },
+    "[\"global\",\"persuasion\",\"buyer\",null,\"v27_context_repair\"]": {
+      "n": 11,
+      "sum": 6.496484724022511,
+      "sum_sq": 4.276924827050028
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"text\",\"hidden\",2,1,2],\"v27_context_repair\"]": {
+      "n": 3,
+      "sum": 1.9513154731056637,
+      "sum_sq": 1.5397384122521476
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"binary\",\"known\",2,1,1],\"v27_context_repair\"]": {
+      "n": 2,
+      "sum": 0.6734604026732084,
+      "sum_sq": 0.26536870572719357
+    },
+    "[\"local\",\"persuasion\",\"buyer\",[\"buyer\",\"binary\",\"known\",2,1,0],\"v27_context_repair\"]": {
+      "n": 2,
+      "sum": 1.0062522123399085,
+      "sum_sq": 0.7429907617880893
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"text\",\"known\",2,2,1],\"v27_context_repair\"]": {
+      "n": 1,
+      "sum": 0.2506779155948258,
+      "sum_sq": 0.06283941736696659
+    },
+    "[\"local\",\"persuasion\",\"buyer\",[\"buyer\",\"binary\",\"known\",2,1,2],\"v27_context_repair\"]": {
+      "n": 1,
+      "sum": 0.4962500703109072,
+      "sum_sq": 0.24626413228358032
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"binary\",\"hidden\",2,1,2],\"v27_context_repair\"]": {
+      "n": 4,
+      "sum": 1.4227226394129535,
+      "sum_sq": 0.843878832057923
+    },
+    "[\"local\",\"persuasion\",\"buyer\",[\"buyer\",\"binary\",\"known\",2,2,0],\"v27_context_repair\"]": {
+      "n": 2,
+      "sum": 1.572110459280455,
+      "sum_sq": 1.2502033828858954
+    },
+    "[\"local\",\"persuasion\",\"buyer\",[\"buyer\",\"text\",\"known\",2,1,2],\"v27_context_repair\"]": {
+      "n": 2,
+      "sum": 1.196415426995823,
+      "sum_sq": 0.7180423125711527
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"text\",\"hidden\",2,2,2],\"v27_context_repair\"]": {
+      "n": 3,
+      "sum": 1.8985114226503916,
+      "sum_sq": 1.2445299672553778
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"binary\",\"known\",2,2,2],\"v27_context_repair\"]": {
+      "n": 1,
+      "sum": 0.21840253609763832,
+      "sum_sq": 0.04769966777388021
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"binary\",\"hidden\",2,2,2],\"v27_context_repair\"]": {
+      "n": 1,
+      "sum": 0.7837237376544305,
+      "sum_sq": 0.6142228969630306
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"binary\",\"known\",2,2,0],\"v27_context_repair\"]": {
+      "n": 1,
+      "sum": 0.18884999152851972,
+      "sum_sq": 0.03566431930032197
+    }
+  }
+}

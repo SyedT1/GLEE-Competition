@@ -1,0 +1,4754 @@
+{
+  "version": 13,
+  "run_mode": "champion",
+  "assignments": {
+    "ace6243d-4250-4468-83e2-46b6cff19f94": {
+      "family": "bargaining",
+      "role": "player_2",
+      "context": [
+        "player_2",
+        "full",
+        2,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "bargaining",
+        "round": 1,
+        "max_rounds": 12,
+        "horizon_known": true,
+        "phase": "decision",
+        "current_player": "player_2",
+        "proposer": "player_1",
+        "money_to_divide": 100,
+        "delta_1": 0.9,
+        "delta_2": 0.95,
+        "complete_information": true,
+        "messages_allowed": false,
+        "last_offer": {
+          "player_1_gain": 50.0,
+          "player_2_gain": 50.0,
+          "message": "",
+          "proposer": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "d52a3a9e-0415-4a04-be79-1bdc9772de39": {
+      "family": "bargaining",
+      "role": "player_1",
+      "context": [
+        "player_1",
+        "hidden",
+        0,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "bargaining",
+        "round": 1,
+        "horizon_known": false,
+        "phase": "offer",
+        "current_player": "player_1",
+        "proposer": "player_1",
+        "money_to_divide": 100,
+        "delta_1": 0.95,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "dce7783e-2701-4b2b-991c-2c65ba1acd28": {
+      "family": "bargaining",
+      "role": "player_1",
+      "context": [
+        "player_1",
+        "hidden",
+        0,
+        3
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "bargaining",
+        "round": 1,
+        "horizon_known": false,
+        "phase": "offer",
+        "current_player": "player_1",
+        "proposer": "player_1",
+        "money_to_divide": 1000000,
+        "delta_1": 1.0,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "61aba069-09c4-48d0-94aa-889897e10a2a": {
+      "family": "bargaining",
+      "role": "player_1",
+      "context": [
+        "player_1",
+        "full",
+        0,
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "bargaining",
+        "round": 1,
+        "horizon_known": false,
+        "phase": "offer",
+        "current_player": "player_1",
+        "proposer": "player_1",
+        "money_to_divide": 10000,
+        "delta_1": 0.8,
+        "delta_2": 0.95,
+        "complete_information": true,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "27c5933a-8320-4932-b341-84bc07a661de": {
+      "family": "bargaining",
+      "role": "player_1",
+      "context": [
+        "player_1",
+        "hidden",
+        0,
+        3
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "bargaining",
+        "round": 1,
+        "horizon_known": false,
+        "phase": "offer",
+        "current_player": "player_1",
+        "proposer": "player_1",
+        "money_to_divide": 10000,
+        "delta_1": 1.0,
+        "complete_information": false,
+        "messages_allowed": true,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "641d580e-8c7d-41bf-8d6a-315c0953f197": {
+      "family": "bargaining",
+      "role": "player_2",
+      "context": [
+        "player_2",
+        "full",
+        2,
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "bargaining",
+        "round": 1,
+        "max_rounds": 12,
+        "horizon_known": true,
+        "phase": "decision",
+        "current_player": "player_2",
+        "proposer": "player_1",
+        "money_to_divide": 1000000,
+        "delta_1": 0.8,
+        "delta_2": 0.9,
+        "complete_information": true,
+        "messages_allowed": false,
+        "last_offer": {
+          "player_1_gain": 399000.0,
+          "player_2_gain": 601000.0,
+          "message": "",
+          "proposer": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "fc145e43-9124-41c1-b90a-e512537ac378": {
+      "family": "bargaining",
+      "role": "player_2",
+      "context": [
+        "player_2",
+        "hidden",
+        0,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "bargaining",
+        "round": 1,
+        "horizon_known": false,
+        "phase": "decision",
+        "current_player": "player_2",
+        "proposer": "player_1",
+        "money_to_divide": 10000,
+        "delta_2": 0.95,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": {
+          "player_1_gain": 5000.0,
+          "player_2_gain": 5000.0,
+          "message": "",
+          "proposer": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "248a34b3-06e9-4386-835d-b34d1a4ad1aa": {
+      "family": "bargaining",
+      "role": "player_2",
+      "context": [
+        "player_2",
+        "full",
+        2,
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "bargaining",
+        "round": 1,
+        "max_rounds": 12,
+        "horizon_known": true,
+        "phase": "decision",
+        "current_player": "player_2",
+        "proposer": "player_1",
+        "money_to_divide": 100,
+        "delta_1": 0.95,
+        "delta_2": 0.8,
+        "complete_information": true,
+        "messages_allowed": false,
+        "last_offer": {
+          "player_1_gain": 50.0,
+          "player_2_gain": 50.0,
+          "message": "",
+          "proposer": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "d10f551b-6de8-4ffc-b78f-fdbcc582726f": {
+      "family": "bargaining",
+      "role": "player_1",
+      "context": [
+        "player_1",
+        "full",
+        2,
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "bargaining",
+        "round": 1,
+        "max_rounds": 12,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "proposer": "player_1",
+        "money_to_divide": 10000,
+        "delta_1": 0.9,
+        "delta_2": 1.0,
+        "complete_information": true,
+        "messages_allowed": true,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "44bf2831-93fd-42e6-b325-877fe3c1860b": {
+      "family": "bargaining",
+      "role": "player_2",
+      "context": [
+        "player_2",
+        "full",
+        2,
+        3
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "bargaining",
+        "round": 1,
+        "max_rounds": 12,
+        "horizon_known": true,
+        "phase": "decision",
+        "current_player": "player_2",
+        "proposer": "player_1",
+        "money_to_divide": 1000000,
+        "delta_1": 0.8,
+        "delta_2": 1.0,
+        "complete_information": true,
+        "messages_allowed": false,
+        "last_offer": {
+          "player_1_gain": 500000.0,
+          "player_2_gain": 500000.0,
+          "message": "",
+          "proposer": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "61bfb322-48fb-4548-909f-1031c4c6a302": {
+      "family": "bargaining",
+      "role": "player_2",
+      "context": [
+        "player_2",
+        "hidden",
+        2,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "bargaining",
+        "round": 1,
+        "max_rounds": 12,
+        "horizon_known": true,
+        "phase": "decision",
+        "current_player": "player_2",
+        "proposer": "player_1",
+        "money_to_divide": 1000000,
+        "delta_2": 0.95,
+        "complete_information": false,
+        "messages_allowed": true,
+        "last_offer": {
+          "player_1_gain": 700000.0,
+          "player_2_gain": 300000.0,
+          "message": "We're starting with a fair split of 300000 and 700000, which leaves room for adjustments based on your proposal.",
+          "proposer": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "98c48861-983a-4295-bd14-e2f1befd0bee": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 10,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 1200000.0,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "2e1e6a06-dd3a-4053-ad87-9ee10dbc1351": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "full",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 10,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 1200000.0,
+        "player_2_value": 1500000.0,
+        "complete_information": true,
+        "messages_allowed": true,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "012716b1-be55-4ab4-b887-0db8404b136c": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 10,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 100.0,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "91044e8d-f0b9-4ded-b9aa-d418072d0f9d": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 80.0,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "62464818-d888-4e11-8882-c09c9d6cddbf": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 10,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 120.0,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "500d0f7a-7555-4139-835f-30953830f44d": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 1000000.0,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "78cbc110-548c-4664-a612-5a0f2e3af1f2": {
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "full",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 80.0,
+        "player_2_value": 120.0,
+        "complete_information": true,
+        "messages_allowed": true,
+        "last_offer": {
+          "price": 84.4,
+          "message": "Best offer.",
+          "from_player": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "7660b26c-694d-4e7d-9a7c-dfc83b34fd19": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 800000.0,
+        "player_2_value": 1500000.0,
+        "complete_information": true,
+        "messages_allowed": true,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "543eb52a-f98a-466e-8af3-3c419c410af0": {
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "hidden",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 10,
+        "horizon_known": true,
+        "phase": "decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_2_value": 8000.0,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": {
+          "price": 14999.99,
+          "message": "",
+          "from_player": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "d61569cf-a224-49d0-b4a9-2361e717929d": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "horizon_known": false,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 120.0,
+        "complete_information": false,
+        "messages_allowed": true,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "3ac61d9a-0f18-4531-bcf9-42f5a8b66ceb": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 1000000.0,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "cf3e8e83-b4da-461c-80b4-610104374ce4": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 100.0,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "921e753e-7207-4e25-a834-052f53458060": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 10,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 800000.0,
+        "complete_information": false,
+        "messages_allowed": true,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "9d0fffe4-b654-498c-91b3-9ad7114fd21f": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "horizon_known": false,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 12000.0,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "307f8f4e-bbf0-4b95-ab22-e7d587ec3a9c": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "horizon_known": false,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 100.0,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "fa7837b3-0a57-4f4e-aa8f-73d6afb537fc": {
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "full",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 800000.0,
+        "player_2_value": 1000000.0,
+        "complete_information": true,
+        "messages_allowed": false,
+        "last_offer": {
+          "price": 880000.0,
+          "message": "",
+          "from_player": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "d7033074-3042-4228-93fc-73dbda968c8b": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 80.0,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "11d33178-0a4e-4682-887b-e58a26ea4b23": {
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "full",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 12000.0,
+        "player_2_value": 15000.0,
+        "complete_information": true,
+        "messages_allowed": true,
+        "last_offer": {
+          "price": 18600.0,
+          "message": "Good price",
+          "from_player": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "71ff0969-520a-440b-a1f7-502b31faf53e": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "full",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 10,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 80.0,
+        "player_2_value": 150.0,
+        "complete_information": true,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "a04aab45-824f-4acc-9ddc-e9fd330e2f01": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 80.0,
+        "player_2_value": 150.0,
+        "complete_information": true,
+        "messages_allowed": true,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "872f63b5-f393-4d66-af78-c04953d9de11": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 10,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 8000.0,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "a4d05e78-13b6-42cb-b0f2-dd41163abd7c": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 1000000.0,
+        "player_2_value": 1500000.0,
+        "complete_information": true,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "8717f19d-a42c-4595-a456-a0834d21536d": {
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "full",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 10,
+        "horizon_known": true,
+        "phase": "decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 120.0,
+        "player_2_value": 150.0,
+        "complete_information": true,
+        "messages_allowed": false,
+        "last_offer": {
+          "price": 146.4,
+          "message": "",
+          "from_player": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "cedff73d-ba76-4362-8481-cdf9e680b750": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 800000.0,
+        "complete_information": false,
+        "messages_allowed": true,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "5f573826-9306-4db8-b822-663996090362": {
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "horizon_known": false,
+        "phase": "decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_2_value": 150.0,
+        "complete_information": false,
+        "messages_allowed": true,
+        "last_offer": {
+          "price": 183.0,
+          "message": "Best offer.",
+          "from_player": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "cae505f2-54db-4131-9a31-90204035b7f0": {
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "full",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 10,
+        "horizon_known": true,
+        "phase": "decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 800000.0,
+        "player_2_value": 1200000.0,
+        "complete_information": true,
+        "messages_allowed": true,
+        "last_offer": {
+          "price": 1080000.0,
+          "message": "",
+          "from_player": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "fd505154-753b-4553-bf6c-fa22b2054fb1": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 800000.0,
+        "player_2_value": 1200000.0,
+        "complete_information": true,
+        "messages_allowed": true,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "55303fa3-227e-4062-936d-7962094e68ca": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 10,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 80.0,
+        "complete_information": false,
+        "messages_allowed": true,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "1bd734ce-0372-4a6f-8fb7-0f9666677474": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 10,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 800000.0,
+        "complete_information": false,
+        "messages_allowed": true,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "cf191930-2981-4cde-8830-4da0d5d16c3e": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "horizon_known": false,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 1500000.0,
+        "complete_information": false,
+        "messages_allowed": true,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "19cf8b5b-d698-47ab-96d8-d2775936232e": {
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_2_value": 15000.0,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": {
+          "price": 11432.0,
+          "message": "",
+          "from_player": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "6ea50643-bfcb-4c0a-baee-de631d3d4451": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 80.0,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "d4cddb9f-f034-4ef3-95e0-85a015549245": {
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "horizon_known": false,
+        "phase": "decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_2_value": 8000.0,
+        "complete_information": false,
+        "messages_allowed": true,
+        "last_offer": {
+          "price": 21750.0,
+          "message": "Let's close a mutually beneficial deal.",
+          "from_player": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "24e8dfb8-7a89-451d-a05a-180933d7b6cc": {
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_2_value": 120.0,
+        "complete_information": false,
+        "messages_allowed": false,
+        "last_offer": {
+          "price": 225.0,
+          "message": "",
+          "from_player": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "002acaa2-92af-47f4-b84c-ae003d02932b": {
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "full",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 10000.0,
+        "player_2_value": 15000.0,
+        "complete_information": true,
+        "messages_allowed": true,
+        "last_offer": {
+          "price": 13200.0,
+          "message": "",
+          "from_player": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "fd1c126c-4f00-4a4c-97ac-bec240609445": {
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_2_value": 10000.0,
+        "complete_information": false,
+        "messages_allowed": true,
+        "last_offer": {
+          "price": 22500.0,
+          "message": "Let's close a mutually beneficial deal.",
+          "from_player": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "62b24d16-f4c7-40ff-8c8f-8a256f77acc0": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 10,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 80.0,
+        "complete_information": false,
+        "messages_allowed": true,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "656195da-5650-4c0c-9629-76cd4ff57d2a": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 1000000.0,
+        "complete_information": false,
+        "messages_allowed": true,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "134081c4-0321-435c-80ca-236c3de1abe6": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 1200000.0,
+        "complete_information": false,
+        "messages_allowed": true,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "397c8fc5-8469-43de-99b1-be0a46fbb490": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 80.0,
+        "player_2_value": 150.0,
+        "complete_information": true,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "7e4e11b0-5de1-457c-b9da-fcbf682ec8ca": {
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "hidden",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 10,
+        "horizon_known": true,
+        "phase": "decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_2_value": 10000.0,
+        "complete_information": false,
+        "messages_allowed": true,
+        "last_offer": {
+          "price": 15000.0,
+          "message": "Let's close a mutually beneficial deal.",
+          "from_player": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "155afb9b-bf76-4325-835a-f5a6990a8784": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 800000.0,
+        "player_2_value": 1200000.0,
+        "complete_information": true,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "28750e39-c2c6-4906-abfd-f2278663f2f7": {
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "full",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "horizon_known": false,
+        "phase": "decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 10000.0,
+        "player_2_value": 15000.0,
+        "complete_information": true,
+        "messages_allowed": true,
+        "last_offer": {
+          "price": 14800.0,
+          "message": "This is my number.",
+          "from_player": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "17997fa6-892c-4194-aae6-5889afcf16fa": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 1,
+        "horizon_known": true,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 120.0,
+        "complete_information": false,
+        "messages_allowed": true,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "9959676c-ee49-468b-95f6-3b1f15b31bf9": {
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "hidden",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "max_rounds": 10,
+        "horizon_known": true,
+        "phase": "decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_2_value": 1500000.0,
+        "complete_information": false,
+        "messages_allowed": true,
+        "last_offer": {
+          "price": 1200000.0,
+          "message": "This is my number.",
+          "from_player": "player_1",
+          "round": 1
+        },
+        "history": []
+      },
+      "synthetic": false
+    },
+    "25d1de5b-4f6c-4881-9363-c62d07612342": {
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "negotiation",
+        "round": 1,
+        "horizon_known": false,
+        "phase": "offer",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "player_1_value": 80.0,
+        "player_2_value": 120.0,
+        "complete_information": true,
+        "messages_allowed": false,
+        "last_offer": null,
+        "history": []
+      },
+      "synthetic": false
+    },
+    "931f1664-4a42-4866-83ed-c1b84b6bc271": {
+      "family": "persuasion",
+      "role": "seller",
+      "context": [
+        "seller",
+        "binary",
+        "hidden",
+        2,
+        1,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "persuasion",
+        "round": 1,
+        "total_rounds": 20,
+        "phase": "seller_message",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "product_price": 1000000,
+        "p": 0.3333333333333333,
+        "is_seller_know_cv": false,
+        "seller_message_type": "binary",
+        "current_quality": "high",
+        "seller_message": null,
+        "history": [],
+        "seller_total_payoff": 0.0
+      },
+      "synthetic": false
+    },
+    "b6d610cb-d3cb-44ec-9591-4412b8eb066a": {
+      "family": "persuasion",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "persuasion",
+        "round": 1,
+        "total_rounds": 20,
+        "phase": "buyer_decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "product_price": 10000,
+        "p": 0.5,
+        "v": 40000.0,
+        "u": 0.0,
+        "is_seller_know_cv": false,
+        "seller_message_type": "text",
+        "seller_message": "This one is high quality.",
+        "history": [],
+        "seller_total_payoff": 0.0,
+        "buyer_total_payoff": 0.0
+      },
+      "synthetic": false
+    },
+    "13dab292-746f-41d2-8367-00e75f6fb2f1": {
+      "family": "persuasion",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        2,
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "persuasion",
+        "round": 1,
+        "total_rounds": 20,
+        "phase": "buyer_decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "product_price": 1000000,
+        "p": 0.8,
+        "v": 2000000.0,
+        "u": 0.0,
+        "is_seller_know_cv": false,
+        "seller_message_type": "text",
+        "seller_message": "This one is high quality.",
+        "history": [],
+        "seller_total_payoff": 0.0,
+        "buyer_total_payoff": 0.0
+      },
+      "synthetic": false
+    },
+    "dcda6549-be3e-4e94-889c-129110ce93ca": {
+      "family": "persuasion",
+      "role": "seller",
+      "context": [
+        "seller",
+        "binary",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "persuasion",
+        "round": 1,
+        "total_rounds": 20,
+        "phase": "seller_message",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "product_price": 100,
+        "p": 0.3333333333333333,
+        "v": 400.0,
+        "u": 0.0,
+        "is_seller_know_cv": true,
+        "seller_message_type": "binary",
+        "current_quality": "low",
+        "seller_message": null,
+        "history": [],
+        "seller_total_payoff": 0.0,
+        "buyer_total_payoff": 0.0
+      },
+      "synthetic": false
+    },
+    "4e71cf8f-469d-4291-a4a8-2df078aad8a0": {
+      "family": "persuasion",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "persuasion",
+        "round": 1,
+        "total_rounds": 20,
+        "phase": "buyer_decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "product_price": 1000000,
+        "p": 0.5,
+        "v": 3000000.0,
+        "u": 0.0,
+        "is_seller_know_cv": true,
+        "seller_message_type": "text",
+        "seller_message": "This one is high quality.",
+        "history": [],
+        "seller_total_payoff": 0.0,
+        "buyer_total_payoff": 0.0
+      },
+      "synthetic": false
+    },
+    "a85c8de4-f49e-4034-82dd-0c17a77bd83b": {
+      "family": "persuasion",
+      "role": "seller",
+      "context": [
+        "seller",
+        "text",
+        "known",
+        2,
+        2,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "persuasion",
+        "round": 1,
+        "total_rounds": 20,
+        "phase": "seller_message",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "product_price": 10000,
+        "p": 0.8,
+        "v": 12500.0,
+        "u": 0.0,
+        "is_seller_know_cv": true,
+        "seller_message_type": "text",
+        "current_quality": "high",
+        "seller_message": null,
+        "history": [],
+        "seller_total_payoff": 0.0,
+        "buyer_total_payoff": 0.0
+      },
+      "synthetic": false
+    },
+    "ef528b8c-97e3-43be-a2ea-0812950d9570": {
+      "family": "persuasion",
+      "role": "seller",
+      "context": [
+        "seller",
+        "binary",
+        "known",
+        2,
+        1,
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "persuasion",
+        "round": 1,
+        "total_rounds": 20,
+        "phase": "seller_message",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "product_price": 1000000,
+        "p": 0.5,
+        "v": 2000000.0,
+        "u": 0.0,
+        "is_seller_know_cv": true,
+        "seller_message_type": "binary",
+        "current_quality": "low",
+        "seller_message": null,
+        "history": [],
+        "seller_total_payoff": 0.0,
+        "buyer_total_payoff": 0.0
+      },
+      "synthetic": false
+    },
+    "9ca65fd3-8a44-4e98-8240-fc5b47b21efc": {
+      "family": "persuasion",
+      "role": "seller",
+      "context": [
+        "seller",
+        "text",
+        "known",
+        2,
+        1,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "persuasion",
+        "round": 1,
+        "total_rounds": 20,
+        "phase": "seller_message",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "product_price": 100,
+        "p": 0.3333333333333333,
+        "v": 120.0,
+        "u": 0.0,
+        "is_seller_know_cv": true,
+        "seller_message_type": "text",
+        "current_quality": "low",
+        "seller_message": null,
+        "history": [],
+        "seller_total_payoff": 0.0,
+        "buyer_total_payoff": 0.0
+      },
+      "synthetic": false
+    },
+    "e9071d02-b141-4779-9eb8-652b27fd264e": {
+      "family": "persuasion",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        2,
+        1
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "persuasion",
+        "round": 1,
+        "total_rounds": 20,
+        "phase": "buyer_decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "product_price": 100,
+        "p": 0.8,
+        "v": 200.0,
+        "u": 0.0,
+        "is_seller_know_cv": false,
+        "seller_message_type": "text",
+        "seller_message": "I recommend buying this product.",
+        "history": [],
+        "seller_total_payoff": 0.0,
+        "buyer_total_payoff": 0.0
+      },
+      "synthetic": false
+    },
+    "3fc82114-f0ee-4b8a-812d-7a807225b091": {
+      "family": "persuasion",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "binary",
+        "known",
+        2,
+        1,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "persuasion",
+        "round": 1,
+        "total_rounds": 20,
+        "phase": "buyer_decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "product_price": 100,
+        "p": 0.5,
+        "v": 125.0,
+        "u": 0.0,
+        "is_seller_know_cv": true,
+        "seller_message_type": "binary",
+        "seller_message": "no",
+        "history": [],
+        "seller_total_payoff": 0.0,
+        "buyer_total_payoff": 0.0
+      },
+      "synthetic": false
+    },
+    "b5a1a572-d72d-4a04-a9ec-dcae2355e0e8": {
+      "family": "persuasion",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "binary",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "persuasion",
+        "round": 1,
+        "total_rounds": 20,
+        "phase": "buyer_decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "product_price": 10000,
+        "p": 0.3333333333333333,
+        "v": 40000.0,
+        "u": 0.0,
+        "is_seller_know_cv": false,
+        "seller_message_type": "binary",
+        "seller_message": "no",
+        "history": [],
+        "seller_total_payoff": 0.0,
+        "buyer_total_payoff": 0.0
+      },
+      "synthetic": false
+    },
+    "ce4a2838-7e87-4667-a1b7-74b37af42b17": {
+      "family": "persuasion",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "persuasion",
+        "round": 1,
+        "total_rounds": 20,
+        "phase": "buyer_decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "product_price": 1000000,
+        "p": 0.3333333333333333,
+        "v": 4000000.0,
+        "u": 0.0,
+        "is_seller_know_cv": false,
+        "seller_message_type": "text",
+        "seller_message": "This particular unit is nothing special; your call.",
+        "history": [],
+        "seller_total_payoff": 0.0,
+        "buyer_total_payoff": 0.0
+      },
+      "synthetic": false
+    },
+    "834efba6-f2c6-4196-a297-5c57a8051d71": {
+      "family": "persuasion",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "binary",
+        "known",
+        2,
+        2,
+        0
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "persuasion",
+        "round": 1,
+        "total_rounds": 20,
+        "phase": "buyer_decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "product_price": 100,
+        "p": 0.8,
+        "v": 400.0,
+        "u": 0.0,
+        "is_seller_know_cv": true,
+        "seller_message_type": "binary",
+        "seller_message": "yes",
+        "history": [],
+        "seller_total_payoff": 0.0,
+        "buyer_total_payoff": 0.0
+      },
+      "synthetic": false
+    },
+    "b77d0a4b-89b4-4da1-b2aa-cca1dadea571": {
+      "family": "persuasion",
+      "role": "seller",
+      "context": [
+        "seller",
+        "text",
+        "hidden",
+        2,
+        2,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "persuasion",
+        "round": 1,
+        "total_rounds": 20,
+        "phase": "seller_message",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "product_price": 1000000,
+        "p": 0.8,
+        "is_seller_know_cv": false,
+        "seller_message_type": "text",
+        "current_quality": "high",
+        "seller_message": null,
+        "history": [],
+        "seller_total_payoff": 0.0
+      },
+      "synthetic": false
+    },
+    "4e545bc7-3536-40fc-a871-71f5c7cd5d28": {
+      "family": "persuasion",
+      "role": "seller",
+      "context": [
+        "seller",
+        "binary",
+        "hidden",
+        2,
+        1,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_1",
+      "state": {
+        "game_family": "persuasion",
+        "round": 1,
+        "total_rounds": 20,
+        "phase": "seller_message",
+        "current_player": "player_1",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "product_price": 100,
+        "p": 0.3333333333333333,
+        "is_seller_know_cv": false,
+        "seller_message_type": "binary",
+        "current_quality": "high",
+        "seller_message": null,
+        "history": [],
+        "seller_total_payoff": 0.0
+      },
+      "synthetic": false
+    },
+    "eb39ff0f-5fe2-4d3d-9cc7-8836816b982f": {
+      "family": "persuasion",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        2,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "player": "player_2",
+      "state": {
+        "game_family": "persuasion",
+        "round": 1,
+        "total_rounds": 20,
+        "phase": "buyer_decision",
+        "current_player": "player_2",
+        "player_1_role": "seller",
+        "player_2_role": "buyer",
+        "product_price": 1000000,
+        "p": 0.8,
+        "v": 1200000.0,
+        "u": 0.0,
+        "is_seller_know_cv": true,
+        "seller_message_type": "text",
+        "seller_message": "This high-quality widget is a great addition to any production line, and I'm offering it to you for a steal at 250 dollars. It's a one-time deal, so act fast.",
+        "history": [],
+        "seller_total_payoff": 0.0,
+        "buyer_total_payoff": 0.0
+      },
+      "synthetic": false
+    }
+  },
+  "rating_outcomes": [
+    {
+      "game_id": "rating-credit-live-like",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v5_safe",
+      "context": [
+        "seller",
+        "full",
+        1
+      ],
+      "rating_delta": 2.0,
+      "rating_reward": 0.622459
+    },
+    {
+      "game_id": "ace6243d-4250-4468-83e2-46b6cff19f94",
+      "family": "bargaining",
+      "role": "player_2",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_2",
+        "full",
+        2,
+        2
+      ],
+      "rating_delta": -0.87,
+      "rating_reward": 0.445838
+    },
+    {
+      "game_id": "d52a3a9e-0415-4a04-be79-1bdc9772de39",
+      "family": "bargaining",
+      "role": "player_1",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_1",
+        "hidden",
+        0,
+        2
+      ],
+      "rating_delta": 4.8,
+      "rating_reward": 0.768525
+    },
+    {
+      "game_id": "dce7783e-2701-4b2b-991c-2c65ba1acd28",
+      "family": "bargaining",
+      "role": "player_1",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_1",
+        "hidden",
+        0,
+        3
+      ],
+      "rating_delta": 4.33,
+      "rating_reward": 0.746967
+    },
+    {
+      "game_id": "61aba069-09c4-48d0-94aa-889897e10a2a",
+      "family": "bargaining",
+      "role": "player_1",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_1",
+        "full",
+        0,
+        1
+      ],
+      "rating_delta": -3.19,
+      "rating_reward": 0.310561
+    },
+    {
+      "game_id": "27c5933a-8320-4932-b341-84bc07a661de",
+      "family": "bargaining",
+      "role": "player_1",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_1",
+        "hidden",
+        0,
+        3
+      ],
+      "rating_delta": -2.44,
+      "rating_reward": 0.352059
+    },
+    {
+      "game_id": "641d580e-8c7d-41bf-8d6a-315c0953f197",
+      "family": "bargaining",
+      "role": "player_2",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_2",
+        "full",
+        2,
+        1
+      ],
+      "rating_delta": 5.23,
+      "rating_reward": 0.787095
+    },
+    {
+      "game_id": "fc145e43-9124-41c1-b90a-e512537ac378",
+      "family": "bargaining",
+      "role": "player_2",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_2",
+        "hidden",
+        0,
+        2
+      ],
+      "rating_delta": 6.46,
+      "rating_reward": 0.834104
+    },
+    {
+      "game_id": "248a34b3-06e9-4386-835d-b34d1a4ad1aa",
+      "family": "bargaining",
+      "role": "player_2",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_2",
+        "full",
+        2,
+        1
+      ],
+      "rating_delta": 7.32,
+      "rating_reward": 0.861762
+    },
+    {
+      "game_id": "d10f551b-6de8-4ffc-b78f-fdbcc582726f",
+      "family": "bargaining",
+      "role": "player_1",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_1",
+        "full",
+        2,
+        1
+      ],
+      "rating_delta": -2.84,
+      "rating_reward": 0.329599
+    },
+    {
+      "game_id": "44bf2831-93fd-42e6-b325-877fe3c1860b",
+      "family": "bargaining",
+      "role": "player_2",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_2",
+        "full",
+        2,
+        3
+      ],
+      "rating_delta": -2.88,
+      "rating_reward": 0.327393
+    },
+    {
+      "game_id": "61bfb322-48fb-4548-909f-1031c4c6a302",
+      "family": "bargaining",
+      "role": "player_2",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_2",
+        "hidden",
+        2,
+        2
+      ],
+      "rating_delta": -5.82,
+      "rating_reward": 0.189233
+    },
+    {
+      "game_id": "98c48861-983a-4295-bd14-e2f1befd0bee",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "rating_delta": 1.09,
+      "rating_reward": 0.567707
+    },
+    {
+      "game_id": "2e1e6a06-dd3a-4053-ad87-9ee10dbc1351",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        1
+      ],
+      "rating_delta": -5.97,
+      "rating_reward": 0.183547
+    },
+    {
+      "game_id": "012716b1-be55-4ab4-b887-0db8404b136c",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "rating_delta": 6.38,
+      "rating_reward": 0.831318
+    },
+    {
+      "game_id": "91044e8d-f0b9-4ded-b9aa-d418072d0f9d",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "rating_delta": 4.77,
+      "rating_reward": 0.767188
+    },
+    {
+      "game_id": "62464818-d888-4e11-8882-c09c9d6cddbf",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "rating_delta": 1.53,
+      "rating_reward": 0.594476
+    },
+    {
+      "game_id": "500d0f7a-7555-4139-835f-30953830f44d",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "rating_delta": 2.33,
+      "rating_reward": 0.641642
+    },
+    {
+      "game_id": "78cbc110-548c-4664-a612-5a0f2e3af1f2",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "full",
+        0
+      ],
+      "rating_delta": 8.17,
+      "rating_reward": 0.885188
+    },
+    {
+      "game_id": "7660b26c-694d-4e7d-9a7c-dfc83b34fd19",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "rating_delta": -3.73,
+      "rating_reward": 0.282418
+    },
+    {
+      "game_id": "543eb52a-f98a-466e-8af3-3c419c410af0",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "hidden",
+        1
+      ],
+      "rating_delta": 2.53,
+      "rating_reward": 0.653056
+    },
+    {
+      "game_id": "d61569cf-a224-49d0-b4a9-2361e717929d",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "rating_delta": 4.78,
+      "rating_reward": 0.767634
+    },
+    {
+      "game_id": "3ac61d9a-0f18-4531-bcf9-42f5a8b66ceb",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "rating_delta": -4.27,
+      "rating_reward": 0.255879
+    },
+    {
+      "game_id": "cf3e8e83-b4da-461c-80b4-610104374ce4",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "rating_delta": 2.1,
+      "rating_reward": 0.628316
+    },
+    {
+      "game_id": "921e753e-7207-4e25-a834-052f53458060",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "rating_delta": -3.39,
+      "rating_reward": 0.299958
+    },
+    {
+      "game_id": "9d0fffe4-b654-498c-91b3-9ad7114fd21f",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "rating_delta": 1.42,
+      "rating_reward": 0.58783
+    },
+    {
+      "game_id": "307f8f4e-bbf0-4b95-ab22-e7d587ec3a9c",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "rating_delta": 6.43,
+      "rating_reward": 0.833064
+    },
+    {
+      "game_id": "fa7837b3-0a57-4f4e-aa8f-73d6afb537fc",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "full",
+        0
+      ],
+      "rating_delta": 7.86,
+      "rating_reward": 0.877073
+    },
+    {
+      "game_id": "d7033074-3042-4228-93fc-73dbda968c8b",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "rating_delta": 4.7,
+      "rating_reward": 0.764048
+    },
+    {
+      "game_id": "11d33178-0a4e-4682-887b-e58a26ea4b23",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "full",
+        0
+      ],
+      "rating_delta": -5.93,
+      "rating_reward": 0.18505
+    },
+    {
+      "game_id": "71ff0969-520a-440b-a1f7-502b31faf53e",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        1
+      ],
+      "rating_delta": 7.49,
+      "rating_reward": 0.866747
+    },
+    {
+      "game_id": "a04aab45-824f-4acc-9ddc-e9fd330e2f01",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "rating_delta": -4.51,
+      "rating_reward": 0.244623
+    },
+    {
+      "game_id": "872f63b5-f393-4d66-af78-c04953d9de11",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "rating_delta": 5.57,
+      "rating_reward": 0.800991
+    },
+    {
+      "game_id": "a4d05e78-13b6-42cb-b0f2-dd41163abd7c",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "rating_delta": -4.47,
+      "rating_reward": 0.246475
+    },
+    {
+      "game_id": "8717f19d-a42c-4595-a456-a0834d21536d",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "full",
+        1
+      ],
+      "rating_delta": -3.76,
+      "rating_reward": 0.2809
+    },
+    {
+      "game_id": "cedff73d-ba76-4362-8481-cdf9e680b750",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "rating_delta": 4.82,
+      "rating_reward": 0.769413
+    },
+    {
+      "game_id": "5f573826-9306-4db8-b822-663996090362",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "hidden",
+        0
+      ],
+      "rating_delta": 3.07,
+      "rating_reward": 0.68298
+    },
+    {
+      "game_id": "cae505f2-54db-4131-9a31-90204035b7f0",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "full",
+        1
+      ],
+      "rating_delta": -4.16,
+      "rating_reward": 0.26115
+    },
+    {
+      "game_id": "fd505154-753b-4553-bf6c-fa22b2054fb1",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "rating_delta": -4.48,
+      "rating_reward": 0.246011
+    },
+    {
+      "game_id": "55303fa3-227e-4062-936d-7962094e68ca",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "rating_delta": -2.95,
+      "rating_reward": 0.323551
+    },
+    {
+      "game_id": "1bd734ce-0372-4a6f-8fb7-0f9666677474",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "rating_delta": 5.71,
+      "rating_reward": 0.806511
+    },
+    {
+      "game_id": "cf191930-2981-4cde-8830-4da0d5d16c3e",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "rating_delta": 8.17,
+      "rating_reward": 0.885188
+    },
+    {
+      "game_id": "19cf8b5b-d698-47ab-96d8-d2775936232e",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "hidden",
+        0
+      ],
+      "rating_delta": -2.77,
+      "rating_reward": 0.333477
+    },
+    {
+      "game_id": "6ea50643-bfcb-4c0a-baee-de631d3d4451",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "rating_delta": 2.24,
+      "rating_reward": 0.636453
+    },
+    {
+      "game_id": "d4cddb9f-f034-4ef3-95e0-85a015549245",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "hidden",
+        0
+      ],
+      "rating_delta": 3.19,
+      "rating_reward": 0.689439
+    },
+    {
+      "game_id": "24e8dfb8-7a89-451d-a05a-180933d7b6cc",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "hidden",
+        0
+      ],
+      "rating_delta": 0.73,
+      "rating_reward": 0.545499
+    },
+    {
+      "game_id": "002acaa2-92af-47f4-b84c-ae003d02932b",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "full",
+        0
+      ],
+      "rating_delta": 7.49,
+      "rating_reward": 0.866747
+    },
+    {
+      "game_id": "fd1c126c-4f00-4a4c-97ac-bec240609445",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "hidden",
+        0
+      ],
+      "rating_delta": 0.71,
+      "rating_reward": 0.544259
+    },
+    {
+      "game_id": "62b24d16-f4c7-40ff-8c8f-8a256f77acc0",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "rating_delta": 8.15,
+      "rating_reward": 0.884678
+    },
+    {
+      "game_id": "656195da-5650-4c0c-9629-76cd4ff57d2a",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "rating_delta": 0.7,
+      "rating_reward": 0.543639
+    },
+    {
+      "game_id": "134081c4-0321-435c-80ca-236c3de1abe6",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "rating_delta": 0.7,
+      "rating_reward": 0.543639
+    },
+    {
+      "game_id": "397c8fc5-8469-43de-99b1-be0a46fbb490",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "rating_delta": -3.82,
+      "rating_reward": 0.27788
+    },
+    {
+      "game_id": "7e4e11b0-5de1-457c-b9da-fcbf682ec8ca",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "hidden",
+        1
+      ],
+      "rating_delta": 3.23,
+      "rating_reward": 0.691577
+    },
+    {
+      "game_id": "155afb9b-bf76-4325-835a-f5a6990a8784",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "rating_delta": -4.44,
+      "rating_reward": 0.247871
+    },
+    {
+      "game_id": "28750e39-c2c6-4906-abfd-f2278663f2f7",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "full",
+        0
+      ],
+      "rating_delta": -3.13,
+      "rating_reward": 0.313781
+    },
+    {
+      "game_id": "17997fa6-892c-4194-aae6-5889afcf16fa",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "rating_delta": 0.71,
+      "rating_reward": 0.544259
+    },
+    {
+      "game_id": "9959676c-ee49-468b-95f6-3b1f15b31bf9",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "hidden",
+        1
+      ],
+      "rating_delta": -4.82,
+      "rating_reward": 0.230587
+    },
+    {
+      "game_id": "25d1de5b-4f6c-4881-9363-c62d07612342",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "rating_delta": -2.76,
+      "rating_reward": 0.334033
+    },
+    {
+      "game_id": "931f1664-4a42-4866-83ed-c1b84b6bc271",
+      "family": "persuasion",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "binary",
+        "hidden",
+        2,
+        1,
+        2
+      ],
+      "rating_delta": -5.44,
+      "rating_reward": 0.20424
+    },
+    {
+      "game_id": "b6d610cb-d3cb-44ec-9591-4412b8eb066a",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "rating_delta": 7.1,
+      "rating_reward": 0.855078
+    },
+    {
+      "game_id": "13dab292-746f-41d2-8367-00e75f6fb2f1",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        2,
+        1
+      ],
+      "rating_delta": 7.28,
+      "rating_reward": 0.860566
+    },
+    {
+      "game_id": "dcda6549-be3e-4e94-889c-129110ce93ca",
+      "family": "persuasion",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "binary",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "rating_delta": -3.49,
+      "rating_reward": 0.294734
+    },
+    {
+      "game_id": "4e71cf8f-469d-4291-a4a8-2df078aad8a0",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "rating_delta": 7.91,
+      "rating_reward": 0.878414
+    },
+    {
+      "game_id": "a85c8de4-f49e-4034-82dd-0c17a77bd83b",
+      "family": "persuasion",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "text",
+        "known",
+        2,
+        2,
+        2
+      ],
+      "rating_delta": 4.41,
+      "rating_reward": 0.750728
+    },
+    {
+      "game_id": "ef528b8c-97e3-43be-a2ea-0812950d9570",
+      "family": "persuasion",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "binary",
+        "known",
+        2,
+        1,
+        1
+      ],
+      "rating_delta": -0.07,
+      "rating_reward": 0.495625
+    },
+    {
+      "game_id": "9ca65fd3-8a44-4e98-8240-fc5b47b21efc",
+      "family": "persuasion",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "text",
+        "known",
+        2,
+        1,
+        2
+      ],
+      "rating_delta": -1.78,
+      "rating_reward": 0.39055
+    },
+    {
+      "game_id": "e9071d02-b141-4779-9eb8-652b27fd264e",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        2,
+        1
+      ],
+      "rating_delta": 7.7,
+      "rating_reward": 0.872695
+    },
+    {
+      "game_id": "3fc82114-f0ee-4b8a-812d-7a807225b091",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "binary",
+        "known",
+        2,
+        1,
+        2
+      ],
+      "rating_delta": -1.78,
+      "rating_reward": 0.39055
+    },
+    {
+      "game_id": "b5a1a572-d72d-4a04-a9ec-dcae2355e0e8",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "binary",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "rating_delta": 3.02,
+      "rating_reward": 0.680267
+    },
+    {
+      "game_id": "ce4a2838-7e87-4667-a1b7-74b37af42b17",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "rating_delta": -6.6,
+      "rating_reward": 0.161109
+    },
+    {
+      "game_id": "834efba6-f2c6-4196-a297-5c57a8051d71",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "binary",
+        "known",
+        2,
+        2,
+        0
+      ],
+      "rating_delta": 2.29,
+      "rating_reward": 0.63934
+    },
+    {
+      "game_id": "b77d0a4b-89b4-4da1-b2aa-cca1dadea571",
+      "family": "persuasion",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "text",
+        "hidden",
+        2,
+        2,
+        2
+      ],
+      "rating_delta": 1.7,
+      "rating_reward": 0.604679
+    },
+    {
+      "game_id": "4e545bc7-3536-40fc-a871-71f5c7cd5d28",
+      "family": "persuasion",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "binary",
+        "hidden",
+        2,
+        1,
+        2
+      ],
+      "rating_delta": -2.6,
+      "rating_reward": 0.34299
+    },
+    {
+      "game_id": "eb39ff0f-5fe2-4d3d-9cc7-8836816b982f",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        2,
+        2
+      ],
+      "rating_delta": -5.09,
+      "rating_reward": 0.21883
+    }
+  ],
+  "terminal_outcomes": [
+    {
+      "game_id": "ace6243d-4250-4468-83e2-46b6cff19f94",
+      "family": "bargaining",
+      "role": "player_2",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_2",
+        "full",
+        2,
+        2
+      ],
+      "terminal_reward": 0.4892
+    },
+    {
+      "game_id": "d52a3a9e-0415-4a04-be79-1bdc9772de39",
+      "family": "bargaining",
+      "role": "player_1",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_1",
+        "hidden",
+        0,
+        2
+      ],
+      "terminal_reward": 0.53
+    },
+    {
+      "game_id": "dce7783e-2701-4b2b-991c-2c65ba1acd28",
+      "family": "bargaining",
+      "role": "player_1",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_1",
+        "hidden",
+        0,
+        3
+      ],
+      "terminal_reward": 0.535
+    },
+    {
+      "game_id": "61aba069-09c4-48d0-94aa-889897e10a2a",
+      "family": "bargaining",
+      "role": "player_1",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_1",
+        "full",
+        0,
+        1
+      ],
+      "terminal_reward": 0.18
+    },
+    {
+      "game_id": "27c5933a-8320-4932-b341-84bc07a661de",
+      "family": "bargaining",
+      "role": "player_1",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_1",
+        "hidden",
+        0,
+        3
+      ],
+      "terminal_reward": 0.535
+    },
+    {
+      "game_id": "641d580e-8c7d-41bf-8d6a-315c0953f197",
+      "family": "bargaining",
+      "role": "player_2",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_2",
+        "full",
+        2,
+        1
+      ],
+      "terminal_reward": 0.601
+    },
+    {
+      "game_id": "fc145e43-9124-41c1-b90a-e512537ac378",
+      "family": "bargaining",
+      "role": "player_2",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_2",
+        "hidden",
+        0,
+        2
+      ],
+      "terminal_reward": 0.5
+    },
+    {
+      "game_id": "248a34b3-06e9-4386-835d-b34d1a4ad1aa",
+      "family": "bargaining",
+      "role": "player_2",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_2",
+        "full",
+        2,
+        1
+      ],
+      "terminal_reward": 0.5
+    },
+    {
+      "game_id": "d10f551b-6de8-4ffc-b78f-fdbcc582726f",
+      "family": "bargaining",
+      "role": "player_1",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_1",
+        "full",
+        2,
+        1
+      ],
+      "terminal_reward": 0.09
+    },
+    {
+      "game_id": "44bf2831-93fd-42e6-b325-877fe3c1860b",
+      "family": "bargaining",
+      "role": "player_2",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_2",
+        "full",
+        2,
+        3
+      ],
+      "terminal_reward": 0.515
+    },
+    {
+      "game_id": "61bfb322-48fb-4548-909f-1031c4c6a302",
+      "family": "bargaining",
+      "role": "player_2",
+      "arm": "v26_heuristic",
+      "context": [
+        "player_2",
+        "hidden",
+        2,
+        2
+      ],
+      "terminal_reward": 0.304
+    },
+    {
+      "game_id": "98c48861-983a-4295-bd14-e2f1befd0bee",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "2e1e6a06-dd3a-4053-ad87-9ee10dbc1351",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        1
+      ],
+      "terminal_reward": 6.7e-05
+    },
+    {
+      "game_id": "012716b1-be55-4ab4-b887-0db8404b136c",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "terminal_reward": 0.32
+    },
+    {
+      "game_id": "91044e8d-f0b9-4ded-b9aa-d418072d0f9d",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.32
+    },
+    {
+      "game_id": "62464818-d888-4e11-8882-c09c9d6cddbf",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "500d0f7a-7555-4139-835f-30953830f44d",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "78cbc110-548c-4664-a612-5a0f2e3af1f2",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "full",
+        0
+      ],
+      "terminal_reward": 0.296667
+    },
+    {
+      "game_id": "7660b26c-694d-4e7d-9a7c-dfc83b34fd19",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "terminal_reward": 0.308
+    },
+    {
+      "game_id": "543eb52a-f98a-466e-8af3-3c419c410af0",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "hidden",
+        1
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "d61569cf-a224-49d0-b4a9-2361e717929d",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.118333
+    },
+    {
+      "game_id": "3ac61d9a-0f18-4531-bcf9-42f5a8b66ceb",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "cf3e8e83-b4da-461c-80b4-610104374ce4",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "921e753e-7207-4e25-a834-052f53458060",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "terminal_reward": 0.32
+    },
+    {
+      "game_id": "9d0fffe4-b654-498c-91b3-9ad7114fd21f",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "307f8f4e-bbf0-4b95-ab22-e7d587ec3a9c",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.32
+    },
+    {
+      "game_id": "fa7837b3-0a57-4f4e-aa8f-73d6afb537fc",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "full",
+        0
+      ],
+      "terminal_reward": 0.12
+    },
+    {
+      "game_id": "d7033074-3042-4228-93fc-73dbda968c8b",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.32
+    },
+    {
+      "game_id": "11d33178-0a4e-4682-887b-e58a26ea4b23",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "full",
+        0
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "71ff0969-520a-440b-a1f7-502b31faf53e",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        1
+      ],
+      "terminal_reward": 0.326667
+    },
+    {
+      "game_id": "a04aab45-824f-4acc-9ddc-e9fd330e2f01",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "terminal_reward": 0.308
+    },
+    {
+      "game_id": "872f63b5-f393-4d66-af78-c04953d9de11",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "terminal_reward": 0.32
+    },
+    {
+      "game_id": "a4d05e78-13b6-42cb-b0f2-dd41163abd7c",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "terminal_reward": 0.233333
+    },
+    {
+      "game_id": "8717f19d-a42c-4595-a456-a0834d21536d",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "full",
+        1
+      ],
+      "terminal_reward": 0.108267
+    },
+    {
+      "game_id": "cedff73d-ba76-4362-8481-cdf9e680b750",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.32
+    },
+    {
+      "game_id": "5f573826-9306-4db8-b822-663996090362",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "cae505f2-54db-4131-9a31-90204035b7f0",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "full",
+        1
+      ],
+      "terminal_reward": 0.172533
+    },
+    {
+      "game_id": "fd505154-753b-4553-bf6c-fa22b2054fb1",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "terminal_reward": 0.22
+    },
+    {
+      "game_id": "55303fa3-227e-4062-936d-7962094e68ca",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "terminal_reward": 0.32
+    },
+    {
+      "game_id": "1bd734ce-0372-4a6f-8fb7-0f9666677474",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "terminal_reward": 0.32
+    },
+    {
+      "game_id": "cf191930-2981-4cde-8830-4da0d5d16c3e",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.078368
+    },
+    {
+      "game_id": "19cf8b5b-d698-47ab-96d8-d2775936232e",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.237867
+    },
+    {
+      "game_id": "6ea50643-bfcb-4c0a-baee-de631d3d4451",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "d4cddb9f-f034-4ef3-95e0-85a015549245",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "24e8dfb8-7a89-451d-a05a-180933d7b6cc",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "002acaa2-92af-47f4-b84c-ae003d02932b",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "full",
+        0
+      ],
+      "terminal_reward": 0.12
+    },
+    {
+      "game_id": "fd1c126c-4f00-4a4c-97ac-bec240609445",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "62b24d16-f4c7-40ff-8c8f-8a256f77acc0",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "terminal_reward": 0.2555
+    },
+    {
+      "game_id": "656195da-5650-4c0c-9629-76cd4ff57d2a",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "134081c4-0321-435c-80ca-236c3de1abe6",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "397c8fc5-8469-43de-99b1-be0a46fbb490",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "terminal_reward": 0.326667
+    },
+    {
+      "game_id": "7e4e11b0-5de1-457c-b9da-fcbf682ec8ca",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "hidden",
+        1
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "155afb9b-bf76-4325-835a-f5a6990a8784",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "terminal_reward": 0.233333
+    },
+    {
+      "game_id": "28750e39-c2c6-4906-abfd-f2278663f2f7",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "full",
+        0
+      ],
+      "terminal_reward": 0.1448
+    },
+    {
+      "game_id": "17997fa6-892c-4194-aae6-5889afcf16fa",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "9959676c-ee49-468b-95f6-3b1f15b31bf9",
+      "family": "negotiation",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "hidden",
+        1
+      ],
+      "terminal_reward": 0.2
+    },
+    {
+      "game_id": "25d1de5b-4f6c-4881-9363-c62d07612342",
+      "family": "negotiation",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "terminal_reward": 0.156
+    },
+    {
+      "game_id": "931f1664-4a42-4866-83ed-c1b84b6bc271",
+      "family": "persuasion",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "binary",
+        "hidden",
+        2,
+        1,
+        2
+      ],
+      "terminal_reward": 0.05
+    },
+    {
+      "game_id": "b6d610cb-d3cb-44ec-9591-4412b8eb066a",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "terminal_reward": 0.695297
+    },
+    {
+      "game_id": "13dab292-746f-41d2-8367-00e75f6fb2f1",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        2,
+        1
+      ],
+      "terminal_reward": 0.700567
+    },
+    {
+      "game_id": "dcda6549-be3e-4e94-889c-129110ce93ca",
+      "family": "persuasion",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "binary",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "terminal_reward": 0.4
+    },
+    {
+      "game_id": "4e71cf8f-469d-4291-a4a8-2df078aad8a0",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "terminal_reward": 0.704052
+    },
+    {
+      "game_id": "a85c8de4-f49e-4034-82dd-0c17a77bd83b",
+      "family": "persuasion",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "text",
+        "known",
+        2,
+        2,
+        2
+      ],
+      "terminal_reward": 0.85
+    },
+    {
+      "game_id": "ef528b8c-97e3-43be-a2ea-0812950d9570",
+      "family": "persuasion",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "binary",
+        "known",
+        2,
+        1,
+        1
+      ],
+      "terminal_reward": 0.5
+    },
+    {
+      "game_id": "9ca65fd3-8a44-4e98-8240-fc5b47b21efc",
+      "family": "persuasion",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "text",
+        "known",
+        2,
+        1,
+        2
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "e9071d02-b141-4779-9eb8-652b27fd264e",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        2,
+        1
+      ],
+      "terminal_reward": 0.71095
+    },
+    {
+      "game_id": "3fc82114-f0ee-4b8a-812d-7a807225b091",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "binary",
+        "known",
+        2,
+        1,
+        2
+      ],
+      "terminal_reward": 0.5
+    },
+    {
+      "game_id": "b5a1a572-d72d-4a04-a9ec-dcae2355e0e8",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "binary",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "terminal_reward": 0.604679
+    },
+    {
+      "game_id": "ce4a2838-7e87-4667-a1b7-74b37af42b17",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "terminal_reward": 0.475021
+    },
+    {
+      "game_id": "834efba6-f2c6-4196-a297-5c57a8051d71",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "binary",
+        "known",
+        2,
+        2,
+        0
+      ],
+      "terminal_reward": 0.754915
+    },
+    {
+      "game_id": "b77d0a4b-89b4-4da1-b2aa-cca1dadea571",
+      "family": "persuasion",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "text",
+        "hidden",
+        2,
+        2,
+        2
+      ],
+      "terminal_reward": 0.75
+    },
+    {
+      "game_id": "4e545bc7-3536-40fc-a871-71f5c7cd5d28",
+      "family": "persuasion",
+      "role": "seller",
+      "arm": "v26_heuristic",
+      "context": [
+        "seller",
+        "binary",
+        "hidden",
+        2,
+        1,
+        2
+      ],
+      "terminal_reward": 0.0
+    },
+    {
+      "game_id": "eb39ff0f-5fe2-4d3d-9cc7-8836816b982f",
+      "family": "persuasion",
+      "role": "buyer",
+      "arm": "v26_heuristic",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        2,
+        2
+      ],
+      "terminal_reward": 0.48334
+    }
+  ],
+  "policy_evidence": [
+    {
+      "scope": "global",
+      "family": "bargaining",
+      "role": "player_1",
+      "context": null,
+      "arm": "v26_heuristic",
+      "n": 5,
+      "mean": 0.50154,
+      "lower": 0.31603,
+      "upper": 0.68706
+    },
+    {
+      "scope": "local",
+      "family": "bargaining",
+      "role": "player_1",
+      "context": [
+        "player_1",
+        "hidden",
+        0,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "n": 1,
+      "mean": 0.76852,
+      "lower": 0.53659,
+      "upper": 1.0
+    },
+    {
+      "scope": "local",
+      "family": "bargaining",
+      "role": "player_1",
+      "context": [
+        "player_1",
+        "hidden",
+        0,
+        3
+      ],
+      "arm": "v26_heuristic",
+      "n": 2,
+      "mean": 0.54951,
+      "lower": 0.26786,
+      "upper": 0.83116
+    },
+    {
+      "scope": "local",
+      "family": "bargaining",
+      "role": "player_1",
+      "context": [
+        "player_1",
+        "full",
+        0,
+        1
+      ],
+      "arm": "v26_heuristic",
+      "n": 1,
+      "mean": 0.31056,
+      "lower": 0.07863,
+      "upper": 0.54249
+    },
+    {
+      "scope": "local",
+      "family": "bargaining",
+      "role": "player_1",
+      "context": [
+        "player_1",
+        "full",
+        2,
+        1
+      ],
+      "arm": "v26_heuristic",
+      "n": 1,
+      "mean": 0.3296,
+      "lower": 0.09767,
+      "upper": 0.56153
+    },
+    {
+      "scope": "global",
+      "family": "bargaining",
+      "role": "player_2",
+      "context": null,
+      "arm": "v26_heuristic",
+      "n": 6,
+      "mean": 0.57424,
+      "lower": 0.37316,
+      "upper": 0.77531
+    },
+    {
+      "scope": "local",
+      "family": "bargaining",
+      "role": "player_2",
+      "context": [
+        "player_2",
+        "full",
+        2,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "n": 1,
+      "mean": 0.44584,
+      "lower": 0.21391,
+      "upper": 0.67777
+    },
+    {
+      "scope": "local",
+      "family": "bargaining",
+      "role": "player_2",
+      "context": [
+        "player_2",
+        "full",
+        2,
+        1
+      ],
+      "arm": "v26_heuristic",
+      "n": 2,
+      "mean": 0.82443,
+      "lower": 0.65481,
+      "upper": 0.99405
+    },
+    {
+      "scope": "local",
+      "family": "bargaining",
+      "role": "player_2",
+      "context": [
+        "player_2",
+        "hidden",
+        0,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "n": 1,
+      "mean": 0.8341,
+      "lower": 0.60217,
+      "upper": 1.0
+    },
+    {
+      "scope": "local",
+      "family": "bargaining",
+      "role": "player_2",
+      "context": [
+        "player_2",
+        "full",
+        2,
+        3
+      ],
+      "arm": "v26_heuristic",
+      "n": 1,
+      "mean": 0.32739,
+      "lower": 0.09546,
+      "upper": 0.55932
+    },
+    {
+      "scope": "local",
+      "family": "bargaining",
+      "role": "player_2",
+      "context": [
+        "player_2",
+        "hidden",
+        2,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "n": 1,
+      "mean": 0.18923,
+      "lower": 0.0,
+      "upper": 0.42116
+    },
+    {
+      "scope": "global",
+      "family": "negotiation",
+      "role": "buyer",
+      "context": null,
+      "arm": "v26_heuristic",
+      "n": 15,
+      "mean": 0.53605,
+      "lower": 0.41737,
+      "upper": 0.65473
+    },
+    {
+      "scope": "local",
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "full",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "n": 5,
+      "mean": 0.62557,
+      "lower": 0.37575,
+      "upper": 0.87538
+    },
+    {
+      "scope": "local",
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "hidden",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "n": 3,
+      "mean": 0.52507,
+      "lower": 0.28627,
+      "upper": 0.76388
+    },
+    {
+      "scope": "local",
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "full",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "n": 2,
+      "mean": 0.27103,
+      "lower": 0.10663,
+      "upper": 0.43542
+    },
+    {
+      "scope": "local",
+      "family": "negotiation",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "n": 5,
+      "mean": 0.55913,
+      "lower": 0.41857,
+      "upper": 0.69969
+    },
+    {
+      "scope": "global",
+      "family": "negotiation",
+      "role": "seller",
+      "context": null,
+      "arm": "v26_heuristic",
+      "n": 31,
+      "mean": 0.55506,
+      "lower": 0.4741,
+      "upper": 0.63603
+    },
+    {
+      "scope": "global",
+      "family": "negotiation",
+      "role": "seller",
+      "context": null,
+      "arm": "v5_safe",
+      "n": 1,
+      "mean": 0.62246,
+      "lower": 0.39053,
+      "upper": 0.85439
+    },
+    {
+      "scope": "local",
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "n": 8,
+      "mean": 0.63865,
+      "lower": 0.48896,
+      "upper": 0.78834
+    },
+    {
+      "scope": "local",
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "full",
+        1
+      ],
+      "arm": "v26_heuristic",
+      "n": 2,
+      "mean": 0.52515,
+      "lower": 0.0964,
+      "upper": 0.95389
+    },
+    {
+      "scope": "local",
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "hidden",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "n": 14,
+      "mean": 0.65487,
+      "lower": 0.56285,
+      "upper": 0.74689
+    },
+    {
+      "scope": "local",
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "full",
+        0
+      ],
+      "arm": "v26_heuristic",
+      "n": 7,
+      "mean": 0.26847,
+      "lower": 0.17878,
+      "upper": 0.35817
+    },
+    {
+      "scope": "local",
+      "family": "negotiation",
+      "role": "seller",
+      "context": [
+        "seller",
+        "full",
+        1
+      ],
+      "arm": "v5_safe",
+      "n": 1,
+      "mean": 0.62246,
+      "lower": 0.39053,
+      "upper": 0.85439
+    },
+    {
+      "scope": "global",
+      "family": "persuasion",
+      "role": "buyer",
+      "context": null,
+      "arm": "v26_heuristic",
+      "n": 9,
+      "mean": 0.61743,
+      "lower": 0.44924,
+      "upper": 0.78561
+    },
+    {
+      "scope": "local",
+      "family": "persuasion",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "arm": "v26_heuristic",
+      "n": 3,
+      "mean": 0.63153,
+      "lower": 0.28917,
+      "upper": 0.9739
+    },
+    {
+      "scope": "local",
+      "family": "persuasion",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        2,
+        1
+      ],
+      "arm": "v26_heuristic",
+      "n": 2,
+      "mean": 0.86663,
+      "lower": 0.70248,
+      "upper": 1.0
+    },
+    {
+      "scope": "local",
+      "family": "persuasion",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "binary",
+        "known",
+        2,
+        1,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "n": 1,
+      "mean": 0.39055,
+      "lower": 0.15862,
+      "upper": 0.62248
+    },
+    {
+      "scope": "local",
+      "family": "persuasion",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "binary",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "arm": "v26_heuristic",
+      "n": 1,
+      "mean": 0.68027,
+      "lower": 0.44834,
+      "upper": 0.9122
+    },
+    {
+      "scope": "local",
+      "family": "persuasion",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "binary",
+        "known",
+        2,
+        2,
+        0
+      ],
+      "arm": "v26_heuristic",
+      "n": 1,
+      "mean": 0.63934,
+      "lower": 0.40741,
+      "upper": 0.87127
+    },
+    {
+      "scope": "local",
+      "family": "persuasion",
+      "role": "buyer",
+      "context": [
+        "buyer",
+        "text",
+        "known",
+        2,
+        2,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "n": 1,
+      "mean": 0.21883,
+      "lower": 0.0,
+      "upper": 0.45076
+    },
+    {
+      "scope": "global",
+      "family": "persuasion",
+      "role": "seller",
+      "context": null,
+      "arm": "v26_heuristic",
+      "n": 7,
+      "mean": 0.44051,
+      "lower": 0.30085,
+      "upper": 0.58016
+    },
+    {
+      "scope": "local",
+      "family": "persuasion",
+      "role": "seller",
+      "context": [
+        "seller",
+        "binary",
+        "hidden",
+        2,
+        1,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "n": 2,
+      "mean": 0.27361,
+      "lower": 0.09094,
+      "upper": 0.45628
+    },
+    {
+      "scope": "local",
+      "family": "persuasion",
+      "role": "seller",
+      "context": [
+        "seller",
+        "binary",
+        "known",
+        2,
+        1,
+        0
+      ],
+      "arm": "v26_heuristic",
+      "n": 1,
+      "mean": 0.29473,
+      "lower": 0.0628,
+      "upper": 0.52667
+    },
+    {
+      "scope": "local",
+      "family": "persuasion",
+      "role": "seller",
+      "context": [
+        "seller",
+        "text",
+        "known",
+        2,
+        2,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "n": 1,
+      "mean": 0.75073,
+      "lower": 0.5188,
+      "upper": 0.98266
+    },
+    {
+      "scope": "local",
+      "family": "persuasion",
+      "role": "seller",
+      "context": [
+        "seller",
+        "binary",
+        "known",
+        2,
+        1,
+        1
+      ],
+      "arm": "v26_heuristic",
+      "n": 1,
+      "mean": 0.49563,
+      "lower": 0.26369,
+      "upper": 0.72756
+    },
+    {
+      "scope": "local",
+      "family": "persuasion",
+      "role": "seller",
+      "context": [
+        "seller",
+        "text",
+        "known",
+        2,
+        1,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "n": 1,
+      "mean": 0.39055,
+      "lower": 0.15862,
+      "upper": 0.62248
+    },
+    {
+      "scope": "local",
+      "family": "persuasion",
+      "role": "seller",
+      "context": [
+        "seller",
+        "text",
+        "hidden",
+        2,
+        2,
+        2
+      ],
+      "arm": "v26_heuristic",
+      "n": 1,
+      "mean": 0.60468,
+      "lower": 0.37275,
+      "upper": 0.83661
+    }
+  ],
+  "action_fallbacks": [],
+  "telemetry": []
+}

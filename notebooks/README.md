@@ -1,6 +1,254 @@
 # GLEE agent notebook
 
-Use a family-specific portfolio rather than assuming the newest notebook is uniformly superior: V4 remains the bargaining reference, V3 remains the persuasion reference, and V5/V8 remains the negotiation decision core. V11 did not change that core, but its large-batch runner lost 44.84 negotiation points over 53 games after requesting 24 at concurrency 4. V11 is therefore rejected operationally; use very small, concurrency-1 checkpoints instead.
+The latest evaluated runner is [`Glee_competition_27/GLEE_Competition_agent_v27_100_each.ipynb`](Glee_competition_27/GLEE_Competition_agent_v27_100_each.ipynb). It is fully heuristic and contains no language-model dependency. Its guarded live run produced 139 authoritative outcomes: bargaining gained 7.81 over 41 games, negotiation gained 30.97 over 68, and persuasion lost 11.73 over 30. All three families stopped on trailing drawdown, with zero action fallbacks and zero telemetry diagnostics. These sequential, adaptively stopped results are descriptive rather than proof of superiority.
+
+## Post-V13 controlled experiment notebooks
+
+The following notebooks implement the next behavior-analysis experiments without
+Qwen or any other language-model dependency. All live notebooks default to
+`RUN_LIVE = False`, use one low-level queue entry, leave matchmaking after the
+first observed assignment, and drain every assignment already created by the
+server.
+
+| Notebook | Experiment | Live exposure |
+|---|---|---|
+| [`GLEE_Competition_experiment_v14_negotiation_drift.ipynb`](GLEE_Competition_experiment_v14_negotiation_drift.ipynb) | Frozen V5 negotiation policy with configuration-, role-, history-, latency-, and action-level drift telemetry | One negotiation assignment per deliberate execution |
+| [`GLEE_Competition_experiment_v15_alice_ablation.ipynb`](GLEE_Competition_experiment_v15_alice_ablation.ipynb) | Equal-probability whole-game assignment among V4, `alice_claim_006`, and `alice_deal_006`; Bob remains on V4 | One bargaining assignment per deliberate execution |
+| [`GLEE_Competition_experiment_v16_cycle_ablation.ipynb`](GLEE_Competition_experiment_v16_cycle_ablation.ipynb) | Two-factor replay of equilibrium-cap removal and repeated-state detection, plus a 240-row discount/cycle sensitivity grid | Offline only; live matchmaking is unavailable |
+| [`GLEE_Competition_experiment_v17_persuasion_seller.ipynb`](GLEE_Competition_experiment_v17_persuasion_seller.ipynb) | Equal-probability seller assignment among V3 pooling, truthfulness, and terminal-only pooling; buyers remain on V3 | One persuasion assignment per deliberate execution |
+| [`GLEE_Competition_experiment_v18_runner_fault_injection.ipynb`](GLEE_Competition_experiment_v18_runner_fault_injection.ipynb) | Mocked single assignment, assignment overshoot, rejected move, and queue-leave failure | Offline only; no live client is created |
+
+Run notebooks in numerical order. V14 is observational and should precede any
+new negotiation arm. V16 and V18 can be executed safely without an API key.
+For V14, V15, and V17, execute all tests first, confirm the dashboard reports
+zero active games, inspect the selected family, and only then change the single
+live-control cell to `RUN_LIVE = True`. Return it to `False` after the assignment.
+Each notebook defines `configure_glee_api_key()`: it uses an existing
+`GLEE_API_KEY`, then Kaggle Secrets, and finally a hidden prompt. The secret
+value is assigned to `os.environ["GLEE_API_KEY"]` only at runtime and is never
+stored in notebook source or output.
+
+The notebooks are reproducibly generated and checked by
+[`../tools/build_experiment_notebooks.py`](../tools/build_experiment_notebooks.py)
+and [`../tools/validate_experiment_notebooks.py`](../tools/validate_experiment_notebooks.py).
+
+## V19 three-family heuristic challenger
+
+[`GLEE_Competition_agent_v19_heuristic_improvement.ipynb`](GLEE_Competition_agent_v19_heuristic_improvement.ipynb)
+is a single non-LLM improvement candidate for all three families. Bargaining
+adds robust concession trends, volatility-aware offer selection, Alice-specific
+risk calibration, and V4 cycle insurance. Negotiation adds robust price-path
+projection, role-aware surplus targets, stall-sensitive continuation values,
+and strict reservation protection. Persuasion uses a conservative buyer
+precision bound and a response-gated seller with a truthful prefix and bounded
+credibility spending. Every decision emits its heuristic metrics to JSONL.
+
+V19 is configured with `RUN_LIVE = True` and requests one controlled queue
+exposure sequentially for bargaining, negotiation, and persuasion through the
+low-level controller. It stops before the next family after an assignment
+overshoot, action fallback, or telemetry error. Set `RUN_LIVE = False` when an
+offline-only execution is desired. Its complete inherited and V19-specific offline
+suite passes with zero action fallbacks and zero unexpected telemetry errors.
+The tests establish contract and behavioral invariants, not rating superiority.
+The notebook is generated by
+[`../tools/build_improvement_notebook.py`](../tools/build_improvement_notebook.py).
+
+[`GLEE_Competition_agent_v20_live_three_family.ipynb`](GLEE_Competition_agent_v20_live_three_family.ipynb)
+is the uniquely named live build of the same heuristic policy. It prints build
+identifier `v20-live-three-family-2026-08-28`, then requests one controlled
+exposure in bargaining, negotiation, and persuasion in that order. This distinct
+filename prevents an older Kaggle upload of V19 from being mistaken for the
+updated three-family runner.
+
+[`GLEE_Competition_agent_v21_controlled_microbatches.ipynb`](GLEE_Competition_agent_v21_controlled_microbatches.ipynb)
+is the larger experiment runner. It targets 20 authoritative completions per
+family, but re-enters only one queue after the preceding assignment has drained
+and its dashboard count, rating, fallbacks, telemetry, and terminal evidence have
+been inspected. Each family has a 12-point cumulative rating stop-loss and a
+30-attempt ceiling. Assignment overshoot, an action fallback, or a telemetry error
+aborts the complete session. A no-completion timeout or family stop-loss ends that
+family without exposing it further. The build identifier is
+`v21-controlled-microbatches-2026-08-28`.
+
+[`GLEE_Competition_agent_v22_improved_50_each.ipynb`](GLEE_Competition_agent_v22_improved_50_each.ipynb)
+is the post-V21 portfolio and current larger-run notebook. It restores the
+live-tested V4 bargaining champion after V21 bargaining hit its stop-loss, while
+retaining the strongly positive V21-derived negotiation and persuasion heuristics.
+It targets 50 authoritative completions per family with a 20-point family
+stop-loss, 70-attempt ceiling, and the same one-queue drain-and-inspect loop.
+Property-test assignments are explicitly marked synthetic so they cannot pollute
+live reward harvesting or telemetry. Its build identifier is
+`v22-improved-50-each-2026-08-28`.
+
+[`Glee_competition_23/GLEE_Competition_agent_v23_adaptive_defender.ipynb`](Glee_competition_23/GLEE_Competition_agent_v23_adaptive_defender.ipynb)
+responds to the completed V22 run. It freezes V22 persuasion after its strong
+50-game gain, keeps Bob on V4, gives Alice a more agreement-oriented rule, and
+makes negotiation more score-defensive through higher surplus floors, slower
+counteroffers, and earlier exit from repeated infeasible paths. In addition to
+the 20-point baseline stop-loss, V23 stops a family after a 15-point drawdown
+from the best rating reached during that session. It still targets 50 games per
+family and identifies itself as `v23-adaptive-defender-2026-08-28`.
+
+The completed V23 run produced 71 authoritative live outcomes with zero action
+fallbacks and zero telemetry diagnostics. Bargaining stopped on trailing
+drawdown after 11 games, moving from 1313.92 to 1301.09 (-12.83). Bob gained
+2.30 across six games, but Alice lost 15.13 across five, so the Alice challenger
+is rejected. Negotiation reached all 50 games and rose from 1383.79 to 1561.56
+(+177.77): buyers gained 68.14 across 24 games and sellers gained 109.63 across
+26, with 46 positive deltas overall. Persuasion stopped after ten games, moving
+from 1798.92 to 1785.07 (-13.85). Buyers gained 5.96 across five games while
+sellers lost 19.81 and were negative in all five seller assignments. This
+supports V23 defensive negotiation, rejects further exposure of its Alice and
+persuasion-seller branches, and validates the trailing-drawdown mechanism as an
+exposure limiter rather than evidence of policy superiority. The authoritative
+rendered outputs are in [`Glee_competition_23/`](Glee_competition_23/).
+
+[`Glee_competition_24/GLEE_Competition_agent_v24_bp_repair.ipynb`](Glee_competition_24/GLEE_Competition_agent_v24_bp_repair.ipynb)
+responds directly to the V23 role split. Bob and both negotiation roles remain
+frozen. Alice now anchors primarily on the configuration model, limits adaptation
+to extreme opponent demands, claims slightly more surplus, rejects near-zero
+cycle offers, and accepts bounded positive cycle offers. The persuasion buyer is
+unchanged; the seller recommends high quality, passes on low quality before the
+last round, and pools low quality only at the terminal round when reputation has
+no continuation value. The live runner targets 50 bargaining and 50 persuasion
+games, uses concurrency one, and applies a 12-point baseline stop-loss plus a
+10-point trailing drawdown after five games. Negotiation is supported but omitted
+from `TARGET_COMPLETIONS`. All offline policy, contract, micro-batch, and runner
+tests pass with zero fallbacks and zero telemetry diagnostics. These tests do not
+establish live rating superiority.
+
+The completed V24 run supplied 20 live outcomes. Bargaining stopped after ten
+games on a 12.60-point trailing drawdown, moving from 1301.09 to 1292.96
+(-8.13). The targeted Alice repair gained 1.70 across four games, while the
+retained Bob branch lost 9.83 across six; V24 therefore improves the identified
+Alice weakness descriptively but does not solve the family. Persuasion also
+stopped after ten games on trailing drawdown, but finished above its own start:
+1784.12 to 1788.27 (+4.15). Buyers gained 0.93 and the redesigned terminal-only
+sellers gained 3.22 across five games each. This reverses V23's seller-side loss
+in the observed sample and supports additional controlled persuasion evaluation.
+Both batches had zero action fallbacks and zero telemetry diagnostics. Exact
+artifacts are in [`Glee_competition_24/`](Glee_competition_24/).
+
+[`Glee_competition_25/GLEE_Competition_agent_v25_bargaining_v23_negotiation.ipynb`](Glee_competition_25/GLEE_Competition_agent_v25_bargaining_v23_negotiation.ipynb)
+contains only deterministic rules. Bargaining uses V24's surplus-protecting Alice
+branch and established Bob branch. Negotiation calls the exact V23 defensive
+decision function. The live runner targets 50 games in each family, excludes
+persuasion, and uses concurrency one with authoritative inspection after every
+assignment. Bargaining has a 12-point baseline stop-loss and 10-point trailing
+drawdown; negotiation has a 20-point baseline stop-loss and 15-point drawdown.
+All offline policy, contract, micro-batch, and runner tests pass with zero
+fallbacks and telemetry diagnostics.
+
+The completed V25 run produced 51 live outcomes. Bargaining gained 5.86 over
+eight games, moving from 1292.96 to 1298.82 after peaking at 1309.36. Alice
+gained 9.05 across five games, while Bob lost 3.19 across three. Negotiation
+used the unchanged V23 decision code and gained 10.30 over 43 games, moving from
+1561.56 to 1571.86 after peaking at 1588.26. Buyers gained 9.13 across 23 games
+and sellers 1.17 across 20. Both families stopped on trailing drawdown, preserving
+positive net changes, and reported zero action fallbacks and zero telemetry
+diagnostics. The much smaller negotiation gain relative to V23 demonstrates that
+the same policy can behave differently as rating, opponents, and configurations
+change. Exact artifacts are in [`Glee_competition_25/`](Glee_competition_25/).
+
+[`Glee_competition_26/GLEE_Competition_agent_v26_three_family_adaptive.ipynb`](Glee_competition_26/GLEE_Competition_agent_v26_three_family_adaptive.ipynb)
+is the completed three-family adaptive experiment. Bargaining retains V24's repeatedly positive
+Alice repair and adds a Bob-specific surplus-protection policy with role-aware
+acceptance floors, bounded concessions, and cycle handling. Negotiation starts
+from V23 but responds to the V25 context reversals: message-enabled and
+known-horizon cases use slightly lower capture targets, faster concession, and
+earlier acceptance of profitable stalls while preserving individual rationality.
+Persuasion retains the V23 buyer and V24 terminal-only seller.
+
+The live runner requests 50 authoritative completions each for bargaining,
+negotiation, and persuasion, sequentially at concurrency one. It checks the
+authoritative count and rating after every drained assignment. Baseline
+stop-losses are 12, 20, and 12 rating points respectively; trailing-drawdown
+limits after five completions are 10, 15, and 10. Any action fallback, telemetry
+error, or assignment overshoot aborts further exposure. The notebook defaults to
+`RUN_LIVE = True`, securely loads `GLEE_API_KEY` from the environment, Kaggle
+Secrets, or a hidden prompt, and never stores the key value. All inherited and
+V26-specific offline policy, safety, contract, repeated-batch, and stop-loss
+tests pass. The build identifier is
+`v26-three-family-adaptive-2026-08-28`.
+
+The live run produced 73 assignment-linked outcomes. Bargaining stopped after
+11 games at 1308.92, up 10.10 from 1298.82; Alice gained 0.66 across five and
+the repaired Bob gained 9.44 across six. Negotiation stopped after 46 games at
+1619.27, up 47.41; buyers gained 12.41 across 15 and sellers gained 35.00 across
+31. Persuasion started at 1787.33 and stopped after 16 games at 1801.89, up
+14.56; buyers gained 21.83 across nine while sellers lost 7.27 across seven.
+Every family stopped on its trailing-drawdown guard, and the run recorded zero
+action fallbacks and zero telemetry diagnostics. The Bob repair and both
+negotiation roles are positive in this sample, but persuasion seller remains a
+role-local weakness. Exact artifacts are in [`Glee_competition_26/`](Glee_competition_26/).
+
+## V27 evidence-guided 100-each evaluation
+
+[`GLEE_Competition_agent_v27_100_each.ipynb`](GLEE_Competition_agent_v27_100_each.ipynb)
+targets 100 authoritative completions for bargaining, negotiation, and persuasion.
+It keeps the V26 one-queue controller and strict validator, increases the attempt
+ceiling to 130, and delays the wider trailing guards until 20 completions.
+Bargaining applies a small bounded deal-probability correction only under full
+information. Negotiation changes only short-horizon full-information sellers and
+medium-horizon full-information buyers, the two V26 context buckets with negative
+live sums. Persuasion keeps the positive buyer policy, makes low-quality binary
+seller behavior truthful, and permits low-quality terminal text pooling only
+under a high-prior, feasible-cutoff gate.
+
+The complete inherited and V27-specific contract, role, context-grid,
+micro-batch, stop-loss, synthetic-isolation, and one-queue tests passed. The
+live build `v27-evidence-guided-100-each-2026-08-29` then ran with concurrency
+one. All three 100-game targets were curtailed by the trailing-drawdown guards:
+
+| Family | Games | Initial rating | Final rating | Change | Peak | Drawdown |
+|---|---:|---:|---:|---:|---:|---:|
+| Bargaining | 41 | 1308.92 | 1316.73 | **+7.81** | 1338.77 | 22.04 |
+| Negotiation | 68 | 1619.27 | 1650.24 | **+30.97** | 1680.36 | 30.12 |
+| Persuasion | 30 | 1801.89 | 1790.16 | **-11.73** | 1811.10 | 20.94 |
+
+The 139 live assignment-linked outcomes expose strong role reversals. Alice
+gained 38.32 across 14 games while Bob lost 30.51 across 27. Negotiation
+sellers gained 77.12 across 39 games while buyers lost 46.15 across 29.
+Persuasion buyers gained 18.20 across 11 games while sellers lost 29.93 across
+19. There were zero live action fallbacks and zero telemetry diagnostics. V27
+therefore supports the one-queue controller and the positive Alice and
+negotiation-seller branches descriptively, but rejects unguarded reuse of its
+Bob, negotiation-buyer, and persuasion-seller branches. Exact artifacts are in
+[`Glee_competition_27/`](Glee_competition_27/).
+
+## V28--V30 role-isolated recovery notebooks
+
+These notebooks separate the three rejected V27 branches so a positive companion
+role cannot conceal another regression. All default to `RUN_LIVE = False`, admit
+one assignment at a time, and stop from assignment-linked role evidence:
+
+| Notebook | Changed branch | Frozen branch | Focal live target |
+|---|---|---|---:|
+| [`GLEE_Competition_agent_v28_negotiation_buyer_rollback.ipynb`](GLEE_Competition_agent_v28_negotiation_buyer_rollback.ipynb) | Exact V23 negotiation buyer rollback | V27 negotiation seller | 20 buyer games |
+| [`GLEE_Competition_agent_v29_bob_recovery.ipynb`](GLEE_Competition_agent_v29_bob_recovery.ipynb) | Delay-aware Bob agreement recovery | V27 Alice | 16 Bob games |
+| [`GLEE_Competition_agent_v30_binary_seller_ablation.ipynb`](GLEE_Competition_agent_v30_binary_seller_ablation.ipynb) | Bayes-bounded binary seller pooling | V27 persuasion buyer and text seller | 12 binary-seller games |
+
+Each notebook has an eight-point focal-role stop-loss, a six-point focal-role
+trailing drawdown after five focal games, a ten-point companion-role stop-loss,
+an overall family-completion ceiling, strict action validation, overshoot aborts,
+and isolated evidence filenames. The complete inherited and focused offline
+test suites pass with zero action fallbacks and zero telemetry diagnostics.
+
+## V31 contextual portfolio — 60 per family
+
+[`GLEE_Competition_agent_v31_contextual_60_each.ipynb`](GLEE_Competition_agent_v31_contextual_60_each.ipynb)
+combines the three recovery ideas into one deterministic runner. It retains V27
+Alice, negotiation seller, persuasion buyer, and text seller; uses delay-aware
+agreement recovery for Bob; restores the exact V23 negotiation buyer; and uses
+Bayes-bounded, response-gated pooling for the binary persuasion seller.
+
+The controller targets 60 authoritative completions for each of bargaining,
+negotiation, and persuasion, for at most 180 live games. It continues to admit
+only one queue assignment at a time. Family stop-losses, trailing-drawdown
+guards, action validation, assignment-overshoot aborts, and append-only evidence
+remain enabled, so an unsafe or losing family can stop short of 60. `RUN_LIVE`
+defaults to `False`. The complete inherited, component, combined-policy, runner,
+and contract tests pass offline with zero action fallbacks.
 
 [`GLEE_Competition_—_agent_quickstart.ipynb`](GLEE_Competition_—_agent_quickstart.ipynb) is a zero-setup agent for all three GLEE game families. It separates the policy into one function per family and exposes one dispatcher to the SDK:
 
@@ -27,8 +275,10 @@ This modular design makes it possible to tune and test one family without changi
 | [`GLEE_Competition_agent_v9.ipynb`](GLEE_Competition_agent_v9.ipynb) | Champion-locked controlled agent | Champion-mode default, one-completion requests, exact evidence export; no separately identified live batch |
 | [`GLEE_Competition_agent_v10.ipynb`](GLEE_Competition_agent_v10.ipynb) | Rating-aligned conservative optimizer | Actual rating-delta evidence, one-game attribution guard, negotiation +3.03 over two overshot completions |
 | [`GLEE_Competition_agent_v11.ipynb`](GLEE_Competition_agent_v11.ipynb) | Large-batch runner; rejected operationally | Requested 24 games at concurrency 4, completed 53, negotiation -44.84 despite zero fallbacks |
+| [`GLEE_Competition_agent_v12.ipynb`](GLEE_Competition_agent_v12.ipynb) | Defensive negotiation hypothesis; not recommended | Earlier walkaway and higher-demand rules inferred from V11's confounded outcome split |
+| [`GLEE_Competition_agent_v13.ipynb`](GLEE_Competition_agent_v13.ipynb) | Controlled Kaggle hybrid | Frozen V4/V5/V3 actions, strict validation, 4-bit Qwen3-4B message-only shadow/activation modes, JSONL telemetry, and a low-level one-queue runner |
 
-All notebook policies are rule-based and require no LLM inference. Each reads only the game state visible under the competition's information rules.
+V2 through V12 are rule-based. V13 keeps every economic action rule-based and may use a local Qwen model only to rewrite text already selected by the deterministic policy. Each policy reads only the game state visible under the competition's information rules.
 
 ## Common notation and constraints
 
