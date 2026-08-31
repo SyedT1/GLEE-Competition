@@ -1,0 +1,197 @@
+\section{Executable V33 policy specification}
+\label{app:policy}
+
+This appendix transcribes the executed notebook rather than reconstructing the
+policy from version names. It is pseudocode-equivalent to the six V33 branches;
+the archived notebook remains authoritative for field names and floating-point
+rounding.
+
+\paragraph{Shared notation and state.}
+$\operatorname{clip}(z,a,b)=\max(a,\min(b,z))$ and
+$\sigma(z)=(1+e^{-z})^{-1}$. For known horizon $R$ at round $r$,
+$t=(r-1)/\max(1,R-1)$; otherwise $t=\min(0.65,(r-1)/16)$. A stall count is the
+minimum length of the two players' trailing approximately repeated offer
+sequences (relative tolerance $0.003$ in bargaining and $0.001$ in
+negotiation). Robust trend is the median adjacent step among the five most
+recent observations; volatility is their median absolute deviation.
+
+Memory persists across games only when an opponent name is disclosed. Otherwise
+the game ID makes it game-local. Bargaining keys additionally include role,
+information regime, own discount, and visible opponent discount; negotiation
+keys include role and information regime; persuasion keys include buyer/seller
+perspective and signal mode. An event set prevents reprocessing history. Thus
+the action is a deterministic function of visible history, game ID, and this
+internal memory.
+
+\subsection{Bargaining branches}
+
+For own player $i$, let $d_j$ be the opponent shares in their observed offers,
+$\tilde d$ the predicted next demand (last demand plus robust trend), $s$ the
+stall count, and $\delta_i$ own discount. The configuration prior $b_0$ is the
+Rubinstein responder share computed from visible discounts under complete
+information \citep{rubinstein1982perfect};
+otherwise it is $0.46+0.02t$ against a disclosed human and
+$0.43+0.02t$ otherwise. If $z$ is the largest opponent share in a rejected own
+proposal and $m$ the median of the five latest demands, the base floor used
+below is $b=\operatorname{clip}(\max\{b_0,z+.006,m-.065+.020t\},.20,.999)$,
+omitting unavailable terms.
+
+\paragraph{Alice.}
+If demands exist, set
+\[
+ f=\operatorname{clip}\{\max[f_{\rm reject},
+ .75b+.25(\tilde d-.035-.020t)],.18,.90\};
+\]
+otherwise $f=\operatorname{clip}(b,.18,.90)$. On an offer turn:
+\begin{enumerate}
+ \item If $s\ge3$, give the responder their last demanded share clipped to
+ $[.20,.82]$ (or $[.20,.94]$ on the final round).
+ \item Otherwise set $f_s=\operatorname{clip}(f-.010,.18,.88)$,
+ $w=\operatorname{clip}(.016+.65\operatorname{MAD}(d),.014,.045)$, and
+ $c=.045+.25t+.50(1-\delta_i)$. Search
+ $y=0.10,0.105,\ldots,0.94$ and maximize Eq.~\ref{eq:bargaining-search}
+ with $\gamma=1.18$.
+ \item Under complete information only, transfer an additional
+ $\min\{M(.018+.012t),\max(0,x_i-.22M)\}$ from Alice to Bob.
+\end{enumerate}
+On a response turn, accept a strictly positive final-round offer. Before the
+final round, accept if $s\ge3$ and own share is at least $.18$; otherwise accept
+when own share is at least
+\[
+ \max\{.18,.36-.08t-.055s,
+ \delta_i(1-f)\operatorname{clip}(.80+g+.10t-.06s,.48,.92)\},
+\]
+where $g=\operatorname{clip}(.25\times\text{favorable opponent concession},
+-.02,.02)$. Under complete information, a rejection is finally overridden
+when own share is at least $\max(.20,.33-.10t)$.
+
+\paragraph{Bob.}
+Bob uses the same structure with the following replacements:
+$f=\operatorname{clip}(\max[f_{\rm reject},.78b+.22(\tilde d-.035-.020t)],.18,.90)$,
+$f_s=\operatorname{clip}(f-.006,.18,.88)$,
+$w=\operatorname{clip}(.016+.60\operatorname{MAD}(d),.014,.044)$,
+$c=.045+.24t+.50(1-\delta_i)$, $\gamma=1.16$, and pre-override risk floor
+$\max(.18,.35-.08t-.055s)$. V33 then applies the offer transfer in
+Eq.~\ref{eq:bob-transfer}. If the base branch rejects, it accepts whenever own
+share is at least
+\[
+ \max\{.16,(.30\text{ if }\delta_i<.95\text{ else }.33)-.09t-.055s\}.
+\]
+All proposals divide $M$ exactly. Fixed messages describe the selected split
+but do not change it.
+
+\subsection{Bilateral negotiation branches}
+
+Let role $\rho\in\{\text{buyer},\text{seller}\}$, own value $v_i$, latest
+opponent price $p_o$, robust median opponent step $\Delta$, and feasible surplus
+$S=v_b-v_s$ when both values are visible. Seller utility is $P-v_s$ and buyer
+utility is $v_b-P$; these are definitions, not an invocation of the Nash
+bargaining solution.
+
+\paragraph{Buyer target.}
+Under complete information, start with capture
+$a=.66-.10t$, add $.35\operatorname{clip}(-\Delta/S,-.10,.10)$, subtract
+$.025\min(s,2)(.35+t)$, and clip $a$ to $[.54,.80]$. Target
+$P^*=v_b-aS$. Under hidden information with an opponent offer, project the
+seller's price as $\hat p=\max(0,p_o+.5\min(0,\Delta))$ and set
+$P^*=v_i-(.64-.09t)(v_i-\hat p)$ when $\hat p\le v_i$, otherwise $P^*=v_i$.
+With no offer, $P^*=v_i(.82+.09t)$.
+
+\paragraph{Seller target.}
+Under complete information, start with $a=.72-.12t$, subtract $.04$ when
+messages are enabled and $.02$ when the horizon is known, add
+$.35\operatorname{clip}(\Delta/S,-.10,.10)$, subtract the same stall term, and
+clip to $[.54,.80]$. Target $P^*=v_s+aS$. Under hidden information, project a
+buyer's price as $\hat p=\max(0,p_o+.5\max(0,\Delta))$ and set
+$P^*=v_i+a(\hat p-v_i)$ for $a=.70-.11t-.04\mathbf1_{\rm messages}$ when
+$\hat p\ge v_i$, otherwise $P^*=v_i$. With no offer,
+$P^*=v_i(1.32-.14t)$.
+
+\paragraph{Responses.}
+Both branches accept a final offer iff its utility is nonnegative. The buyer
+accepts a profitable repeated path at $s\ge3$; the seller does so at $s\ge2$.
+At $s\ge2$, a negative-utility path under an unknown horizon causes walkaway.
+Otherwise compare offered utility $U$ with $|P^*-v_i|k$, where
+\[
+ k_{\rm buyer}=\operatorname{clip}(.76-.13t-.08\min(s,2),.38,.80),
+\]
+\[
+ k_{\rm seller}=\operatorname{clip}(.80-.06\mathbf1_{\rm messages}
+ -.13t-.08\min(s,2),.38,.80).
+\]
+Accept if $U$ exceeds that continuation value or, when $S>0$, captures at least
+$.52+.06(1-t)$ (buyer and no-message seller) or $.48+.06(1-t)$ (message
+seller). Otherwise counter with $(1-b)P^*+bP$, clipped to the individually
+rational side, using
+$b=\operatorname{clip}(.22+.38t+.08\min(s,2),0,.70)$ for buyer and adding $.10$
+with an $.80$ cap for a message-enabled seller.
+
+For complete-information seller contexts with recorded horizon below five
+rounds (including a missing horizon encoded as zero), V33 additionally blends
+offers $15\%$ toward the surplus midpoint, accepts nonnegative offers capturing
+at least $.40+.08(1-t)$, and blends rejected counters $18\%$ toward the received
+price. These historical constants are not estimated equilibrium parameters.
+
+\subsection{Persuasion branches}
+
+\paragraph{Buyer.}
+Let high/low values be $v>u$, price $P$, and high-quality prior $p$. Buy if
+$P\le u$ and pass if $P>v$. Otherwise parse the seller signal as positive,
+negative, or unknown. For a positive signal use $q_H=.90,q_L=.24$; for a
+negative signal use $.10,.76$, and first compute
+$\pi_0=pq_H/[pq_H+(1-p)q_L]$. Purchased products update high/low counts; passed
+products do not update precision because quality is hidden. With
+$\alpha=4\pi_0+n_H$ and $\beta=4(1-\pi_0)+n_L$, use the conservative value
+\[
+ \hat p=\operatorname{clip}\left(
+ \frac{\alpha}{\alpha+\beta}-.55
+ \sqrt{\frac{\alpha\beta}{(\alpha+\beta)^2(\alpha+\beta+1)}},0,1\right).
+\]
+For an unknown signal use $p$. Buy when
+$\hat p v+(1-\hat p)u+B\ge P$, where $B=.010(v-u)$ times the remaining-round
+fraction divided by $\sqrt{1+n}$ only for a positive signal within $.08(v-u)$
+of the cutoff and with fewer than four observed labels; otherwise $B=0$.
+
+\paragraph{Seller.}
+Always signal positive for high quality. For low quality, compute the target in
+Eq.~\ref{eq:static-calibration}; return $q=1$ when $c\le0$, $q=0$ when $c\ge1$,
+and $q=0$ for an interior cutoff with $p\in\{0,1\}$. When buyer values are
+hidden use the ad hoc rule reported in the main text. The notebook defines
+terminal as $r\ge R$ after replacing a missing $R$ with the current round; thus
+an absent horizon receives the terminal $.05$ increment and $.94$ utilization.
+If $n$ low-quality products precede the current one, signal positive exactly
+when $\lfloor(n+1)q\rfloor>\lfloor nq\rfloor$. Text mode emits fixed BUY/PASS
+sentences and binary mode emits yes/no.
+
+For constant $q$, the floor-difference sequence has prefix discrepancy below
+one. V33 recomputes $q$ and reveals signals, so this arithmetic fact supplies no
+dynamic persuasion or incentive-compatibility guarantee.
+
+\subsection{Contract wrapper and exposure controller}
+
+The wrapper rejects unexpected keys, nonfinite or negative amounts, allocations
+that do not sum to the pot within tolerance, illegal decisions, missing
+nonterminal counteroffers, and messages over 2,000 characters. Its fallbacks
+are: equal split/accept in bargaining; own-value offer, profitable acceptance,
+or own-value counter in negotiation; PASS/no as seller; and prior expected-value
+purchase as buyer. Every fallback is logged.
+
+The controller starts only at zero active games, queues one family, leaves the
+queue after observing an assignment, drains it, and checks that assignment and
+authoritative count increments are at most one. Family baseline-loss limits for
+bargaining/negotiation/persuasion are $30/40/28$ and peak drawdowns are
+$24/30/22$ after 20 games. Role limits are $24/28/20$ and role drawdowns
+$18/22/16$ after ten role games. Three consecutive matchmaking timeouts stop a
+family. The executed notebook measured new telemetry before reward harvesting;
+the 500 caught HTTP 422 errors appended during harvesting therefore escaped the
+abort check. This historical monitoring-order bug is preserved in the executed
+artifact and corrected only in the documented future protocol.
+
+\paragraph{Version map.}
+``Alice V27'' denotes the Alice branch plus its complete-information correction;
+``Bob V29'' denotes the Bob branch plus delay-aware transfer/acceptance override;
+``buyer V23 rollback'' denotes the negotiation buyer equations above;
+``seller V27'' denotes the seller branch plus short-horizon repair; and
+``persuasion buyer V23'' denotes the purchased-only conservative posterior rule.
+These labels record provenance and are not separate algorithms required to
+reconstruct V33.

@@ -1,0 +1,42 @@
+\section{Agent Behavior Analysis}
+\label{sec:behavior}
+
+\paragraph{Intended behavior.}
+The agent should preserve individual rationality, concede as delay becomes more
+costly, escape repeated paths, and separate evidence by role. In persuasion it
+should recommend high quality, pool low quality only within receiver obedience,
+and distribute pooled signals smoothly across the horizon.
+
+\paragraph{Executable alignment mechanisms.}
+Four mechanisms connect intent to action. First, the policy reads only the
+filtered game state and updates beliefs only from visible outcomes. Second,
+offer and response validators enforce feasibility, budget balance, and legal
+schemas. Third, cycle counters and terminal rules prevent strategically legal
+but non-terminating behavior. Fourth, assignment-level audits apply separate
+role and family exposure limits. Deterministic pacing in Eq.~\ref{eq:pacing}
+makes every seller signal reproducible from the observed history; it controls
+aggregate frequency rather than proving dynamic receiver obedience.
+
+\paragraph{Observed alignment.}
+V33 completed 150 bargaining games with positive sums for Alice and Bob, a sign
+consistent with but not attributable to the two branch designs. In one live
+unknown-horizon game, Bob ($\delta_B=0.95$) received 36.5079\% in round one.
+The inherited branch rejected against a 43.32\% continuation threshold; the
+recovery override accepted because the offer exceeded $f_B=33\%$, producing an
+immediate agreement. The same game lost 4.98 rating points, illustrating that
+agreement-aligned behavior and the competition metric can diverge. Persuasion
+buyers and sellers were both positive, while offline grid tests only establish
+that the computed marginal target does not exceed Eq.~\ref{eq:obedience}; they
+do not establish live buyer posteriors. Zero action fallbacks rule out that
+recorded execution-failure channel, not other policy or measurement errors.
+
+\paragraph{Deviations and recovery.}
+Alignment is not equivalent to rating success. Both negotiation roles lost,
+although offers remained individually rational and contract-valid. The family
+guard stopped exposure after 20 games. Earlier failures sharpen this
+distinction: V3's 99-round loop was legal but behaviorally misaligned with
+termination, while V11's 53-game return from a 24-game request was strategically
+unchanged but operationally unsafe. These cases motivated cycle tests and the
+one-assignment controller. V33 shows the remaining limitation: safeguards can
+bound a bad trajectory, but cannot guarantee that a historically successful
+policy remains profitable against a changing population.

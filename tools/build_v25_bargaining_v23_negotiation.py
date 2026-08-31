@@ -13,9 +13,9 @@ SOURCE = (
     ROOT
     / "notebooks"
     / "Glee_competition_24"
-    / "GLEE_Competition_agent_v24_bp_repair.ipynb"
+    / "24_bargaining_persuasion_repair_surplus_protection_terminal_pooling.ipynb"
 )
-OUTPUT = ROOT / "notebooks" / "GLEE_Competition_agent_v25_bargaining_v23_negotiation.ipynb"
+OUTPUT = ROOT / "notebooks" / "25_role_aware_bargaining_defensive_negotiation_drawdown_control.ipynb"
 
 
 def main() -> None:

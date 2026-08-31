@@ -1,0 +1,31 @@
+\section{Sequential competition trace}
+
+\input{tables/results}
+
+The August 30, 2026 run targeted 150 authoritative completions per family in
+fixed order: bargaining, persuasion, then negotiation. Matchmaking used
+concurrency one, and adjacent dashboard snapshots supplied assignment-level
+displayed rating changes. Bargaining reached 150 games. Persuasion stopped at
+78 after a 23.19-point drawdown from its session peak; negotiation stopped at
+20 after losing 33.73 from its initial and peak rating.
+
+Role sums were Alice $+80.15$ ($n=64$), Bob $+110.79$ ($n=86$), persuasion
+buyer $+34.77$ ($n=37$), persuasion seller $+20.90$ ($n=41$), negotiation buyer
+$-20.33$ ($n=11$), and negotiation seller $-13.40$ ($n=9$). Bargaining had
+76/1/73 positive/zero/negative changes; persuasion 38/0/40; negotiation 7/0/13.
+The positive totals therefore do not imply that most assignments gained rating.
+
+We do not compare marginal persuasion information regimes. All 26 hidden-value
+games assigned V33 the seller role, including all 15 hidden-value text games;
+there is no hidden-value buyer support. The previously tempting comparison with
+known-value text games therefore confounds role and information. Appendix~
+\ref{app:statistics} reports the complete support table and descriptive paths.
+
+The trace has no contemporaneous baseline or randomized branch allocation.
+Opponent repetition is unavailable, ratings and population may drift, policies
+were selected from prior live runs, and stopping depends on outcomes. We report
+no inferential interval or mechanism-effect estimate. A valid follow-up should
+interleave frozen branches within role--configuration strata, retain privacy-safe
+opponent identifiers, preregister guards, and use cluster-aware anytime-valid
+inference. Offline tests passed and no live action fallback or assignment
+overshoot occurred; a telemetry-order bug is documented in the supplement.

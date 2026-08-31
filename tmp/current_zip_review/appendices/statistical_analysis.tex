@@ -1,0 +1,81 @@
+\section{Supplementary statistical audit}
+\label{app:statistics}
+
+\paragraph{Sources, linkage, and coverage.}
+The rating analysis uses all 248 live rows in
+\path{glee_v33_rating_outcomes.csv} after excluding the single synthetic
+contract-test row. The text export contains 220 complete game records: 127 of
+150 bargaining assignments, 74 of 78 persuasion assignments, and 19 of 20
+negotiation assignments (88.7\% overall coverage). Two records omit their
+repeated family/transcript header but retain a separate \emph{Game setup} and
+\emph{Final result}; the parser recovers them as distinct games. The export has
+no game IDs and is missing 28 rated assignments, so transcript records are not
+positionally joined to rating rows. Transcript-derived quantities below are
+available-case behavioral summaries rather than rating-conditioned outcomes.
+
+\paragraph{Rating distributions and sequential behavior.}
+Table~\ref{tab:v33-distribution} reports robust and conventional descriptive
+statistics. The positive bargaining mean coexists with an almost even sign
+split; persuasion has a positive mean but a negative median and 40 of 78
+changes are negative. The ordinary IID intervals and sign tests are descriptive
+diagnostics only: they do not correct for repeated opponents, context drift,
+family ordering, adaptive policy development, or optional stopping. Lag-one
+autocorrelations were $0.05$, $-0.08$, and $0.07$ for bargaining, persuasion,
+and negotiation respectively; the corresponding maximum losing streaks were
+five, four, and six assignments. These small autocorrelations do not establish
+independence.
+
+Figure~\ref{fig:v33-sequential} plots cumulative changes against the actual
+family baseline-loss and moving peak-drawdown boundaries. Bargaining's maximum
+within-run drawdown was 24.75 points but did not trigger the 24-point guard
+because that early drawdown occurred before the 20-game activation point.
+Persuasion finished at its maximum drawdown of 23.19 points and crossed its
+22-point boundary at game 78. Negotiation never exceeded its initial rating and
+crossed the 30-point drawdown boundary at game 20.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/v33_sequential_ratings.pdf}
+  \caption{Cumulative displayed rating changes. The dotted horizontal line is
+  the family baseline-loss threshold, the dashed curve is the running peak
+  minus the family drawdown limit, and the vertical line marks the 20-game
+  activation point. Role guards are evaluated separately.}
+  \label{fig:v33-sequential}
+\end{figure}
+
+\paragraph{Transcript outcomes.}
+Among the 127 exported bargaining games, 113 reached agreement (89.0\%) and 14
+ended in walkaway. Agreement rates were 47/54 for Alice and 66/73 for Bob.
+Agreements used a median of one observed round (mean 1.40, maximum 12).
+Negotiation produced 11/19 agreements, four no-deals, and four walkaways; role
+splits were 6/11 agreements for buyers and 5/8 for sellers. Negotiation
+agreements used a median of four observed rounds, compared with one for
+no-deals and 3.5 for walkaways. Missing transcripts prevent treating these
+rates as full-run estimates.
+
+\paragraph{Persuasion behavior.}
+The 74 exported persuasion games contain 1,480 round decisions. In the 40 games
+where V33 was seller, all 397 observed high-quality products received a positive
+signal. Of 403 low-quality products, 135 received a positive signal and 268 a
+negative one, a 33.5\% low-quality pooling frequency; hence 397/532 positive
+signals were high quality (74.6\% empirical precision). Opposing buyers bought
+309/532 positive-signal products and 24/268 negative-signal products. In the 34
+games where V33 was buyer, it purchased 350/680 products; 245 purchases were
+high quality and 105 low quality. Passed-product quality is hidden in this role,
+so buyer precision is evaluated only on the selectively revealed purchased
+subset. A lexical classifier matching the submitted policy's signal-polarity
+rules classified all V33 seller messages; it left 206 opponent messages
+unclassified, and no claims use those messages as positive or negative.
+
+\paragraph{Context and stopping sensitivity.}
+Table~\ref{tab:v33-context-distribution} aggregates the recorded policy context
+keys; the machine-readable CSV retains the complete role, information, horizon,
+discount, signal-mode, prior, and receiver-cutoff buckets. Table~\ref{tab:v33-stop-sensitivity}
+replays the observed rating sequence while jointly scaling all family and role
+loss/drawdown thresholds. At half thresholds, bargaining would have stopped at
+game 17, persuasion at 24, and negotiation at 19. At 1.25 times the thresholds,
+neither adaptively stopped family would have crossed a guard within the observed
+prefix. This counterfactual is path-dependent: it assumes the same later
+assignments would have occurred despite a different stopping policy.
+
+\input{tables/v33_statistical_analysis}

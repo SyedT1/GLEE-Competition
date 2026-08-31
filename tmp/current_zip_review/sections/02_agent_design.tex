@@ -1,0 +1,88 @@
+\section{Technical and strategic approach}
+
+\paragraph{Architecture and memory.}
+A dispatcher selects a family policy and a role-locked branch for the complete
+game. The agent reads only server-filtered state. Memory is keyed by family,
+role, information regime, horizon bucket, and opponent when disclosed; updates
+use visible offers or purchased-product revelations only. Messages communicate
+an already selected action and never determine numeric choices. Consequently,
+V33 requires Python and \texttt{glee-sdk}, but no model weights, training,
+accelerator, or paid inference API.
+
+\paragraph{Bargaining.}
+Every proposal divides pot $M$ exactly, $x_A+x_B=M$. Alice retains the V27
+surplus-protecting, cycle-safe branch. Bob uses a delay-aware repair motivated by
+his V27 loss and alternating-offers incentives \citep{rubinstein1982perfect}.
+With normalized deadline progress $t$, own discount $\delta_B$,
+and stall count $s$, Bob transfers from his inherited offer
+\begin{equation}
+ T=\min\{M[r(\delta_B)+0.008t],\max(0,x_B-0.24M)\},
+ \quad
+ r(\delta_B)=\begin{cases}0.018&\delta_B<0.95,\\0.008&\text{otherwise.}\end{cases}
+ \label{eq:bob-transfer}
+\end{equation}
+Only when the inherited V27 branch rejects, Bob's recovery override instead
+accepts a received share above
+\begin{equation}
+ f_B=\max\{0.16,r_f(\delta_B)-0.09t-0.055s\},\quad
+ r_f(\delta_B)=\begin{cases}0.30&\delta_B<0.95,\\0.33&\text{otherwise.}\end{cases}
+ \label{eq:bob-floor}
+\end{equation}
+The transfer cannot push an inherited offer from above to below 24\% of the pot;
+$f_B$ is a sufficient recovery threshold, not Bob's global acceptance floor.
+Both rules concede more when delay is expensive or the path stalls. Repeated
+states activate explicit cycle handling rather than indefinite rejection.
+
+\paragraph{Negotiation.}
+For seller value $v_s$, buyer value $v_b$, and price $P$, utilities are
+$U_s=P-v_s$ and $U_b=v_b-P$ \citep{nash1950bargaining}. Under complete
+information, V33 targets a
+role-specific fraction of feasible surplus $S=v_b-v_s$ and reduces that claim
+with $t$, observed opponent concessions, and stalls. Under hidden information,
+it projects the opponent's robust median price step and keeps counteroffers on
+the individually rational side of its own value. A profitable repeated offer
+may be accepted; an infeasible repeated path under an unknown horizon triggers
+a walkaway. The buyer branch is the exact V23 rollback and the seller is the
+V27 branch. This historical selection did not guarantee a positive V33 sample,
+which is central to our analysis.
+
+\paragraph{Persuasion.}
+The buyer estimates positive-message precision only from quality revealed after
+purchase and avoids treating passed products as labeled observations. The
+seller always recommends high quality. For known buyer values $v>u$, price $P$,
+high-quality prior $p$, and low-quality positive-signal probability $q$, the
+purchase cutoff is $c=(P-u)/(v-u)$. For $0<p<1$, $0<c<1$, and a static
+signal model with $\Pr(+\mid H)=1$ and $\Pr(+\mid L)=q$, Bayesian obedience
+following a positive signal \citep{kamenica2011bayesian} requires
+\begin{equation}
+ \Pr(H\mid +)=\frac{p}{p+(1-p)q}\ge c,
+ \quad q\le q_{\max}=\min\!\left\{1,\frac{p(1-c)}{c(1-p)}\right\}.
+ \label{eq:obedience}
+\end{equation}
+V33 uses the marginal-frequency target $q=0.88q_{\max}$ off-terminal and
+$q=\min(0.94q_{\max},0.92)$ terminal. For $c\leq0$ it returns one, for
+$c\geq1$ it returns zero, and for interior $c$ with $p\in\{0,1\}$ the
+implementation returns zero. Hidden-value play uses
+$q=\operatorname{clip}(0.12+0.28p+0.05\mathbf{1}_{\rm terminal},0,0.40)$.
+For a fixed target $q$, the $n$th observed low-quality product is recommended
+exactly when
+\begin{equation}
+ a_n=\lfloor(n+1)q\rfloor-\lfloor nq\rfloor=1,
+ \label{eq:pacing}
+\end{equation}
+so a constant-$q$ sequence has prefix discrepancy below one. Because V33
+recomputes $q$ and relaxes it terminally, this fixed-target guarantee and the
+static posterior bound are design benchmarks, not a claim of round-by-round
+obedience against a buyer who can infer the pacing phase.
+
+\paragraph{Action and exposure safety.}
+Local validation enforces required keys, finite numeric fields, exact budget
+balance, enumerated decisions, counteroffer requirements, and a 2,000-character
+message limit. Exceptions activate a legal family fallback and are logged. The
+live controller queues one family, leaves immediately after observing an
+assignment, drains that game, and then reads authoritative counts and ratings.
+For bargaining, negotiation, and persuasion respectively, family baseline loss
+limits are $(30,40,28)$ and peak drawdown limits are $(24,30,22)$; these activate
+after 20 games. Role baseline limits are $(24,28,20)$ and role drawdowns are
+$(18,22,16)$ after ten games in that role. Assignment overshoot, a live fallback,
+or a checkpoint-visible telemetry error aborts exposure.

@@ -1,0 +1,48 @@
+\section{Agent Behavior Analysis}
+\label{sec:behavior}
+
+\paragraph{Intended behavior.}
+The agent should preserve individual rationality, concede as delay becomes more
+costly, escape repeated paths, and separate evidence by role. In persuasion it
+should recommend high quality, pool low quality only within receiver obedience,
+and distribute pooled signals smoothly across the horizon.
+
+\paragraph{Executable alignment mechanisms.}
+Four mechanisms connect intent to action. First, the policy reads only the
+filtered game state and updates beliefs only from visible outcomes. Second,
+offer and response validators enforce feasibility, budget balance, and legal
+schemas. Third, cycle counters and terminal rules prevent strategically legal
+but non-terminating behavior. Fourth, assignment-level audits apply separate
+role and family exposure limits. Deterministic pacing in Eq.~\ref{eq:pacing}
+makes every seller signal reproducible from the observed history; it controls
+aggregate frequency rather than proving dynamic receiver obedience.
+
+\paragraph{Observed alignment.}
+The text export contains 220 of 248 rated assignments and no game IDs, so its
+behavioral counts are available-case summaries and are not joined positionally
+to rating changes. Bargaining reached agreement in 113/127 exported games:
+47/54 for Alice and 66/73 for Bob. In one unknown-horizon game, Bob
+($\delta_B=0.95$) accepted 36.5079\% because it exceeded the recovery threshold
+$f_B=33\%$, yet lost 4.98 rating points; agreement-aligned behavior and the
+competition metric can therefore diverge.
+
+In 40 exported seller games, V33 positively signaled all 397 high-quality
+products and 135/403 low-quality products. Thus 397/532 positive signals were
+high quality (74.6\% empirical precision); opposing buyers purchased 309/532
+positive-signal products but only 24/268 negative-signal products. In 34 buyer
+games, V33 bought 350/680 products, of which 245 were high quality and 105 low;
+passed quality is hidden, so this purchased subset is selectively revealed.
+Negotiation produced 11/19 agreements, four no-deals, and four walkaways while
+both rating-role sums remained negative. Zero action fallbacks exclude that
+recorded execution-failure channel, not policy, sampling, or measurement error.
+
+\paragraph{Deviations and recovery.}
+Alignment is not equivalent to rating success. Both negotiation roles lost,
+although offers remained individually rational and contract-valid. The family
+guard stopped exposure after 20 games. Earlier failures sharpen this
+distinction: V3's 99-round loop was legal but behaviorally misaligned with
+termination, while V11's 53-game return from a 24-game request was strategically
+unchanged but operationally unsafe. These cases motivated cycle tests and the
+one-assignment controller. V33 shows the remaining limitation: safeguards can
+bound a bad trajectory, but cannot guarantee that a historically successful
+policy remains profitable against a changing population.

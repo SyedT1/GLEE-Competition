@@ -13,9 +13,9 @@ SOURCE = (
     ROOT
     / "notebooks"
     / "Glee_competition_25"
-    / "GLEE_Competition_agent_v25_bargaining_v23_negotiation.ipynb"
+    / "25_role_aware_bargaining_defensive_negotiation_drawdown_control.ipynb"
 )
-OUTPUT = ROOT / "notebooks" / "GLEE_Competition_agent_v26_three_family_adaptive.ipynb"
+OUTPUT = ROOT / "notebooks" / "26_three_family_adaptive_role_calibration_contextual_concession.ipynb"
 
 
 BOB_POLICY = r'''

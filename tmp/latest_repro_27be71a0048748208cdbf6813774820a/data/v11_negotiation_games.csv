@@ -1,0 +1,54 @@
+display_order,date,time,role,opponent_type,outcome,rounded_rating_delta
+1,2026-08-25,23:41,Buyer,agent,Agreement,-3.2
+2,2026-08-25,23:40,Seller,agent,No deal,-5.8
+3,2026-08-25,23:40,Seller,agent,Agreement,-5.9
+4,2026-08-25,23:40,Seller,agent,No deal,2.3
+5,2026-08-25,23:40,Buyer,agent,No deal,-5.8
+6,2026-08-25,23:39,Buyer,agent,Agreement,5.3
+7,2026-08-25,23:39,Buyer,agent,No deal,3.8
+8,2026-08-25,23:39,Buyer,agent,No deal,1.2
+9,2026-08-25,23:39,Buyer,agent,No deal,1.0
+10,2026-08-25,23:38,Seller,agent,Agreement,-4.7
+11,2026-08-25,23:38,Buyer,agent,Agreement,2.4
+12,2026-08-25,23:38,Buyer,agent,Agreement,-5.8
+13,2026-08-25,23:38,Buyer,agent,Agreement,-5.5
+14,2026-08-25,23:37,Buyer,agent,Agreement,-2.1
+15,2026-08-25,23:37,Seller,agent,No deal,-5.7
+16,2026-08-25,23:37,Seller,agent,Agreement,-1.4
+17,2026-08-25,23:37,Seller,agent,No deal,2.7
+18,2026-08-25,23:36,Buyer,agent,Agreement,4.2
+19,2026-08-25,23:36,Buyer,agent,Agreement,-2.1
+20,2026-08-25,23:36,Buyer,agent,Agreement,-5.4
+21,2026-08-25,23:35,Buyer,agent,No deal,0.9
+22,2026-08-25,23:35,Buyer,agent,No deal,0.2
+23,2026-08-25,23:35,Buyer,agent,Agreement,-5.6
+24,2026-08-25,23:35,Seller,agent,No deal,-0.7
+25,2026-08-25,23:35,Seller,agent,No deal,0.3
+26,2026-08-25,23:34,Buyer,agent,Walked away,1.4
+27,2026-08-25,23:34,Seller,agent,No deal,-5.8
+28,2026-08-25,23:34,Buyer,agent,Agreement,-3.9
+29,2026-08-25,23:33,Seller,agent,No deal,-2.6
+30,2026-08-25,23:33,Seller,agent,Agreement,-5.7
+31,2026-08-25,23:33,Buyer,agent,Agreement,2.4
+32,2026-08-25,23:33,Seller,agent,Walked away,1.9
+33,2026-08-25,23:32,Seller,agent,Agreement,6.7
+34,2026-08-25,23:32,Seller,agent,Agreement,-3.3
+35,2026-08-25,23:32,Buyer,agent,No deal,-5.5
+36,2026-08-25,23:32,Seller,agent,No deal,-1.6
+37,2026-08-25,23:31,Seller,agent,No deal,-4.3
+38,2026-08-25,23:31,Buyer,agent,Agreement,-5.7
+39,2026-08-25,23:31,Buyer,agent,Agreement,-3.9
+40,2026-08-25,23:31,Seller,agent,Walked away,-0.5
+41,2026-08-25,23:30,Seller,agent,Agreement,-3.7
+42,2026-08-25,23:30,Buyer,agent,Agreement,4.9
+43,2026-08-25,23:30,Buyer,agent,Agreement,-0.1
+44,2026-08-25,23:30,Buyer,agent,Agreement,-5.0
+45,2026-08-25,23:29,Seller,agent,Agreement,6.4
+46,2026-08-25,23:29,Buyer,agent,Agreement,5.7
+47,2026-08-25,23:29,Buyer,agent,No deal,1.8
+48,2026-08-25,23:29,Seller,agent,No deal,-1.5
+49,2026-08-25,23:28,Seller,agent,Agreement,6.2
+50,2026-08-25,23:28,Seller,agent,No deal,1.2
+51,2026-08-25,23:28,Buyer,agent,Agreement,-3.3
+52,2026-08-25,23:28,Buyer,agent,Walked away,2.8
+53,2026-08-25,23:27,Buyer,agent,Agreement,5.5

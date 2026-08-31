@@ -16,7 +16,7 @@ import nbformat
 
 ROOT = Path(__file__).resolve().parents[1]
 NOTEBOOK_DIR = ROOT / "notebooks"
-BASE_PATH = NOTEBOOK_DIR / "GLEE_Competition_agent_v13.ipynb"
+BASE_PATH = NOTEBOOK_DIR / "13_controlled_champion_one_queue_append_only_evidence.ipynb"
 
 
 def md(text: str):
@@ -203,7 +203,7 @@ print("Evidence path:", EVIDENCE_PATH.resolve())
 ''')
     runner_index = insert_before_runner(nb, md("## V14 drift-audit instrumentation"), experiment, analysis)
     set_runner_cell(nb, runner_index, "negotiation", "negotiation_drift_strategy", "v14_live_report")
-    write(nb, "GLEE_Competition_experiment_v14_negotiation_drift.ipynb")
+    write(nb, "14_negotiation_drift_configuration_role_history_latency_telemetry.ipynb")
 
 
 def build_alice_ablation():
@@ -287,7 +287,7 @@ print("Secondary outcomes: rounds, agreement, own share, zero payoff, and cycle-
 ''')
     runner_index = insert_before_runner(nb, md("## V15 pre-registered Alice-only arm assignment"), experiment, analysis)
     set_runner_cell(nb, runner_index, "bargaining", "alice_experiment_strategy", "v15_live_report")
-    write(nb, "GLEE_Competition_experiment_v15_alice_ablation.ipynb")
+    write(nb, "15_alice_policy_ablation_whole_game_randomized_assignment.ipynb")
 
 
 def build_cycle_ablation():
@@ -396,7 +396,7 @@ print("Sensitivity rows:", len(SENSITIVITY_ROWS))
     nb.cells[runner_index].source = source[: source.index(marker)] + '''RUN_LIVE = False
 print("V16 is offline-only; live matchmaking is intentionally unavailable.")
 '''
-    write(nb, "GLEE_Competition_experiment_v16_cycle_ablation.ipynb")
+    write(nb, "16_cycle_equilibrium_cap_ablation_discount_sensitivity.ipynb")
 
 
 def build_persuasion_seller():
@@ -475,7 +475,7 @@ print("Primary outcome: rating delta. Secondary: seller payoff, purchase respons
 ''')
     runner_index = insert_before_runner(nb, md("## V17 whole-game seller-arm assignment"), experiment, analysis)
     set_runner_cell(nb, runner_index, "persuasion", "persuasion_experiment_strategy", "v17_live_report")
-    write(nb, "GLEE_Competition_experiment_v17_persuasion_seller.ipynb")
+    write(nb, "17_persuasion_seller_pooling_truthfulness_terminal_ablation.ipynb")
 
 
 def build_runner_faults():
@@ -578,7 +578,7 @@ print("V18 runner fault-injection suite passed without network access.")
 print("V18 is offline-only; no live client is created.")
 '''
     nb.cells[18:18] = [md("## V18 deterministic fault injection"), faults]
-    write(nb, "GLEE_Competition_experiment_v18_runner_fault_injection.ipynb")
+    write(nb, "18_runner_fault_injection_assignment_overshoot_rejected_move.ipynb")
 
 
 def main():

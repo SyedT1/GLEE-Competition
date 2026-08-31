@@ -1,0 +1,59 @@
+{
+  "rating_rows": 248,
+  "transcript_rows": 220,
+  "transcript_coverage": 0.8870967741935484,
+  "rating_family_counts": {
+    "bargaining": 150,
+    "persuasion": 78,
+    "negotiation": 20
+  },
+  "transcript_family_counts": {
+    "bargaining": 127,
+    "persuasion": 74,
+    "negotiation": 19
+  },
+  "transcript_outcomes": {
+    "bargaining:agreement": 113,
+    "bargaining:walkaway": 14,
+    "persuasion:all_rounds": 74,
+    "negotiation:agreement": 11,
+    "negotiation:no_deal": 4,
+    "negotiation:walkaway": 4
+  },
+  "persuasion_round_decisions": {
+    "bought": 683,
+    "passed": 797,
+    "bought_high": 458,
+    "bought_low": 225,
+    "passed_high": 184,
+    "passed_low": 283
+  },
+  "persuasion_signals": {
+    "positive_signal": 900,
+    "negative_signal": 374,
+    "unknown_signal": 206,
+    "positive_bought": 566,
+    "negative_bought": 24,
+    "positive_high": 588,
+    "positive_low": 201,
+    "negative_high": 0,
+    "negative_low": 268
+  },
+  "execution_activation_audit": {
+    "live_policy_decisions": 1838,
+    "unknown_horizon_games": {
+      "bargaining": 76,
+      "persuasion": 0,
+      "negotiation": 10
+    },
+    "unknown_horizon_decisions": {
+      "bargaining": 113,
+      "persuasion": 0,
+      "negotiation": 28
+    },
+    "missing_horizon_short_repair_games": 1,
+    "missing_horizon_short_repair_decisions": 4,
+    "telemetry_errors_recorded_after_checkpoint": 500,
+    "telemetry_abort_activations": 0
+  }
+}

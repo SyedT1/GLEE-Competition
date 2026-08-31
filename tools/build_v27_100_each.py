@@ -11,9 +11,9 @@ import nbformat
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = (
     ROOT / "notebooks" / "Glee_competition_26"
-    / "GLEE_Competition_agent_v26_three_family_adaptive.ipynb"
+    / "26_three_family_adaptive_role_calibration_contextual_concession.ipynb"
 )
-OUTPUT = ROOT / "notebooks" / "GLEE_Competition_agent_v27_100_each.ipynb"
+OUTPUT = ROOT / "notebooks" / "27_evidence_guided_context_repair_configuration_gated_pooling.ipynb"
 
 
 V27_POLICY = r'''

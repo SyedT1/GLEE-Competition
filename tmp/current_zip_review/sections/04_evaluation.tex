@@ -1,0 +1,55 @@
+\section{Evaluation}
+
+\input{tables/results}
+
+The V33 run began on August 30, 2026 and targeted 150 authoritative completions
+per family in the order bargaining, persuasion, negotiation. Matchmaking used
+concurrency one, and every completed assignment was credited from the difference
+between its immediately adjacent dashboard snapshots. Bargaining reached the
+target. Persuasion stopped 23.19 points below its 1849.03 session peak;
+negotiation stopped 33.73 below its initial and peak rating. Across the 248 live
+rows, role sums were: Alice $+80.15$ over 64 games, Bob $+110.79$ over 86,
+persuasion buyer $+34.77$ over 37, persuasion seller $+20.90$ over 41,
+negotiation buyer $-20.33$ over 11, and negotiation seller $-13.40$ over nine.
+Assignment-level changes were heterogeneous. Bargaining had 76 positive, one
+zero, and 73 negative changes (median $0.19$, SD $4.36$); persuasion had
+38 positive and 40 negative (median $-0.22$, SD $3.90$); and negotiation had
+seven positive and 13 negative (median $-2.98$, SD $3.65$). Appendix~ef{app:statistics}
+reports quantiles, role and context splits, sequential paths, behavioral
+outcomes, and stop-guard sensitivity. Ordinary IID intervals are included only
+as diagnostics because the sampling process is adaptive and nonstationary.
+Coarse context splits sharpen the failure pattern: complete-information
+negotiation lost $33.23$ across eight games, while hidden-information contexts
+lost only $0.50$ across 12. In persuasion, known-value text contexts gained
+$45.25$, whereas hidden-value text contexts lost $3.93$; these small,
+non-randomized strata are diagnostic rather than treatment comparisons.
+
+The full bargaining target is the strongest descriptive V33 result: both roles
+were positive despite different policies. Persuasion is also positive in both
+roles, reversing the seller-side sign observed in several earlier batches.
+These signs are consistent with, but do not identify the effects of, Bob's
+recovery or seller pacing because no contemporaneous branch ablation was run.
+Negotiation is the equally important negative result. Both historically selected
+branches lost in V33; role locking does not eliminate opponent, configuration,
+time, or rating drift.
+
+All offline family, role, schema, constant-$q$ pacing, and static-bound tests
+passed, and there were zero action fallbacks or assignment overshoots. The 500
+telemetry entries were HTTP 422 \texttt{reward\_harvest} failures against six
+non-UUID component-test IDs: \texttt{v31-negotiation} and
+\texttt{v31-persuasion} were queried 84 times each; \texttt{v28-frozen-seller},
+\texttt{v29-frozen-alice}, \texttt{v30-frozen-text}, and
+\texttt{v31-bargaining} were queried 83 times each. The V33 wrapper overwrote
+the V28--V30 synthetic flags, while the V31 IDs never matched the prefix
+classifier, so harvesting treated all six as live and retried them after every
+assignment. Moreover, the checkpoint computed
+\texttt{new\_telemetry} before harvesting, so its zero count did not expose the
+new errors to the abort guard. The caught queries could not alter live actions
+or ratings, but they reveal classification and monitoring-order bugs and
+contaminate the exported telemetry count.
+
+These data do not form a randomized ablation. Family order was fixed, role and
+configuration assignment came from live matchmaking, ratings evolved during
+the run, and two families were adaptively censored. We therefore report exact
+sequential outcomes and role splits without confidence intervals or causal
+claims.

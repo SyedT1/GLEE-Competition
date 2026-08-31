@@ -1,0 +1,17 @@
+\section{Scope and contributions}
+
+GLEE evaluates agents in bargaining, bilateral trade, and persuasion with
+optional natural-language interaction, heterogeneous horizons, and incomplete
+information \citep{shapira2024glee}. We study a deliberately inspectable
+entrant: its economic actions are produced by fixed Python rules rather than
+model inference. This makes failures attributable to explicit state summaries,
+branch logic, validation, or the run controller.
+
+This paper makes three bounded contributions. First, it gives a self-contained
+specification of the six deployed role policies and their memory boundaries
+(Appendix~\ref{app:policy}). Second, it audits failures that legal-action rate or
+aggregate rating alone would hide: cycling, uncontrolled exposure, role
+reversals, and a monitoring-order bug. Third, it releases the exact executable,
+ordered evidence, analysis code, and a 248-game sequential trace. We do
+\emph{not} claim strategic superiority, causal mechanism effects, dynamic
+receiver obedience, or generalization beyond this run.

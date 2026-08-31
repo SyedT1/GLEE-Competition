@@ -1,0 +1,15 @@
+\section{Failure-driven development}
+
+Three observed failures became executable invariants. First, an early legal
+policy cycled for 99 rounds under an unknown horizon; repeated-state counters
+now activate bounded matching, acceptance, or walkaway. Second, a blocking
+concurrency-four request for 24 games returned after 53 and lost 44.84 rating
+points; the submitted controller therefore admits one assignment and audits the
+authoritative count after every game. Third, aggregate gains repeatedly hid a
+losing role, motivating fixed role branches and role-local guards. Appendix~
+\ref{app:policy} maps the historical version labels to deployed rules.
+
+These rules were selected after inspecting earlier live batches. The final
+trace is consequently post-selection evidence, not a held-out test. Thresholds
+were operational risk choices rather than values derived from a loss function
+or false-stop guarantee.

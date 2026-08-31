@@ -1,0 +1,89 @@
+\begin{table}[t]
+\caption{Distribution of assignment-level displayed rating changes. The interval is an ordinary IID diagnostic only; sequential matchmaking and adaptive stopping invalidate confirmatory interpretation.}
+\label{tab:v33-distribution}
+\centering\scriptsize
+\begin{tabular}{lrrrrrr}
+\toprule
+Family & $+ / 0 / -$ & Mean & Median & SD & IQR & Naive 95\% CI \\
+\midrule
+Bargaining & 76/1/73 & 1.27 & 0.19 & 4.36 & 7.64 & [0.58, 1.97] \\
+Persuasion & 38/0/40 & 0.71 & -0.22 & 3.90 & 6.62 & [-0.15, 1.58] \\
+Negotiation & 7/0/13 & -1.69 & -2.98 & 3.65 & 6.16 & [-3.29, -0.09] \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\caption{Coarse context splits from the policy's recorded context keys. Horizon bucket 0 is below five rounds and bucket 2 is 12--29 rounds; persuasion configurations additionally separate signal mode and whether receiver values were present.}
+\label{tab:v33-context-distribution}
+\centering\scriptsize
+\begin{tabular}{llrrrr}
+\toprule
+Family & Context & $n$ & Sum & Mean & $+ / 0 / -$ \\
+\midrule
+Bargaining & full, h0 & 41 & 61.15 & 1.49 & 20/0/21 \\
+Bargaining & full, h2 & 35 & -7.96 & -0.23 & 12/0/23 \\
+Bargaining & hidden, h0 & 35 & 56.15 & 1.60 & 20/1/14 \\
+Bargaining & hidden, h2 & 39 & 81.60 & 2.09 & 24/0/15 \\
+Persuasion & binary, hidden & 11 & -2.07 & -0.19 & 3/0/8 \\
+Persuasion & binary, known & 25 & 16.42 & 0.66 & 12/0/13 \\
+Persuasion & text, hidden & 15 & -3.93 & -0.26 & 5/0/10 \\
+Persuasion & text, known & 27 & 45.25 & 1.68 & 18/0/9 \\
+Negotiation & full, h0 & 6 & -22.87 & -3.81 & 0/0/6 \\
+Negotiation & full, h1 & 2 & -10.36 & -5.18 & 0/0/2 \\
+Negotiation & hidden, h0 & 10 & -1.50 & -0.15 & 6/0/4 \\
+Negotiation & hidden, h1 & 2 & 1.00 & 0.50 & 1/0/1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\caption{Role-stratified assignment-level rating changes.}
+\label{tab:v33-role-distribution}
+\centering\scriptsize
+\begin{tabular}{llrrrrr}
+\toprule
+Family & Role & $n$ & Sum & Median & SD & $+ / 0 / -$ \\
+\midrule
+Bargaining & Alice & 64 & 80.15 & 0.25 & 3.82 & 33/1/30 \\
+Bargaining & Bob & 86 & 110.79 & -0.08 & 4.74 & 43/0/43 \\
+Persuasion & Buyer & 37 & 34.77 & 0.73 & 3.89 & 22/0/15 \\
+Persuasion & Seller & 41 & 20.90 & -0.45 & 3.95 & 16/0/25 \\
+Negotiation & Buyer & 11 & -20.33 & -2.91 & 4.02 & 4/0/7 \\
+Negotiation & Seller & 9 & -13.40 & -3.04 & 3.37 & 3/0/6 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\caption{Outcome counts in the transcript export. Coverage is 220 of 248 rated assignments, so these are available-case behavioral summaries and are not joined to rating rows.}
+\label{tab:v33-transcript-outcomes}
+\centering\scriptsize
+\begin{tabular}{llrrrr}
+\toprule
+Family & Role & $n$ & Agreement & Walkaway & No deal \\
+\midrule
+Bargaining & alice & 54 & 47 & 7 & 0 \\
+Bargaining & bob & 73 & 66 & 7 & 0 \\
+Persuasion & buyer & 34 & 0 & 0 & 0 \\
+Persuasion & seller & 40 & 0 & 0 & 0 \\
+Negotiation & buyer & 11 & 6 & 3 & 2 \\
+Negotiation & seller & 8 & 5 & 1 & 2 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[t]
+\caption{Stop-guard sensitivity when all four loss/drawdown thresholds are multiplied by a common factor. Entries are simulated stop game and reason from the observed family sequence.}
+\label{tab:v33-stop-sensitivity}
+\centering\scriptsize
+\begin{tabular}{lrrrrr}
+\toprule
+Family & $0.50\times$ & $0.75\times$ & $1.00\times$ & $1.25\times$ & $1.50\times$ \\
+\midrule
+Bargaining & 17 (role\_loss:player\_2) & 17 (role\_drawdown:player\_2) & 150 (target) & 150 (target) & 150 (target) \\
+Persuasion & 24 (role\_drawdown:buyer) & 75 (role\_drawdown:buyer) & 78 (family\_drawdown) & 78 (observed\_end) & 78 (observed\_end) \\
+Negotiation & 19 (role\_loss:buyer) & 20 (role\_drawdown:buyer) & 20 (family\_drawdown) & 20 (observed\_end) & 20 (observed\_end) \\
+\bottomrule
+\end{tabular}
+\end{table}

@@ -18,11 +18,11 @@ def main():
         files = [ROOT / "notebooks" / name for name in sys.argv[1:]]
     else:
         files = sorted((ROOT / "notebooks").glob("GLEE_Competition_experiment_*.ipynb"))
-        files.append(ROOT / "notebooks" / "GLEE_Competition_agent_v19_heuristic_improvement.ipynb")
-        files.append(ROOT / "notebooks" / "GLEE_Competition_agent_v20_live_three_family.ipynb")
-        files.append(ROOT / "notebooks" / "GLEE_Competition_agent_v21_controlled_microbatches.ipynb")
-        files.append(ROOT / "notebooks" / "GLEE_Competition_agent_v22_improved_50_each.ipynb")
-        files.append(ROOT / "notebooks" / "GLEE_Competition_agent_v23_adaptive_defender.ipynb")
+        files.append(ROOT / "notebooks" / "19_heuristic_challenger_robust_trend_projection_precision_bounded_pooling.ipynb")
+        files.append(ROOT / "notebooks" / "20_live_three_family_robust_projection_credibility_safe_pooling.ipynb")
+        files.append(ROOT / "notebooks" / "21_controlled_microbatches_family_stop_loss_authoritative_accounting.ipynb")
+        files.append(ROOT / "notebooks" / "22_evidence_selected_portfolio_bargaining_rollback_family_stop_loss.ipynb")
+        files.append(ROOT / "notebooks" / "23_adaptive_defender_peak_drawdown_reservation_protection.ipynb")
         if len(files) != 10:
             raise RuntimeError("expected five experiment notebooks plus V19 through V23")
     if not files or not all(path.exists() for path in files):

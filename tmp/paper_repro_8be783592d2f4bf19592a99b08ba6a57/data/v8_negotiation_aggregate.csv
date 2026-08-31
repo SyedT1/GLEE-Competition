@@ -1,0 +1,7 @@
+scope,role,games,agreements,no_deals,walkaways,positive_deltas,negative_deltas,zero_deltas,rounded_delta_sum,mean_rounded_delta,median_delta,before_rating,after_rating,exact_rating_change,before_games,after_games,terminal_rewards,action_fallbacks,telemetry_diagnostics
+complete_batch,all,44,17,20,7,29,15,0,50.9,1.157,1.0,1344.87,1395.83,50.96,127,171,44,0,0
+role,Buyer,15,5,8,2,11,4,0,10.7,0.713,0.7,,,,,,,,
+role,Seller,29,12,12,5,18,11,0,40.2,1.386,1.2,,,,,,,,
+outcome,Agreement,17,17,0,0,,,,40.0,2.353,,,,,,,,,,
+outcome,No deal,20,0,20,0,,,,13.6,0.680,,,,,,,,,,
+outcome,Walked away,7,0,0,7,,,,-2.7,-0.386,,,,,,,,,,

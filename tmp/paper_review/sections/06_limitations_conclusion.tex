@@ -1,0 +1,30 @@
+\section{Limitations, reproducibility, and conclusion}
+
+V33 is one sequential competition run, not a controlled policy comparison.
+Matchmaking, configurations, roles, rating shrinkage, and opponent adaptation
+are uncontrolled; adaptive stops make family sample sizes unequal. Displayed
+rating deltas measure the competition system rather than raw welfare, and no
+configuration-matched baseline or uncertainty interval is available. Fixed
+messages may also underperform richer dialogue against humans or language
+models. Strategic persuasion techniques could transfer to manipulative sales
+settings; transparent bounds, audit logs, and restriction to the competition
+environment mitigate but do not remove that concern.
+
+The exact submitted implementation is
+\path{notebooks/glee_competition_33/GLEE_Competition_agent_v33_heuristic_150_each.ipynb}
+at \CodeURL. The same directory contains the session report, 249-row rating
+CSV (one synthetic test plus 248 live rows), policy state, and append-only
+evidence. The run used Python 3.12 and \texttt{glee-sdk} in a hosted Kaggle
+session. The method required no training or GPU and took approximately 13,497
+seconds (3.75 hours); the provider's exact CPU, memory, and accelerator
+allocation was not recorded.
+Actions are reproducible from saved states, but exact leaderboard ratings are
+not because matchmaking and rating models change.
+
+The central lesson is that reliable strategic agency has three coupled layers:
+economic reasoning, behavioral alignment, and exposure control. V33's positive
+bargaining and persuasion signs are observations, not estimates of the effects
+of its role-local mechanisms; the negative negotiation sample further warns
+against treating historical leaderboard evidence as stationary. Future
+evaluation should interleave frozen role baselines within matched contexts and
+preserve corrected validators, synthetic isolation, and monitoring guards.

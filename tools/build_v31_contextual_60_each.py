@@ -12,14 +12,14 @@ ROOT = Path(__file__).resolve().parents[1]
 NOTEBOOKS = ROOT / "notebooks"
 SOURCE = (
     NOTEBOOKS / "Glee_competition_27"
-    / "GLEE_Competition_agent_v27_100_each.ipynb"
+    / "27_evidence_guided_context_repair_configuration_gated_pooling.ipynb"
 )
 RECOVERY_NOTEBOOKS = {
-    28: NOTEBOOKS / "GLEE_Competition_agent_v28_negotiation_buyer_rollback.ipynb",
-    29: NOTEBOOKS / "GLEE_Competition_agent_v29_bob_recovery.ipynb",
-    30: NOTEBOOKS / "GLEE_Competition_agent_v30_binary_seller_ablation.ipynb",
+    28: NOTEBOOKS / "28_negotiation_buyer_rollback_role_branch_ablation.ipynb",
+    29: NOTEBOOKS / "29_bargaining_bob_delay_aware_recovery.ipynb",
+    30: NOTEBOOKS / "30_binary_seller_bayesian_pooling_ablation.ipynb",
 }
-OUTPUT = NOTEBOOKS / "GLEE_Competition_agent_v31_contextual_60_each.ipynb"
+OUTPUT = NOTEBOOKS / "31_contextual_role_portfolio_buyer_rollback_bob_recovery_bayesian_pooling.ipynb"
 
 
 def cell_with(notebook, marker: str) -> str:

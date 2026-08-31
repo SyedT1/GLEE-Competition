@@ -1,0 +1,23 @@
+\section{Overview and motivation}
+
+GLEE evaluates agents in repeated bargaining, bilateral trade, and persuasion
+with natural-language interaction, heterogeneous horizons, and incomplete
+information \citep{shapira2024glee}. An effective entrant must reason about
+incentives and other players while always returning a legal action under a turn
+deadline. Our goal was an auditable agent whose economic decisions do not
+depend on opaque model inference or training.
+
+The resulting V33 agent is fully heuristic and deterministic conditional on the
+visible state. It separates policies by family and role; compresses dialogue
+history into economically meaningful quantities such as demands, price steps,
+stalls, and observed recommendation precision; and validates every action
+before submission. A one-assignment controller checks authoritative rating and
+game counts between matches so a strong role cannot silently subsidize an
+unsafe one.
+
+This paper contributes (i) a compact strategic design for all three GLEE
+families, including a persuasion schedule bounded by a static receiver-obedience
+benchmark; (ii) an agent
+behavior analysis linking executable safeguards to observed deviations; and
+(iii) evidence from 248 V33 games. The evidence is intentionally reported as a
+sequential competition trace rather than a controlled superiority claim.

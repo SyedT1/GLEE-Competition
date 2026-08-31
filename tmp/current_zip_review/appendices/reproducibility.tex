@@ -1,0 +1,34 @@
+\section{Supplementary reproducibility record}
+
+The submitted agent is \AgentName{} (Agent ID \AgentID). Its canonical source
+is \path{notebooks/glee_competition_33/GLEE_Competition_agent_v33_heuristic_150_each.ipynb}
+at \CodeURL. It uses Python 3.12, \texttt{glee-sdk}, concurrency one, and no
+training, model weights, GPU, or external inference API. The live build ID is
+\texttt{v33-heuristic-150-each-2026-08-30}; family order is bargaining,
+persuasion, negotiation; each target is 150; and the maximum queue-attempt count
+is 190 per family.
+
+For bargaining, negotiation, and persuasion, family baseline loss limits are
+30, 40, and 28 points and family peak-drawdown limits are 24, 30, and 22 after
+20 completions. Corresponding role baseline limits are 24, 28, and 20 and role
+drawdowns are 18, 22, and 16 after ten role assignments.
+
+The artifact directory contains the exact JSON session report, rating-outcome
+CSV, policy state, and append-only JSONL. The CSV has one synthetic contract-test
+row and 248 live rows. The three \texttt{v33\_family\_summary} JSONL records
+contain starts, finals, peaks, drawdowns, role sequences, and stop reasons. The
+248 \texttt{v33\_microbatch\_checkpoint} records permit assignment-level
+verification. Exact ratings cannot be replayed because the opponent population
+and competition rating model evolve, but actions can be replayed from recorded
+visible states.
+
+The report's 500 telemetry rows are caught HTTP 422 failures from repeated
+harvesting of six non-UUID component-test IDs. \texttt{v31-negotiation} and
+\texttt{v31-persuasion} appear 84 times each; \texttt{v28-frozen-seller},
+\texttt{v29-frozen-alice}, \texttt{v30-frozen-text}, and
+\texttt{v31-bargaining} appear 83 times each. V33 overwrote the V28--V30
+synthetic flags, the V31 IDs never matched the prefix classifier, and the
+controller measured telemetry before calling the harvester. Thus the guard did
+not observe the newly appended errors. This bug did not change actions or
+ratings but must be fixed by preserving synthetic classification and measuring
+telemetry after all checkpoint harvesting.

@@ -1,0 +1,4 @@
+scope,role,games,agreements,no_deals,walkaways,positive_deltas,negative_deltas,zero_deltas,rounded_delta_sum,mean_rounded_delta,median_delta,before_rating,after_rating,exact_rating_change,before_games,after_games,terminal_rewards,action_fallbacks,telemetry_diagnostics,live_rating_credits,requested_max_games,observed_completion_delta,stop_reason
+complete_batch,all,2,0,0,2,2,0,0,3.1,1.550,1.55,1395.13,1398.16,3.03,173,175,2,0,0,0,1,2,completion overshoot: 2
+role,Buyer,2,0,0,2,2,0,0,3.1,1.550,1.55,,,,,,,,,,,,
+outcome,Walked away,2,0,0,2,2,0,0,3.1,1.550,1.55,,,,,,,,,,,,

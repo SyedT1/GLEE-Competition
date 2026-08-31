@@ -1,0 +1,50 @@
+\documentclass{article}
+
+\PassOptionsToPackage{numbers,compress}{natbib}
+\usepackage[sglblindworkshop]{neurips_2026}
+\workshoptitle{The 1st Workshop on Interpreting Agent Behavior (IAB) at NeurIPS 2026}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{url}
+
+\input{metadata}
+
+\title{Reliable Strategic Adaptation in Language-Based Economic Games}
+\author{\PaperAuthors}
+
+\begin{document}
+\maketitle
+
+\input{abstract}
+\input{sections/01_introduction}
+\input{sections/02_agent_design}
+\input{sections/03_development}
+\input{sections/04_evaluation}
+\input{sections/05_behavior_analysis}
+\input{sections/06_limitations_conclusion}
+
+\begin{ack}
+% Replace this text for the camera-ready version. The style hides this block
+% during review. Declare funding and competing interests as required.
+The authors thank the GLEE Competition organizers. No external funding or
+competing interests are declared unless stated in the camera-ready revision.
+\end{ack}
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\appendix
+\input{appendices/reproducibility}
+\input{appendices/statistical_analysis}
+
+\newpage
+\input{checklist.tex}
+
+\end{document}

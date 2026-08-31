@@ -1,0 +1,82 @@
+\section{Supplementary statistical and systems audit}
+\label{app:statistics}
+
+\paragraph{Sources, order, and linkage.}
+The rating analysis uses all 248 live rows in
+\path{data/v33_rating_outcomes.csv} after excluding the explicitly named
+synthetic contract-test row. File order is the executed assignment order; the
+analysis writes \path{data/v33_rating_outcomes_sequenced.csv} with an explicit
+1--248 index. The append-only evidence and session report independently retain
+checkpoint order and assigned game IDs.
+
+The text export contains 220 complete records: 127/150 bargaining, 74/78
+persuasion, and 19/20 negotiation (88.7\% overall). Two records omit a repeated
+header but retain separate setup and result blocks, which the parser recovers.
+The export has no game IDs, so transcript records are not positionally joined to
+ratings. No missing-at-random assumption is made; behavioral quantities are
+available-case process summaries.
+
+\paragraph{Descriptive rating paths.}
+Table~\ref{tab:v33-distribution} reports signs, means, medians, dispersion, and
+no confidence interval. The positive bargaining mean coexists with an almost
+even sign split; persuasion has a positive mean but negative median. Lag-one
+sample autocorrelations were $0.05$, $-0.08$, and $0.07$ for bargaining,
+persuasion, and negotiation, but do not establish independence. Repeated
+opponents cannot be identified from the rating extract. Consequently neither a
+fixed-sample IID interval nor a post hoc confidence sequence would have a clear
+estimand or justified dependence structure.
+
+Figure~\ref{fig:v33-sequential} plots cumulative changes against the executed
+family guards. Bargaining's maximum within-run drawdown was 24.75 points before
+the 20-game activation point. Persuasion crossed its 22-point boundary at game
+78; negotiation crossed 30 points at game 20.
+
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=\textwidth]{figures/v33_sequential_ratings.pdf}
+  \caption{Cumulative displayed rating changes. The dotted line is the family
+  baseline-loss limit, the dashed curve is running peak minus drawdown limit,
+  and the vertical line is the 20-game activation point. These are controller
+  boundaries, not inferential thresholds.}
+  \label{fig:v33-sequential}
+\end{figure}
+
+\paragraph{Support and confounding.}
+Table~\ref{tab:v33-persuasion-support} gives the full role--mode--value-visibility
+support. Every hidden-value persuasion assignment placed V33 in the seller
+role. Hidden-versus-known marginal totals therefore combine information and
+role effects and are not compared. The machine-readable context CSV retains
+role, information, horizon, discount, signal mode, prior, and cutoff buckets;
+small cells remain exploratory and no multiplicity-adjusted claims are made.
+
+\paragraph{Available-case behavior.}
+Among 127 exported bargaining games, 113 reached agreement and 14 ended in
+walkaway; agreements used a median one observed round (mean 1.40, maximum 12).
+Negotiation produced 11/19 agreements, four no-deals, and four walkaways. The 74
+persuasion games contain 1,480 decisions. In 40 seller games, 397/397 observed
+high-quality products and 135/403 low-quality products received a positive
+signal. Opponents bought 309/532 positive-signal and 24/268 negative-signal
+products. In 34 buyer games, V33 bought 350/680 products, including 245 high and
+105 low; passed quality is hidden. None of these unlinked summaries estimates a
+rating effect or counterfactual behavior.
+
+\paragraph{Guard sensitivity.}
+Table~\ref{tab:v33-stop-sensitivity} replays the observed sequence while jointly
+scaling all family and role thresholds. At half thresholds, bargaining would
+have stopped at game 17, persuasion at 24, and negotiation at 19. At $1.25$
+times the thresholds, neither adaptively stopped family crosses a guard in its
+observed prefix. These are path-dependent replays, not counterfactual estimates:
+later matchmaking need not remain the same after a different stopping decision.
+
+\paragraph{Telemetry defect.}
+The session report contains 500 caught HTTP 422 reward-harvest failures from six
+non-UUID component-test IDs. Two IDs were queried 84 times and four were queried
+83 times. The V33 wrapper overwrote three synthetic flags, three other IDs did
+not match the synthetic prefix classifier, and the checkpoint measured new
+telemetry before harvesting. Hence the abort guard saw zero newly appended
+errors. The queries occurred after actions and did not change recorded ratings,
+but they invalidate any claim that the monitoring layer worked as intended.
+The future protocol must preserve synthetic flags, classify test IDs by an
+explicit registry, and measure telemetry after harvesting.
+
+\input{tables/v33_statistical_analysis}

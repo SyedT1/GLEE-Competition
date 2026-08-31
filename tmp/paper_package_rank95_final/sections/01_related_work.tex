@@ -1,0 +1,21 @@
+\section{Related work}
+
+GLEE joins economic games with language-agent evaluation
+\citep{shapira2024glee}. Automated-negotiation research has long separated
+opponent preference, strategy, and deadline modeling \citep{baarslag2016opponent};
+learned dialogue agents instead optimize negotiation end to end
+\citep{lewis2017deal}. Our explicit separation of numeric policy from fixed
+language resembles modular strategy--generation designs
+\citep{he2018decoupling}, but we contribute neither a learned dialogue model nor
+a new equilibrium solution. Interactive-agent benchmarks emphasize task-level
+success and failure \citep{liu2024agentbench}; internal algorithmic audits
+emphasize lifecycle evidence \citep{raji2020accountability}, while runtime
+shields enforce action-level specifications \citep{alshiekh2018shielding}. Our
+narrower contribution aligns strategic output, a contract validator, and an
+exposure controller against the same ordered trace; unlike a formal shield, its
+validator guarantees action legality rather than reward. The persuasion
+inequality below is a direct static Bayes constraint related to Bayesian
+persuasion \citep{kamenica2011bayesian}, not a dynamic result. Confidence
+sequences address optional stopping \citep{howard2021confidence}, but this trace
+does not establish an estimand or the conditional dependence assumptions needed
+for a valid anytime analysis.

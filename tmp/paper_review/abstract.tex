@@ -1,0 +1,17 @@
+\begin{abstract}
+We present \AgentName, a deterministic, role-aware agent for GLEE bargaining,
+bilateral negotiation, and persuasion. The submitted V33 policy uses no
+language model at inference time. It combines incentive-based targets,
+opponent-path summaries, a static Bayesian-persuasion benchmark, strict action
+validation, and a controller that admits and audits one assignment at a time.
+Development exposed three useful failures: a legal policy can cycle for 99
+rounds, a blocking SDK batch can overshoot its requested exposure, and positive
+family ratings can hide a losing role. V33 therefore locks policies by role and
+uses role- and family-level loss guards. In one sequential live run, bargaining
+gained 190.94 displayed rating points over 150 games and persuasion gained
+55.67 over 78; negotiation lost 33.73 over 20 and stopped on drawdown. Both
+bargaining and persuasion roles were positive, while both negotiation roles
+were negative. These adaptively stopped observations are descriptive, not
+causal comparisons, but demonstrate why strategic policy, behavioral auditing,
+and exposure control must be designed together.
+\end{abstract}

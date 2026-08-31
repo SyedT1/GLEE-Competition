@@ -13,9 +13,9 @@ SOURCE = (
     ROOT
     / "notebooks"
     / "Glee_competition_23"
-    / "GLEE_Competition_agent_v23_adaptive_defender.ipynb"
+    / "23_adaptive_defender_peak_drawdown_reservation_protection.ipynb"
 )
-OUTPUT = ROOT / "notebooks" / "GLEE_Competition_agent_v24_bp_repair.ipynb"
+OUTPUT = ROOT / "notebooks" / "24_bargaining_persuasion_repair_surplus_protection_terminal_pooling.ipynb"
 
 
 V24_POLICY_FOOTER = r'''

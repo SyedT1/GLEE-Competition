@@ -1,0 +1,58 @@
+\section{Reproducibility and artifact record}
+\label{app:reproducibility}
+
+\paragraph{Executed agent.}
+The submitted agent is anonymized as \AgentName{} (Agent ID withheld in the
+review manuscript), build
+\texttt{v33-heuristic-150-each-2026-08-30}. The exact executed source is
+\path{artifacts/v33/33_evidence_locked_role_portfolio_frequency_paced_bayesian_pooling.ipynb}.
+It used Python 3.12 and \texttt{glee-sdk==0.0.5} in a hosted Kaggle session,
+concurrency one, no training, no model weights, and no external inference API.
+The run took approximately 13,497 seconds (3.75 hours); Kaggle's exact CPU and
+memory allocation was not recorded.
+
+\paragraph{Bundled evidence.}
+The same directory contains the session report, rating-outcome CSV,
+policy state, and append-only evidence JSONL. The notebook, policy state, and
+rating CSV are byte-identical to the executed exports. For double-blind review,
+the evidence replaces only the submitting agent UUID and dashboard name with
+fixed anonymous tokens; game states, actions, timestamps, scores, and controller
+records are unchanged. The rating CSV contains one named
+synthetic contract-test row and 248 live rows. The JSONL contains ordered
+decision, move-result, checkpoint, harvest, and family-summary records. File
+sizes and SHA-256 hashes are listed in
+\path{artifacts/v33/ARTIFACT_MANIFEST.sha256}; these hashes, rather than a
+mutable or identifying repository URL, identify the reviewed files. A public
+repository link and commit will be restored after double-blind review. The
+root-level \path{PACKAGE_MANIFEST.sha256} additionally hashes every bundled
+source and data file except itself and disposable compiler outputs.
+
+\paragraph{Regenerating the audit.}
+From a clean extraction with Python 3.12 or later:
+\begin{verbatim}
+python -m pip install -r requirements-analysis.txt
+python analysis/analyze_v33_transcripts.py
+\end{verbatim}
+The second command regenerates the derived CSVs, statistical tables, JSON
+summary, and sequential figure in place. The script resolves paths from its own
+location and does not depend on the extraction directory name. The live
+notebook dependency is separately pinned in \path{requirements-live.txt}; live
+execution additionally requires a valid competition credential and a mutable
+matchmaking service, and is not needed to verify reported totals.
+
+\paragraph{Replay boundary.}
+Recorded V33 decisions and controller checkpoints can be audited from the
+append-only evidence. We do not claim complete counterfactual replay: 28 human-
+readable transcripts are absent, that export lacks IDs, the opponent population
+and rating model evolve, and unobserved alternative actions do not exist.
+Exact leaderboard ratings and missing transcript behavior therefore cannot be
+reproduced. The policy action map can be inspected from the executable and the
+states that are present in the evidence.
+
+\paragraph{Known executed defect.}
+The 500 telemetry rows are caught HTTP 422 failures for six stale component-test
+IDs. Synthetic classification was overwritten or incomplete, and the controller
+measured new telemetry before harvesting. The defect did not alter recorded
+actions or ratings, but it prevented the intended telemetry abort. It is not
+silently patched in the executed notebook; Appendix~\ref{app:statistics}
+specifies the corrected future ordering.

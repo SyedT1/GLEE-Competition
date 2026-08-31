@@ -1,0 +1,21 @@
+\section{Development process}
+
+Development proceeded by turning live failures into invariants. First, early
+agents confused observed bargaining field names with outgoing action fields and
+allowed multiple clients to race on one turn. Strict schemas, a single play
+loop, and offline edge-case tests made interface reliability part of the policy.
+
+Second, V3 remained legal but cycled for 99 rounds under an unlimited horizon
+and extreme discount asymmetry. Repeated-state detection and explicit
+stall-dependent acceptance repaired termination without accepting known
+negative surplus. Third, V11 requested 24 negotiation games through a blocking,
+concurrency-four call but returned after 53, losing 44.84 rating points. V33
+therefore uses one queue assignment followed by an authoritative audit.
+
+Finally, later batches repeatedly showed role reversals: positive negotiation
+totals hid losing buyers, and persuasion buyers often hid losing sellers. V28--
+V30 isolated the buyer rollback, Bob recovery, and seller pooling hypotheses.
+V33 combined these as fixed role branches and replaced terminal-only deception
+with the static bound and deterministic frequency schedule in
+Eqs.~\ref{eq:obedience}--\ref{eq:pacing}. These changes were motivated by logged
+failure modes, not exhaustive leaderboard parameter search.

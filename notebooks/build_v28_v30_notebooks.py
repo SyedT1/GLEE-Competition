@@ -9,8 +9,8 @@ import nbformat
 
 
 ROOT = Path(__file__).resolve().parent
-V27 = ROOT / "Glee_competition_27" / "GLEE_Competition_agent_v27_100_each.ipynb"
-V23 = ROOT / "Glee_competition_23" / "GLEE_Competition_agent_v23_adaptive_defender.ipynb"
+V27 = ROOT / "Glee_competition_27" / "27_evidence_guided_context_repair_configuration_gated_pooling.ipynb"
+V23 = ROOT / "Glee_competition_23" / "23_adaptive_defender_peak_drawdown_reservation_protection.ipynb"
 
 
 def extract_v23_buyer() -> str:
@@ -572,7 +572,7 @@ def main() -> None:
     specs = [
         {
             "version": 28,
-            "filename": "GLEE_Competition_agent_v28_negotiation_buyer_rollback.ipynb",
+            "filename": "28_negotiation_buyer_rollback_role_branch_ablation.ipynb",
             "build_id": "v28-negotiation-buyer-rollback-2026-08-29",
             "family": "negotiation", "role": "buyer", "mode": None,
             "target": 20, "max_total": 45, "max_attempts": 55,
@@ -593,7 +593,7 @@ superiority.
         },
         {
             "version": 29,
-            "filename": "GLEE_Competition_agent_v29_bob_recovery.ipynb",
+            "filename": "29_bargaining_bob_delay_aware_recovery.ipynb",
             "build_id": "v29-bob-recovery-2026-08-29",
             "family": "bargaining", "role": "player_2", "mode": None,
             "target": 16, "max_total": 40, "max_attempts": 50,
@@ -614,7 +614,7 @@ tests establish safety and contract validity, not rating superiority.
         },
         {
             "version": 30,
-            "filename": "GLEE_Competition_agent_v30_binary_seller_ablation.ipynb",
+            "filename": "30_binary_seller_bayesian_pooling_ablation.ipynb",
             "build_id": "v30-binary-seller-ablation-2026-08-29",
             "family": "persuasion", "role": "seller", "mode": "binary",
             "target": 12, "max_total": 40, "max_attempts": 50,

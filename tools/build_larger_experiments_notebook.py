@@ -9,8 +9,8 @@ import nbformat
 
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "notebooks" / "GLEE_Competition_agent_v20_live_three_family.ipynb"
-OUTPUT = ROOT / "notebooks" / "GLEE_Competition_agent_v21_controlled_microbatches.ipynb"
+SOURCE = ROOT / "notebooks" / "20_live_three_family_robust_projection_credibility_safe_pooling.ipynb"
+OUTPUT = ROOT / "notebooks" / "21_controlled_microbatches_family_stop_loss_authoritative_accounting.ipynb"
 
 
 def main():

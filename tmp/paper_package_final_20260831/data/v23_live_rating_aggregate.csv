@@ -1,0 +1,10 @@
+family,role,games,positive,negative,zero,rating_change,mean_rating_delta
+bargaining,all,11,4,7,0,-12.83,-1.166
+bargaining,player_1,5,1,4,0,-15.13,-3.026
+bargaining,player_2,6,3,3,0,2.30,0.383
+negotiation,all,50,46,4,0,177.77,3.555
+negotiation,buyer,24,22,2,0,68.14,2.839
+negotiation,seller,26,24,2,0,109.63,4.217
+persuasion,all,10,3,7,0,-13.85,-1.385
+persuasion,buyer,5,3,2,0,5.96,1.192
+persuasion,seller,5,0,5,0,-19.81,-3.962

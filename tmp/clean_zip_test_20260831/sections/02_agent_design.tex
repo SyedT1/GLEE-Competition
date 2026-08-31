@@ -1,0 +1,68 @@
+\section{Submitted policy and safety layers}
+
+\paragraph{State and memory.}
+The dispatcher locks a family--role branch for each game. The policy is
+deterministic conditional on the complete visible history, persistent memory,
+and game identifier---not on the current state alone. Bargaining memory stores
+opponent demands and rejected shares by role, information regime, discount
+configuration, and disclosed opponent; negotiation stores role-specific price
+paths; the persuasion buyer updates signal precision only when purchase reveals
+quality. Undisclosed opponents receive game-local keys. Messages verbalize an
+already selected action, although they may indirectly affect later states.
+
+\paragraph{Bargaining.}
+For pot $M$, both roles predict the opponent's demanded share from a robust
+median step, blend it with a configuration prior, and search responder shares
+$y\in\{0.10,0.105,\ldots,0.94\}$. The score
+\begin{equation}
+ \sigma((y-f+0.007)/w)(1-y)^\gamma-
+ [1-\sigma((y-f+0.007)/w)]c
+ \label{eq:bargaining-search}
+\end{equation}
+uses role-specific floor $f$, width $w$, curvature $\gamma$, and delay cost
+$c$ listed in Appendix~\ref{app:policy}. Alice uses the resulting branch
+directly. Bob then transfers
+\begin{equation}
+ T=\min\{M[r(\delta_B)+0.008t],\max(0,x_B-0.24M)\},
+ \quad r=0.018\;\text{if }\delta_B<0.95\text{ else }0.008,
+ \label{eq:bob-transfer}
+\end{equation}
+and may override a rejection when the received share exceeds
+$\max\{0.16,(0.30\text{ if }\delta_B<0.95\text{ else }0.33)-0.09t-0.055s\}$.
+These are hand-set heuristics, not Rubinstein equilibrium claims.
+
+\paragraph{Negotiation.}
+Complete-information targets allocate a declining fraction of feasible surplus;
+hidden-information targets extrapolate half the opponent's median favorable
+price step. Offers remain on the individually rational side of own value.
+Responses compare offered utility with a declining continuation threshold;
+repeated profitable offers can be accepted and repeated infeasible unknown-
+horizon paths can trigger walkaway. Buyer and seller constants differ, and the
+seller has a short-horizon midpoint repair; Appendix~\ref{app:policy} specifies
+every branch.
+
+\paragraph{Persuasion.}
+The buyer purchases below low value, passes above high value, and otherwise
+compares price with a conservative posterior expected value. The seller always
+recommends high quality. With known buyer values $v>u$, price $P$, prior $p$,
+and a \emph{static randomized} model $\Pr(+\mid H)=1$,
+$\Pr(+\mid L)=q$, purchase after ``+'' requires
+\begin{equation}
+ c=(P-u)/(v-u),\qquad
+ q\le q_{\max}=\min\{1,p(1-c)/[c(1-p)]\}.
+ \label{eq:static-calibration}
+\end{equation}
+V33 sets a target $q=0.88q_{\max}$ off-terminal and $0.94q_{\max}$ terminal
+(capped at $0.92$), then deterministically signals the $n$th observed low item
+when $\lfloor(n+1)q\rfloor>\lfloor nq\rfloor$. Because $q$ changes and the
+schedule can be inferred, Eq.~\ref{eq:static-calibration} is only a calibration
+heuristic: it does not prove history-conditional obedience. When receiver values
+are hidden, $q=\operatorname{clip}(0.12+0.28p+0.05\mathbf{1}_{\rm terminal},0,0.40)$
+is explicitly ad hoc and carries no obedience interpretation.
+
+\paragraph{Validation and exposure.}
+Actions are checked for exact keys, finite values, budget balance, legal enums,
+required counteroffers, and message length; exceptions invoke a legal fallback.
+The controller queues one assignment, leaves on assignment, drains the game,
+and audits authoritative counts and ratings. Predeclared family and role
+loss/drawdown thresholds bound exposure but are not statistical tests.

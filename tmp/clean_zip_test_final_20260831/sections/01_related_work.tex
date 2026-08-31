@@ -1,0 +1,15 @@
+\section{Related work}
+
+GLEE joins economic games with language-agent evaluation
+\citep{shapira2024glee}. Automated-negotiation research has long separated
+opponent preference, strategy, and deadline modeling \citep{baarslag2016opponent};
+learned dialogue agents instead optimize negotiation end to end
+\citep{lewis2017deal}. Our explicit separation of numeric policy from fixed
+language resembles modular strategy--generation designs
+\citep{he2018decoupling}, but we contribute neither a learned dialogue model nor
+a new equilibrium solution. The persuasion inequality below is a direct static
+Bayes constraint related to Bayesian persuasion \citep{kamenica2011bayesian},
+not a dynamic signaling result. Finally, confidence sequences provide a
+principled route to inference under optional stopping
+\citep{howard2021confidence}; our trace lacks the randomized assignment and
+stable sampling assumptions needed to retrofit such an analysis.
