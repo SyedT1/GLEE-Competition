@@ -1,0 +1,8 @@
+measure,games_or_families,activations,detail
+Contract fallback,0,0,of 1838 live decisions
+Bob recovery override,38,46,29 offers; 17 acceptance overrides
+Cycle intervention,3,3,1 Bob bounded match; 2 negotiation walkaways
+Seller short-horizon repair,3,6,4 activations came from one unknown-horizon game
+Family drawdown stop,2,2,persuasion and negotiation
+Assignment overshoot,0,0,across 248 checkpoints
+Telemetry abort,0,0,500 errors arrived after checkpoint checks

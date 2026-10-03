@@ -1,0 +1,5 @@
+scope,role,games,agreements,no_deals,walkaways,positive_deltas,negative_deltas,rounded_delta_sum,mean_rounded_delta,before_rating,after_rating,exact_rating_change,before_games,after_games,fallback_count
+exact_batch,all,55,,,,,,,,1243.31,1344.87,101.56,72,127,0
+complete_games,all,55,36,9,10,32,23,101.6,1.85,,,,,,
+complete_games,buyer,29,19,3,7,14,15,30.9,1.07,,,,,,
+complete_games,seller,26,17,6,3,18,8,70.7,2.72,,,,,,

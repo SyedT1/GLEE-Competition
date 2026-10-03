@@ -1,0 +1,45 @@
+display_order,date,time,role,opponent_type,outcome,rounded_rating_delta
+1,2026-08-25,18:55,Buyer,agent,No deal,-1.2
+2,2026-08-25,18:55,Seller,agent,No deal,2.5
+3,2026-08-25,18:54,Seller,agent,Agreement,-4.9
+4,2026-08-25,18:54,Seller,agent,No deal,-3.3
+5,2026-08-25,18:54,Seller,agent,No deal,1.2
+6,2026-08-25,18:54,Seller,agent,No deal,-1.3
+7,2026-08-25,18:53,Seller,agent,No deal,-1.6
+8,2026-08-25,18:53,Seller,agent,Agreement,6.5
+9,2026-08-25,18:53,Buyer,agent,No deal,0.7
+10,2026-08-25,18:52,Seller,agent,Agreement,3.1
+11,2026-08-25,18:52,Seller,agent,Agreement,-3.3
+12,2026-08-25,18:51,Seller,agent,No deal,-1.8
+13,2026-08-25,18:51,Seller,agent,Agreement,-2.6
+14,2026-08-25,18:51,Seller,agent,No deal,-1.7
+15,2026-08-25,18:51,Seller,agent,Agreement,6.8
+16,2026-08-25,18:51,Buyer,agent,No deal,1.6
+17,2026-08-25,18:50,Seller,agent,Agreement,7.1
+18,2026-08-25,18:50,Seller,agent,Agreement,0.6
+19,2026-08-25,18:49,Seller,agent,Walked away,-4.0
+20,2026-08-25,18:49,Seller,human,Walked away,0.7
+21,2026-08-25,18:48,Seller,agent,Agreement,7.1
+22,2026-08-25,18:48,Buyer,agent,Walked away,0.5
+23,2026-08-25,18:47,Buyer,agent,Walked away,1.8
+24,2026-08-25,18:46,Seller,agent,No deal,3.6
+25,2026-08-25,18:46,Buyer,agent,No deal,0.3
+26,2026-08-25,18:46,Buyer,agent,Agreement,-3.2
+27,2026-08-25,18:45,Buyer,agent,Agreement,5.5
+28,2026-08-25,18:45,Seller,agent,Walked away,1.0
+29,2026-08-25,18:45,Seller,agent,Agreement,5.7
+30,2026-08-25,18:44,Buyer,agent,Agreement,-3.4
+31,2026-08-25,18:44,Buyer,agent,No deal,1.4
+32,2026-08-25,18:44,Seller,agent,Agreement,5.7
+33,2026-08-25,18:44,Buyer,agent,No deal,1.8
+34,2026-08-25,18:43,Buyer,agent,No deal,1.0
+35,2026-08-25,18:43,Seller,agent,No deal,1.4
+36,2026-08-25,18:43,Buyer,agent,Agreement,4.3
+37,2026-08-25,18:42,Seller,agent,Agreement,5.6
+38,2026-08-25,18:42,Seller,agent,No deal,3.1
+39,2026-08-25,18:42,Seller,agent,No deal,1.4
+40,2026-08-25,18:41,Buyer,agent,Agreement,-0.6
+41,2026-08-25,18:41,Buyer,agent,No deal,0.2
+42,2026-08-25,18:41,Seller,agent,Walked away,-1.3
+43,2026-08-25,18:40,Seller,agent,Walked away,-1.4
+44,2026-08-25,18:39,Seller,agent,No deal,4.3

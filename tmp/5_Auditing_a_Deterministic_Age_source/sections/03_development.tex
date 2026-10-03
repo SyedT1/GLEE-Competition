@@ -1,0 +1,21 @@
+\section{Failure-driven method lineage}
+
+Three failures became shared invariants: a legal 99-round cycle motivated
+repeated-state escape; a 24-game request returning 53 motivated one-assignment
+recounting; and hidden role losses motivated role-local guards.
+
+Table~\ref{tab:method-lineage} in Appendix~\ref{app:reproducibility} records branch changes, frozen components, and
+run coverage. Adaptive defender (AD) adds role-local defense and the guard
+$R_t<R_0-20$ or $R_t<\max_{s\leq t}R_s-15$. Surplus protection--terminal
+pooling (SP-TP) uses $f=.75f_0+.25f_b$ for Alice and gated low-quality
+signaling. Role-aware reuse--drawdown control (RA-DC) composes
+$\pi=(\pi_{\mathrm{SP}}^{B},\pi_{\mathrm{AD}}^{N})$ without a new decision branch.
+
+Adaptive role calibration--contextual concession (ARC) uses
+$c=c_0-.04I_{\mathrm{msg}}-.02I_{\mathrm{known,seller}}$.
+Evidence-guided context repair (EG-CR) blends weak-context negotiation offers
+toward the midpoint, $p=.85p_0+.15m$. The submitted evidence-locked portfolio
+(ELP) uses $q=.88q_{\max}$ and paced low-quality signaling
+$a_n=\lfloor(n+1)q\rfloor-\lfloor nq\rfloor$. These are representative branch
+rules rather than complete method definitions; Appendix~\ref{app:policy} gives
+the executed ELP specification.

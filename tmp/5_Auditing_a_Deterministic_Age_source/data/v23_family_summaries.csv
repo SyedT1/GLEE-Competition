@@ -1,0 +1,4 @@
+family,initial_rating,initial_games,final_rating,final_games,completed,rating_change,peak_rating,peak_drawdown,stop_reason
+bargaining,1313.92,208,1301.09,219,11,-12.83,1317.56,16.47,trailing rating drawdown
+negotiation,1383.79,283,1561.56,333,50,177.77,1561.56,0.00,target reached
+persuasion,1798.92,484,1785.07,494,10,-13.85,1802.77,17.70,trailing rating drawdown

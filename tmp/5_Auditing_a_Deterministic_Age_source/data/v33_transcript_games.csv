@@ -1,0 +1,221 @@
+transcript_index,family_index,family,timestamp,role,outcome,rounds_observed,last_round_number,your_payoff,opponent_payoff,information,messages,max_rounds,amount_or_price,your_valuation,opponent_valuation,high_quality_chance,high_quality_value,low_quality_value,bought,passed,bought_high,bought_low,passed_high,passed_low,observed_high,observed_low,positive_signal,negative_signal,unknown_signal,positive_bought,negative_bought,positive_high,positive_low,negative_high,negative_low
+1,1,bargaining,"Aug 30, 2026, 1:32 PM",alice,agreement,1,1,5300.0,4700.0,incomplete,allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+2,2,bargaining,"Aug 30, 2026, 1:32 PM",alice,agreement,1,1,5350.0,4650.0,incomplete,not allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+3,3,bargaining,"Aug 30, 2026, 1:33 PM",bob,agreement,1,1,3650.79,6349.21,incomplete,allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+4,4,bargaining,"Aug 30, 2026, 1:33 PM",alice,agreement,2,2,368352.0,561184.0,incomplete,allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+5,5,bargaining,"Aug 30, 2026, 1:34 PM",bob,agreement,2,2,640.0,9200.0,not_shown,not allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+6,6,bargaining,"Aug 30, 2026, 1:34 PM",bob,agreement,1,1,470000.0,530000.0,incomplete,not allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+7,7,bargaining,"Aug 30, 2026, 1:34 PM",bob,agreement,1,1,480000.0,520000.0,incomplete,allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+8,8,bargaining,"Aug 30, 2026, 1:34 PM",bob,agreement,2,2,100000.0,855000.0,not_shown,allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+9,9,bargaining,"Aug 30, 2026, 1:36 PM",bob,agreement,1,1,45.56,54.44,not_shown,not allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+10,10,bargaining,,alice,walkaway,1,1,0.0,0.0,not_shown,allowed,12,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+11,11,bargaining,"Aug 30, 2026, 1:36 PM",alice,agreement,2,2,47.08,47.92,incomplete,allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+12,12,bargaining,"Aug 30, 2026, 1:36 PM",bob,agreement,1,1,450000.0,550000.0,incomplete,not allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+13,13,bargaining,"Aug 30, 2026, 1:37 PM",alice,walkaway,1,1,0.0,0.0,incomplete,not allowed,12,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+14,14,bargaining,"Aug 30, 2026, 1:37 PM",bob,agreement,1,1,6000.0,4000.0,not_shown,not allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+15,15,bargaining,"Aug 30, 2026, 1:37 PM",alice,agreement,2,2,49.77,40.18,incomplete,allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+16,16,bargaining,"Aug 30, 2026, 1:37 PM",bob,walkaway,2,2,0.0,0.0,not_shown,not allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+17,17,bargaining,"Aug 30, 2026, 1:38 PM",alice,agreement,5,5,59392.0,696402.84,incomplete,allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+18,18,bargaining,"Aug 30, 2026, 1:38 PM",bob,agreement,1,1,5000.0,5000.0,not_shown,allowed,12,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+19,19,bargaining,"Aug 30, 2026, 1:38 PM",bob,agreement,1,1,44.44,55.56,not_shown,not allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+20,20,bargaining,"Aug 30, 2026, 1:39 PM",bob,agreement,1,1,6969.7,3030.3,incomplete,not allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+21,21,bargaining,"Aug 30, 2026, 1:39 PM",bob,agreement,1,1,534883.72,465116.28,incomplete,not allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+22,22,bargaining,"Aug 30, 2026, 1:40 PM",alice,agreement,1,1,5300.0,4700.0,incomplete,allowed,12,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+23,23,bargaining,"Aug 30, 2026, 1:40 PM",bob,agreement,2,2,2280.0,6080.0,incomplete,not allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+24,24,bargaining,"Aug 30, 2026, 1:40 PM",alice,agreement,1,1,53.0,47.0,incomplete,allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+25,25,bargaining,"Aug 30, 2026, 1:40 PM",bob,walkaway,2,2,0.0,0.0,incomplete,allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+26,26,bargaining,"Aug 30, 2026, 1:40 PM",alice,agreement,1,1,5350.0,4650.0,incomplete,not allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+27,27,bargaining,"Aug 30, 2026, 1:41 PM",bob,agreement,2,2,226350.0,748500.0,incomplete,not allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+28,28,bargaining,"Aug 30, 2026, 1:41 PM",bob,agreement,2,2,286209.09,558981.82,incomplete,allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+29,29,bargaining,"Aug 30, 2026, 1:41 PM",bob,agreement,1,1,47.0,53.0,not_shown,not allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+30,30,bargaining,"Aug 30, 2026, 1:41 PM",alice,agreement,2,2,720000.0,224000.0,not_shown,not allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+31,31,bargaining,"Aug 30, 2026, 1:41 PM",alice,agreement,1,1,9.0,91.0,not_shown,allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+32,32,bargaining,"Aug 30, 2026, 1:42 PM",bob,agreement,1,1,606355.0,393645.0,incomplete,not allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+33,33,bargaining,"Aug 30, 2026, 1:42 PM",bob,agreement,1,1,47.4,52.6,not_shown,allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+34,34,bargaining,"Aug 30, 2026, 1:42 PM",alice,walkaway,1,1,0.0,0.0,not_shown,allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+35,35,bargaining,"Aug 30, 2026, 1:42 PM",bob,agreement,1,1,791666.67,208333.33,not_shown,allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+36,36,bargaining,"Aug 30, 2026, 1:42 PM",alice,agreement,1,1,49.7,50.3,not_shown,not allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+37,37,bargaining,"Aug 30, 2026, 1:43 PM",alice,walkaway,1,1,0.0,0.0,not_shown,not allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+38,38,bargaining,"Aug 30, 2026, 1:43 PM",alice,agreement,1,1,90000.0,910000.0,not_shown,allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+39,39,bargaining,"Aug 30, 2026, 1:43 PM",alice,agreement,2,2,33.89,57.64,incomplete,allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+40,40,bargaining,"Aug 30, 2026, 1:43 PM",alice,agreement,2,2,447954.54,477159.09,incomplete,allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+41,41,bargaining,"Aug 30, 2026, 1:44 PM",bob,agreement,1,1,480000.0,520000.0,incomplete,not allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+42,42,bargaining,"Aug 30, 2026, 1:44 PM",bob,agreement,1,1,30.0,70.0,incomplete,allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+43,43,bargaining,"Aug 30, 2026, 1:44 PM",bob,walkaway,2,2,0.0,0.0,not_shown,allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+44,44,bargaining,"Aug 30, 2026, 1:44 PM",alice,agreement,2,2,44.79,40.18,not_shown,allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+45,45,bargaining,"Aug 30, 2026, 1:44 PM",bob,agreement,1,1,4444.44,5555.56,not_shown,allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+46,46,bargaining,"Aug 30, 2026, 1:45 PM",alice,agreement,1,1,90000.0,910000.0,not_shown,not allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+47,47,bargaining,"Aug 30, 2026, 1:45 PM",bob,agreement,1,1,473684.21,526315.79,not_shown,not allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+48,48,bargaining,"Aug 30, 2026, 1:46 PM",alice,agreement,12,12,50000.0,950000.0,incomplete,not allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+49,49,bargaining,"Aug 30, 2026, 1:46 PM",bob,agreement,1,1,4300.0,5700.0,not_shown,not allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+50,50,bargaining,"Aug 30, 2026, 1:46 PM",bob,agreement,1,1,6551.72,3448.28,not_shown,not allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+51,51,bargaining,"Aug 30, 2026, 1:46 PM",bob,agreement,1,1,64.29,35.71,not_shown,not allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+52,52,bargaining,"Aug 30, 2026, 1:47 PM",bob,agreement,1,1,100.0,0.0,not_shown,allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+53,53,bargaining,"Aug 30, 2026, 1:47 PM",alice,agreement,1,1,5350.0,4650.0,incomplete,not allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+54,54,bargaining,"Aug 30, 2026, 1:47 PM",bob,agreement,1,1,49.1,50.9,not_shown,allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+55,55,bargaining,"Aug 30, 2026, 1:47 PM",bob,agreement,1,1,360000.0,640000.0,incomplete,not allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+56,56,bargaining,"Aug 30, 2026, 1:48 PM",alice,agreement,3,3,2300.0,7700.0,incomplete,not allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+57,57,bargaining,"Aug 30, 2026, 1:48 PM",bob,walkaway,2,2,0.0,0.0,not_shown,allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+58,58,bargaining,"Aug 30, 2026, 1:49 PM",bob,agreement,1,1,7642.87,2357.13,not_shown,not allowed,12,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+59,59,bargaining,"Aug 30, 2026, 1:49 PM",alice,agreement,1,1,47.2,52.8,not_shown,allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+60,60,bargaining,"Aug 30, 2026, 1:50 PM",alice,walkaway,1,1,0.0,0.0,not_shown,allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+61,61,bargaining,"Aug 30, 2026, 1:50 PM",bob,agreement,1,1,60.0,40.0,not_shown,allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+62,62,bargaining,"Aug 30, 2026, 1:50 PM",alice,agreement,2,2,4666.23,3852.24,not_shown,not allowed,12,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+63,63,bargaining,"Aug 30, 2026, 1:50 PM",alice,agreement,1,1,2920.0,7080.0,not_shown,allowed,12,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+64,64,bargaining,"Aug 30, 2026, 1:51 PM",bob,agreement,1,1,6480.8,3519.2,incomplete,allowed,12,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+65,65,bargaining,"Aug 30, 2026, 1:52 PM",bob,agreement,1,1,7451.37,2548.63,incomplete,allowed,12,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+66,66,bargaining,"Aug 30, 2026, 1:52 PM",bob,walkaway,2,2,0.0,0.0,not_shown,allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+67,67,bargaining,"Aug 30, 2026, 1:52 PM",bob,agreement,1,1,534883.72,465116.28,incomplete,not allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+68,68,bargaining,"Aug 30, 2026, 1:53 PM",alice,agreement,1,1,535000.0,465000.0,incomplete,allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+69,69,bargaining,"Aug 30, 2026, 1:53 PM",alice,agreement,1,1,5300.0,4700.0,incomplete,not allowed,12,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+70,70,bargaining,"Aug 30, 2026, 1:53 PM",alice,agreement,2,2,47.08,47.92,incomplete,allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+71,71,bargaining,"Aug 30, 2026, 1:53 PM",bob,agreement,1,1,45.0,55.0,not_shown,not allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+72,72,bargaining,"Aug 30, 2026, 1:54 PM",alice,agreement,2,2,611337.1,349796.61,incomplete,not allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+73,73,bargaining,"Aug 30, 2026, 2:00 PM",bob,agreement,2,2,8.55,91.0,not_shown,not allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+74,74,bargaining,"Aug 30, 2026, 2:00 PM",bob,agreement,1,1,327249.94,672750.06,not_shown,not allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+75,75,bargaining,"Aug 30, 2026, 2:01 PM",alice,agreement,1,1,5300.0,4700.0,incomplete,allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+76,76,bargaining,"Aug 30, 2026, 2:01 PM",bob,agreement,1,1,44.0,56.0,incomplete,allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+77,77,bargaining,"Aug 30, 2026, 2:02 PM",alice,agreement,1,1,900.0,9100.0,not_shown,allowed,12,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+78,78,bargaining,"Aug 30, 2026, 2:02 PM",alice,agreement,3,3,76712.5,825787.5,not_shown,allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+79,79,bargaining,"Aug 30, 2026, 2:02 PM",alice,agreement,1,1,53.5,46.5,incomplete,not allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+80,80,bargaining,"Aug 30, 2026, 2:03 PM",bob,agreement,1,1,100.0,0.0,not_shown,not allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+81,81,bargaining,"Aug 30, 2026, 2:04 PM",alice,agreement,1,1,90000.0,910000.0,not_shown,not allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+82,82,bargaining,"Aug 30, 2026, 2:04 PM",alice,agreement,3,3,140800.0,499200.0,incomplete,allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+83,83,bargaining,"Aug 30, 2026, 2:04 PM",alice,agreement,1,1,5300.0,4700.0,incomplete,not allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+84,84,bargaining,"Aug 30, 2026, 2:04 PM",bob,agreement,1,1,10000.0,0.0,not_shown,allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+85,85,bargaining,"Aug 30, 2026, 2:05 PM",bob,walkaway,2,2,0.0,0.0,not_shown,allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+86,86,bargaining,"Aug 30, 2026, 2:05 PM",alice,walkaway,1,1,0.0,0.0,incomplete,allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+87,87,bargaining,"Aug 30, 2026, 2:06 PM",alice,walkaway,1,1,0.0,0.0,incomplete,not allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+88,88,bargaining,"Aug 30, 2026, 2:06 PM",alice,agreement,2,2,497727.27,401818.18,incomplete,not allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+89,89,bargaining,"Aug 30, 2026, 2:06 PM",bob,agreement,1,1,420000.0,580000.0,not_shown,not allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+90,90,bargaining,"Aug 30, 2026, 2:06 PM",bob,agreement,1,1,500000.0,500000.0,not_shown,not allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+91,91,bargaining,"Aug 30, 2026, 2:07 PM",alice,agreement,1,1,530000.0,470000.0,incomplete,not allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+92,92,bargaining,"Aug 30, 2026, 2:07 PM",bob,agreement,1,1,4800.0,5200.0,not_shown,allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+93,93,bargaining,"Aug 30, 2026, 2:07 PM",bob,agreement,1,1,696969.7,303030.3,incomplete,not allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+94,94,bargaining,"Aug 30, 2026, 2:07 PM",bob,agreement,1,1,500000.0,500000.0,not_shown,allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+95,95,bargaining,"Aug 30, 2026, 2:08 PM",alice,agreement,2,2,50.62,46.91,not_shown,not allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+96,96,bargaining,"Aug 30, 2026, 2:08 PM",bob,agreement,1,1,47.5,52.5,incomplete,allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+97,97,bargaining,"Aug 30, 2026, 2:08 PM",bob,agreement,1,1,79.17,20.83,not_shown,not allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+98,98,bargaining,"Aug 30, 2026, 2:09 PM",bob,agreement,1,1,48.72,51.28,not_shown,not allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+99,99,bargaining,"Aug 30, 2026, 2:08 PM",alice,agreement,2,2,550238.58,369192.61,incomplete,not allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+100,100,bargaining,"Aug 30, 2026, 2:09 PM",bob,agreement,1,1,48.72,51.28,not_shown,not allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+101,101,bargaining,"Aug 30, 2026, 2:09 PM",alice,agreement,1,1,53.0,47.0,incomplete,allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+102,102,bargaining,"Aug 30, 2026, 2:09 PM",alice,agreement,1,1,45.7,54.3,not_shown,allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+103,103,bargaining,"Aug 30, 2026, 2:09 PM",bob,agreement,1,1,1000000.0,0.0,not_shown,allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+104,104,bargaining,"Aug 30, 2026, 2:10 PM",bob,agreement,2,2,296272.73,562981.82,incomplete,not allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+105,105,bargaining,"Aug 30, 2026, 2:10 PM",bob,agreement,1,1,7451.37,2548.63,incomplete,not allowed,12,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+106,106,bargaining,"Aug 30, 2026, 2:11 PM",alice,agreement,1,1,530000.0,470000.0,incomplete,allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+107,107,bargaining,"Aug 30, 2026, 2:11 PM",bob,agreement,1,1,677602.75,322397.25,incomplete,allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+108,108,bargaining,"Aug 30, 2026, 2:12 PM",bob,agreement,1,1,365079.37,634920.63,incomplete,not allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+109,109,bargaining,"Aug 30, 2026, 2:12 PM",alice,agreement,1,1,530000.0,470000.0,incomplete,allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+110,110,bargaining,"Aug 30, 2026, 2:12 PM",bob,agreement,1,1,433621.88,566378.12,not_shown,allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+111,111,bargaining,"Aug 30, 2026, 2:12 PM",bob,agreement,1,1,4700.0,5300.0,not_shown,allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+112,112,bargaining,"Aug 30, 2026, 2:13 PM",bob,agreement,1,1,7451.37,2548.63,incomplete,allowed,12,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+113,113,bargaining,"Aug 30, 2026, 2:13 PM",bob,agreement,1,1,83.18,16.82,incomplete,not allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+114,114,bargaining,"Aug 30, 2026, 2:14 PM",alice,agreement,2,2,475000.0,450000.0,not_shown,not allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+115,115,bargaining,"Aug 30, 2026, 2:14 PM",bob,agreement,2,2,3365.0,5971.5,not_shown,allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+116,116,bargaining,"Aug 30, 2026, 2:14 PM",bob,agreement,1,1,3800.0,6200.0,not_shown,not allowed,12,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+117,117,bargaining,"Aug 30, 2026, 2:14 PM",alice,agreement,1,1,292000.0,708000.0,not_shown,allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+118,118,bargaining,"Aug 30, 2026, 2:15 PM",alice,agreement,1,1,53.0,47.0,incomplete,not allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+119,119,bargaining,"Aug 30, 2026, 2:15 PM",bob,agreement,1,1,4736.84,5263.16,incomplete,allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+120,120,bargaining,"Aug 30, 2026, 2:15 PM",bob,agreement,1,1,100.0,0.0,not_shown,allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+121,121,bargaining,"Aug 30, 2026, 2:16 PM",bob,walkaway,2,2,0.0,0.0,not_shown,not allowed,No limit,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+122,122,bargaining,"Aug 30, 2026, 2:16 PM",bob,agreement,1,1,720000.0,280000.0,not_shown,not allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+123,123,bargaining,"Aug 30, 2026, 2:16 PM",bob,agreement,1,1,36.51,63.49,incomplete,not allowed,No limit,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+124,124,bargaining,"Aug 30, 2026, 2:16 PM",alice,agreement,3,3,28.88,55.08,incomplete,not allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+125,125,bargaining,"Aug 30, 2026, 2:16 PM",bob,agreement,1,1,350000.0,650000.0,incomplete,allowed,12,1000000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+126,126,bargaining,"Aug 30, 2026, 2:17 PM",bob,agreement,1,1,7200.0,2800.0,not_shown,not allowed,No limit,10000.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+127,127,bargaining,"Aug 30, 2026, 2:17 PM",alice,agreement,1,1,53.0,47.0,incomplete,not allowed,12,100.0,,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+128,1,persuasion,"Aug 30, 2026, 2:25 PM",seller,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,1000000.0,,,80.0,1250000.0,0.0,0,20,0,0,16,4,16,4,19,1,0,0,0,16,3,0,1
+129,2,persuasion,"Aug 30, 2026, 2:29 PM",buyer,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,10000.0,,,50.0,12500.0,0.0,0,20,0,0,0,0,0,0,0,0,20,0,0,0,0,0,0
+130,3,persuasion,"Aug 30, 2026, 2:30 PM",buyer,all_rounds,20,20,75.0,200.0,not_shown,not_applicable,20,100.0,,,80.0,125.0,0.0,2,18,1,1,0,0,1,1,18,2,0,2,0,1,1,0,0
+131,4,persuasion,"Aug 30, 2026, 2:31 PM",buyer,all_rounds,20,20,1500000.0,16000000.0,not_shown,not_applicable,20,1000000.0,,,80.0,1250000.0,0.0,16,4,14,2,0,0,14,2,5,0,15,1,0,0,1,0,0
+132,5,persuasion,"Aug 30, 2026, 2:36 PM",seller,all_rounds,20,20,180000.0,20000.0,not_shown,not_applicable,20,10000.0,,,50.0,40000.0,0.0,18,2,4,14,0,2,4,16,18,2,0,18,0,4,14,0,2
+133,6,persuasion,"Aug 30, 2026, 2:40 PM",seller,all_rounds,20,20,30000.0,7500.0,not_shown,not_applicable,20,10000.0,,,80.0,12500.0,0.0,3,17,3,0,16,1,19,1,19,1,0,3,0,19,0,0,1
+134,7,persuasion,"Aug 30, 2026, 2:41 PM",seller,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,1000000.0,,,33.0,,,0,20,0,0,5,15,5,15,7,13,0,0,0,5,2,0,13
+135,8,persuasion,"Aug 30, 2026, 2:43 PM",buyer,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,100.0,,,50.0,120.0,0.0,0,20,0,0,0,0,0,0,0,0,20,0,0,0,0,0,0
+136,9,persuasion,"Aug 30, 2026, 2:50 PM",buyer,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,1000000.0,,,33.0,1250000.0,0.0,0,20,0,0,0,0,0,0,14,0,6,0,0,0,0,0,0
+137,10,persuasion,"Aug 30, 2026, 2:51 PM",seller,all_rounds,20,20,17000000.0,2000000.0,not_shown,not_applicable,20,1000000.0,,,33.0,,,17,3,5,12,0,3,5,15,7,13,0,7,10,5,2,0,13
+138,11,persuasion,"Aug 30, 2026, 2:53 PM",buyer,all_rounds,20,20,10000000.0,8000000.0,not_shown,not_applicable,20,1000000.0,,,33.0,3000000.0,0.0,8,12,6,2,0,0,6,2,8,12,0,8,0,6,2,0,0
+139,12,persuasion,"Aug 30, 2026, 2:54 PM",buyer,all_rounds,20,20,22000000.0,20000000.0,not_shown,not_applicable,20,1000000.0,,,50.0,3000000.0,0.0,20,0,14,6,0,0,14,6,20,0,0,20,0,14,6,0,0
+140,13,persuasion,"Aug 30, 2026, 2:55 PM",buyer,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,1000000.0,,,33.0,1200000.0,0.0,0,20,0,0,0,0,0,0,7,13,0,0,0,0,0,0,0
+141,14,persuasion,"Aug 30, 2026, 2:56 PM",seller,all_rounds,20,20,180000.0,100000.0,not_shown,not_applicable,20,10000.0,,,33.0,40000.0,0.0,18,2,7,11,0,2,7,13,18,2,0,18,0,7,11,0,2
+142,15,persuasion,"Aug 30, 2026, 2:58 PM",buyer,all_rounds,20,20,4000000.0,20000000.0,not_shown,not_applicable,20,1000000.0,,,33.0,4000000.0,0.0,20,0,6,14,0,0,6,14,20,0,0,20,0,6,14,0,0
+143,16,persuasion,"Aug 30, 2026, 2:59 PM",seller,all_rounds,20,20,70000.0,50000.0,not_shown,not_applicable,20,10000.0,,,33.0,,,7,13,4,3,0,13,4,16,7,13,0,7,0,4,3,0,13
+144,17,persuasion,"Aug 30, 2026, 3:00 PM",seller,all_rounds,20,20,2000.0,1000.0,not_shown,not_applicable,20,100.0,,,50.0,300.0,0.0,20,0,10,10,0,0,10,10,18,2,0,18,2,10,8,0,2
+145,18,persuasion,,seller,all_rounds,20,20,1800.0,3600.0,not_shown,not_applicable,20,100.0,,,80.0,,,18,2,18,0,0,2,18,2,18,2,0,18,0,18,0,0,2
+146,19,persuasion,"Aug 30, 2026, 3:02 PM",seller,all_rounds,20,20,30000.0,6000.0,not_shown,not_applicable,20,10000.0,,,33.0,12000.0,0.0,3,17,3,0,4,13,7,13,8,12,0,3,0,7,1,0,12
+147,20,persuasion,"Aug 30, 2026, 3:10 PM",seller,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,100.0,,,50.0,,,0,20,0,0,9,11,9,11,11,9,0,0,0,9,2,0,9
+148,21,persuasion,"Aug 30, 2026, 3:11 PM",seller,all_rounds,20,20,110000.0,210000.0,not_shown,not_applicable,20,10000.0,,,33.0,,,11,9,8,3,0,9,8,12,11,9,0,11,0,8,3,0,9
+149,22,persuasion,"Aug 30, 2026, 3:12 PM",buyer,all_rounds,20,20,0.0,1600.0,not_shown,not_applicable,20,100.0,,,50.0,200.0,0.0,16,4,8,8,0,0,8,8,19,1,0,16,0,8,8,0,0
+150,23,persuasion,"Aug 30, 2026, 3:13 PM",seller,all_rounds,20,20,2000000.0,750000.0,not_shown,not_applicable,20,1000000.0,,,80.0,,,2,18,1,1,11,7,12,8,15,5,0,1,1,12,3,0,5
+151,24,persuasion,"Aug 30, 2026, 3:19 PM",buyer,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,1000000.0,,,50.0,1250000.0,0.0,0,20,0,0,0,0,0,0,0,0,20,0,0,0,0,0,0
+152,25,persuasion,"Aug 30, 2026, 3:20 PM",buyer,all_rounds,20,20,200000.0,130000.0,not_shown,not_applicable,20,10000.0,,,50.0,30000.0,0.0,13,7,11,2,0,0,11,2,13,7,0,13,0,11,2,0,0
+153,26,persuasion,"Aug 30, 2026, 3:22 PM",buyer,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,100.0,,,33.0,120.0,0.0,0,20,0,0,0,0,0,0,7,13,0,0,0,0,0,0,0
+154,27,persuasion,"Aug 30, 2026, 3:23 PM",seller,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,1000000.0,,,50.0,,,0,20,0,0,12,8,12,8,13,7,0,0,0,12,1,0,7
+155,28,persuasion,"Aug 30, 2026, 3:28 PM",seller,all_rounds,20,20,400.0,200.0,not_shown,not_applicable,20,100.0,,,33.0,,,4,16,3,1,6,10,9,11,11,9,0,4,0,9,2,0,9
+156,29,persuasion,"Aug 30, 2026, 3:29 PM",seller,all_rounds,20,20,900.0,700.0,not_shown,not_applicable,20,100.0,,,50.0,,,9,11,8,1,0,11,8,12,10,10,0,9,0,8,2,0,10
+157,30,persuasion,"Aug 30, 2026, 3:30 PM",buyer,all_rounds,20,20,1600.0,2000.0,not_shown,not_applicable,20,100.0,,,33.0,400.0,0.0,20,0,9,11,0,0,9,11,0,0,20,0,0,0,0,0,0
+158,31,persuasion,"Aug 30, 2026, 3:33 PM",buyer,all_rounds,20,20,700.0,800.0,not_shown,not_applicable,20,100.0,,,33.0,300.0,0.0,8,12,5,3,0,0,5,3,8,12,0,8,0,5,3,0,0
+159,32,persuasion,"Aug 30, 2026, 3:37 PM",buyer,all_rounds,20,20,300.0,900.0,not_shown,not_applicable,20,100.0,,,50.0,300.0,0.0,9,11,2,7,0,0,2,7,20,0,0,9,0,2,7,0,0
+160,33,persuasion,"Aug 30, 2026, 3:38 PM",seller,all_rounds,20,20,140000.0,220000.0,not_shown,not_applicable,20,10000.0,,,50.0,,,14,6,12,2,0,6,12,8,14,6,0,14,0,12,2,0,6
+161,34,persuasion,"Aug 30, 2026, 3:44 PM",buyer,all_rounds,20,20,120000.0,120000.0,not_shown,not_applicable,20,10000.0,,,50.0,20000.0,0.0,12,8,12,0,0,0,12,0,12,8,0,12,0,12,0,0,0
+162,35,persuasion,"Aug 30, 2026, 3:45 PM",buyer,all_rounds,20,20,13000000.0,19000000.0,not_shown,not_applicable,20,1000000.0,,,80.0,2000000.0,0.0,19,1,16,3,0,0,16,3,19,1,0,19,0,16,3,0,0
+163,36,persuasion,"Aug 30, 2026, 3:46 PM",seller,all_rounds,20,20,300.0,50.0,not_shown,not_applicable,20,100.0,,,33.0,,,3,17,2,1,2,15,4,16,8,12,0,3,0,4,4,0,12
+164,37,persuasion,"Aug 30, 2026, 3:47 PM",buyer,all_rounds,20,20,4000.0,2000.0,not_shown,not_applicable,20,100.0,,,80.0,400.0,0.0,20,0,15,5,0,0,15,5,20,0,0,20,0,15,5,0,0
+165,38,persuasion,"Aug 30, 2026, 3:48 PM",buyer,all_rounds,20,20,3300.0,1800.0,not_shown,not_applicable,20,100.0,,,80.0,300.0,0.0,18,2,17,1,0,0,17,1,18,2,0,18,0,17,1,0,0
+166,39,persuasion,"Aug 30, 2026, 3:50 PM",buyer,all_rounds,20,20,90000.0,180000.0,not_shown,not_applicable,20,10000.0,,,50.0,30000.0,0.0,18,2,9,9,0,0,9,9,0,2,18,0,0,0,0,0,0
+167,40,persuasion,"Aug 30, 2026, 3:55 PM",seller,all_rounds,20,20,200000.0,100000.0,not_shown,not_applicable,20,10000.0,,,80.0,20000.0,0.0,20,0,15,5,0,0,15,5,19,1,0,19,1,15,4,0,1
+168,41,persuasion,"Aug 30, 2026, 3:55 PM",buyer,all_rounds,20,20,460000.0,180000.0,not_shown,not_applicable,20,10000.0,,,80.0,40000.0,0.0,18,2,16,2,0,0,16,2,18,2,0,18,0,16,2,0,0
+169,42,persuasion,"Aug 30, 2026, 3:57 PM",seller,all_rounds,20,20,120000.0,280000.0,not_shown,not_applicable,20,10000.0,,,33.0,,,12,8,10,2,0,8,10,10,12,8,0,12,0,10,2,0,8
+170,43,persuasion,"Aug 30, 2026, 3:58 PM",seller,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,100.0,,,33.0,120.0,0.0,0,20,0,0,12,8,12,8,12,8,0,0,0,12,0,0,8
+171,44,persuasion,"Aug 30, 2026, 4:03 PM",seller,all_rounds,20,20,300.0,60.0,not_shown,not_applicable,20,100.0,,,80.0,,,3,17,3,0,14,3,17,3,18,2,0,3,0,17,1,0,2
+172,45,persuasion,"Aug 30, 2026, 4:04 PM",seller,all_rounds,20,20,200.0,40.0,not_shown,not_applicable,20,100.0,,,33.0,,,2,18,2,0,9,9,11,9,12,8,0,2,0,11,1,0,8
+173,46,persuasion,"Aug 30, 2026, 4:06 PM",seller,all_rounds,20,20,3000000.0,1000000.0,not_shown,not_applicable,20,1000000.0,,,33.0,2000000.0,0.0,3,17,2,1,5,12,7,13,13,7,0,3,0,7,6,0,7
+174,47,persuasion,"Aug 30, 2026, 4:07 PM",seller,all_rounds,20,20,18000000.0,0.0,not_shown,not_applicable,20,1000000.0,,,33.0,3000000.0,0.0,18,2,6,12,0,2,6,14,18,2,0,18,0,6,12,0,2
+175,48,persuasion,"Aug 30, 2026, 4:09 PM",buyer,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,1000000.0,,,50.0,1250000.0,0.0,0,20,0,0,0,0,0,0,6,14,0,0,0,0,0,0,0
+176,49,persuasion,"Aug 30, 2026, 4:13 PM",buyer,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,1000000.0,,,33.0,1250000.0,0.0,0,20,0,0,0,0,0,0,0,0,20,0,0,0,0,0,0
+177,50,persuasion,"Aug 30, 2026, 4:14 PM",seller,all_rounds,20,20,400.0,40.0,not_shown,not_applicable,20,100.0,,,50.0,120.0,0.0,4,16,3,1,7,9,10,10,11,9,0,4,0,10,1,0,9
+178,51,persuasion,"Aug 30, 2026, 4:16 PM",seller,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,1000000.0,,,80.0,,,0,20,0,0,11,9,11,9,14,6,0,0,0,11,3,0,6
+179,52,persuasion,"Aug 30, 2026, 4:20 PM",seller,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,100.0,,,50.0,,,0,20,0,0,9,11,9,11,11,9,0,0,0,9,2,0,9
+180,53,persuasion,"Aug 30, 2026, 4:21 PM",seller,all_rounds,20,20,19000000.0,1500000.0,not_shown,not_applicable,20,1000000.0,,,80.0,1250000.0,0.0,19,1,14,5,0,1,14,6,19,1,0,19,0,14,5,0,1
+181,54,persuasion,"Aug 30, 2026, 4:22 PM",buyer,all_rounds,20,20,2800.0,2000.0,not_shown,not_applicable,20,100.0,,,80.0,300.0,0.0,20,0,16,4,0,0,16,4,20,0,0,20,0,16,4,0,0
+182,55,persuasion,"Aug 30, 2026, 4:24 PM",buyer,all_rounds,20,20,3100.0,2000.0,not_shown,not_applicable,20,100.0,,,80.0,300.0,0.0,20,0,17,3,0,0,17,3,20,0,0,20,0,17,3,0,0
+183,56,persuasion,"Aug 30, 2026, 4:25 PM",buyer,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,10000.0,,,50.0,12500.0,0.0,0,20,0,0,0,0,0,0,8,0,12,0,0,0,0,0,0
+184,57,persuasion,"Aug 30, 2026, 4:26 PM",buyer,all_rounds,20,20,530000.0,190000.0,not_shown,not_applicable,20,10000.0,,,80.0,40000.0,0.0,19,1,18,1,0,0,18,1,19,1,0,19,0,18,1,0,0
+185,58,persuasion,"Aug 30, 2026, 4:27 PM",seller,all_rounds,20,20,1900.0,1400.0,not_shown,not_applicable,20,100.0,,,50.0,300.0,0.0,19,1,11,8,0,1,11,9,19,1,0,19,0,11,8,0,1
+186,59,persuasion,"Aug 30, 2026, 4:28 PM",buyer,all_rounds,20,20,200000.0,13000000.0,not_shown,not_applicable,20,1000000.0,,,80.0,1200000.0,0.0,13,7,11,2,0,0,11,2,18,2,0,13,0,11,2,0,0
+187,60,persuasion,"Aug 30, 2026, 4:30 PM",seller,all_rounds,20,20,120000.0,280000.0,not_shown,not_applicable,20,10000.0,,,50.0,,,12,8,10,2,0,8,10,10,12,8,0,12,0,10,2,0,8
+188,61,persuasion,"Aug 30, 2026, 4:31 PM",seller,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,10000.0,,,50.0,,,0,20,0,0,10,10,10,10,13,7,0,0,0,10,3,0,7
+189,62,persuasion,"Aug 30, 2026, 4:32 PM",seller,all_rounds,20,20,19000000.0,33000000.0,not_shown,not_applicable,20,1000000.0,,,50.0,,,19,1,13,6,0,1,13,7,14,6,0,14,5,13,1,0,6
+190,63,persuasion,"Aug 30, 2026, 4:36 PM",seller,all_rounds,20,20,30000.0,30000.0,not_shown,not_applicable,20,10000.0,,,33.0,,,3,17,0,3,2,15,2,18,5,15,0,0,3,2,3,0,15
+191,64,persuasion,"Aug 30, 2026, 4:41 PM",buyer,all_rounds,20,20,120000.0,200000.0,not_shown,not_applicable,20,10000.0,,,80.0,20000.0,0.0,20,0,16,4,0,0,16,4,0,0,20,0,0,0,0,0,0
+192,65,persuasion,"Aug 30, 2026, 4:42 PM",seller,all_rounds,20,20,11000000.0,7000000.0,not_shown,not_applicable,20,1000000.0,,,50.0,,,11,9,9,2,0,9,9,11,11,9,0,11,0,9,2,0,9
+193,66,persuasion,"Aug 30, 2026, 4:46 PM",seller,all_rounds,20,20,20000000.0,8000000.0,not_shown,not_applicable,20,1000000.0,,,33.0,4000000.0,0.0,20,0,7,13,0,0,7,13,18,2,0,18,2,7,11,0,2
+194,67,persuasion,"Aug 30, 2026, 4:47 PM",buyer,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,10000.0,,,33.0,12500.0,0.0,0,20,0,0,0,0,0,0,12,0,8,0,0,0,0,0,0
+195,68,persuasion,"Aug 30, 2026, 4:49 PM",buyer,all_rounds,20,20,100.0,100.0,not_shown,not_applicable,20,100.0,,,80.0,125.0,0.0,1,19,0,1,0,0,0,1,19,1,0,1,0,0,1,0,0
+196,69,persuasion,"Aug 30, 2026, 4:53 PM",seller,all_rounds,20,20,30000.0,6000.0,not_shown,not_applicable,20,10000.0,,,80.0,,,3,17,3,0,13,4,16,4,17,3,0,3,0,16,1,0,3
+197,70,persuasion,"Aug 30, 2026, 4:55 PM",buyer,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,10000.0,,,33.0,12000.0,0.0,0,20,0,0,0,0,0,0,0,13,7,0,0,0,0,0,0
+198,71,persuasion,"Aug 30, 2026, 5:00 PM",buyer,all_rounds,20,20,4000000.0,20000000.0,not_shown,not_applicable,20,1000000.0,,,33.0,4000000.0,0.0,20,0,6,14,0,0,6,14,0,0,20,0,0,0,0,0,0
+199,72,persuasion,"Aug 30, 2026, 5:04 PM",seller,all_rounds,20,20,18000000.0,50000000.0,not_shown,not_applicable,20,1000000.0,,,80.0,,,18,2,17,1,0,2,17,3,18,2,0,18,0,17,1,0,2
+200,73,persuasion,"Aug 30, 2026, 5:08 PM",seller,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,100.0,,,33.0,,,0,20,0,0,6,14,6,14,8,12,0,0,0,6,2,0,12
+201,74,persuasion,"Aug 30, 2026, 5:09 PM",seller,all_rounds,20,20,0.0,0.0,not_shown,not_applicable,20,100.0,,,33.0,120.0,0.0,0,20,0,0,5,15,5,15,6,14,0,0,0,5,1,0,14
+202,1,negotiation,"Aug 30, 2026, 5:09 PM",seller,agreement,1,1,12.72,7.28,not_shown,allowed,1,,100.0,120.0,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+203,2,negotiation,"Aug 30, 2026, 5:09 PM",seller,agreement,1,1,46.9,23.1,not_shown,not allowed,1,,80.0,150.0,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+204,3,negotiation,"Aug 30, 2026, 5:09 PM",buyer,agreement,2,2,2106.0,2894.0,incomplete,not allowed,No limit,,15000.0,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+205,4,negotiation,"Aug 30, 2026, 5:10 PM",seller,no_deal,1,1,0.0,0.0,incomplete,allowed,1,,80.0,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+206,5,negotiation,"Aug 30, 2026, 5:10 PM",seller,agreement,7,7,21.06,28.94,not_shown,not allowed,No limit,,100.0,150.0,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+207,6,negotiation,"Aug 30, 2026, 5:10 PM",buyer,agreement,4,4,217797.66,282202.34,not_shown,not allowed,No limit,,1500000.0,1000000.0,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+208,7,negotiation,"Aug 30, 2026, 5:11 PM",seller,no_deal,10,10,0.0,0.0,incomplete,allowed,10,,1500000.0,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+209,8,negotiation,"Aug 30, 2026, 5:11 PM",buyer,walkaway,2,2,0.0,0.0,not_shown,allowed,No limit,,100.0,80.0,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+210,9,negotiation,"Aug 30, 2026, 5:12 PM",buyer,agreement,8,8,0.0,2000.0,incomplete,not allowed,No limit,,10000.0,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+211,10,negotiation,"Aug 30, 2026, 5:12 PM",buyer,no_deal,1,1,0.0,0.0,incomplete,allowed,1,,150.0,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+212,11,negotiation,"Aug 30, 2026, 5:12 PM",buyer,agreement,2,2,1446.0,1554.0,incomplete,not allowed,No limit,,15000.0,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+213,12,negotiation,"Aug 30, 2026, 5:13 PM",seller,agreement,5,5,0.0,0.0,incomplete,not allowed,No limit,,150.0,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+214,13,negotiation,"Aug 30, 2026, 5:13 PM",buyer,walkaway,15,15,0.0,0.0,incomplete,allowed,No limit,,8000.0,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+215,14,negotiation,"Aug 30, 2026, 5:13 PM",seller,walkaway,1,1,0.0,0.0,incomplete,allowed,No limit,,10000.0,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+216,15,negotiation,"Aug 30, 2026, 5:13 PM",seller,agreement,1,1,25.6,44.4,incomplete,not allowed,10,,80.0,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+217,16,negotiation,"Aug 30, 2026, 5:14 PM",buyer,agreement,10,10,416.66,1583.34,not_shown,allowed,10,,12000.0,10000.0,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+218,17,negotiation,"Aug 30, 2026, 5:14 PM",buyer,agreement,10,10,5.44,14.56,not_shown,allowed,10,,120.0,100.0,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+219,18,negotiation,"Aug 30, 2026, 5:16 PM",buyer,walkaway,5,5,0.0,0.0,incomplete,allowed,No limit,,100.0,,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+220,19,negotiation,"Aug 30, 2026, 5:17 PM",buyer,no_deal,1,1,0.0,0.0,not_shown,allowed,1,,150.0,120.0,,,,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

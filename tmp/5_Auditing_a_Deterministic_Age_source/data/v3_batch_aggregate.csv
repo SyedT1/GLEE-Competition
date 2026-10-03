@@ -1,0 +1,4 @@
+family,games,agreements,no_deals,walkaways,completed,positive_deltas,negative_deltas,zero_deltas,mean_rounded_delta,sum_rounded_delta,before_rating,after_rating,before_games,after_games
+bargaining,22,21,1,0,0,13,8,1,2.518,55.4,1250.54,1305.87,50,72
+negotiation,22,12,7,3,0,17,5,0,3.682,81.0,1162.31,1243.31,50,72
+persuasion,22,0,0,0,22,12,10,0,1.314,28.9,1728.01,1756.91,357,379

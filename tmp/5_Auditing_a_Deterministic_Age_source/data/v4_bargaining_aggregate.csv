@@ -1,0 +1,4 @@
+scope,games,agreements,positive_deltas,negative_deltas,zero_deltas,sum_rounded_delta,mean_rounded_delta,before_rating,after_rating,before_games,after_games
+all,25,25,13,12,0,46.2,1.848,1305.87,1352.06,72,97
+Alice,9,9,4,5,0,-0.9,-0.100,,,,
+Bob,16,16,9,7,0,47.1,2.944,,,,

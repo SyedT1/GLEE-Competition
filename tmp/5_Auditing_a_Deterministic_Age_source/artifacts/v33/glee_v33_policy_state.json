@@ -1,0 +1,311 @@
+{
+  "version": 13,
+  "objective": "dashboard_rating_delta",
+  "stats": {
+    "[\"global\",\"negotiation\",\"seller\",null,\"v5_safe\"]": {
+      "n": 1,
+      "sum": 0.6224593312018546,
+      "sum_sq": 0.3874556190002601
+    },
+    "[\"local\",\"negotiation\",\"seller\",[\"seller\",\"full\",1],\"v5_safe\"]": {
+      "n": 1,
+      "sum": 0.6224593312018546,
+      "sum_sq": 0.3874556190002601
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"hidden\",0,1],\"v33_evidence_locked_heuristic:alice_v27_champion\"]": {
+      "n": 10,
+      "sum": 7.599160820786744,
+      "sum_sq": 5.986112378928041
+    },
+    "[\"global\",\"bargaining\",\"player_1\",null,\"v33_evidence_locked_heuristic:alice_v27_champion\"]": {
+      "n": 64,
+      "sum": 35.89943422051203,
+      "sum_sq": 22.760991775208858
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"hidden\",0,3],\"v33_evidence_locked_heuristic:alice_v27_champion\"]": {
+      "n": 6,
+      "sum": 3.0345901611691675,
+      "sum_sq": 1.6911241702917739
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"hidden\",0,2],\"v33_evidence_locked_heuristic:bob_v29_delay_recovery\"]": {
+      "n": 3,
+      "sum": 0.8371490744641935,
+      "sum_sq": 0.2494349971880552
+    },
+    "[\"global\",\"bargaining\",\"player_2\",null,\"v33_evidence_locked_heuristic:bob_v29_delay_recovery\"]": {
+      "n": 86,
+      "sum": 47.77496790849528,
+      "sum_sq": 31.718965066979035
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"full\",0,1],\"v33_evidence_locked_heuristic:bob_v29_delay_recovery\"]": {
+      "n": 14,
+      "sum": 7.788796574296618,
+      "sum_sq": 5.119130358075204
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"hidden\",2,1],\"v33_evidence_locked_heuristic:bob_v29_delay_recovery\"]": {
+      "n": 10,
+      "sum": 6.116033483214418,
+      "sum_sq": 4.287457256769839
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"full\",2,3],\"v33_evidence_locked_heuristic:bob_v29_delay_recovery\"]": {
+      "n": 6,
+      "sum": 3.4496889122349836,
+      "sum_sq": 2.2837470096116785
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"full\",2,1],\"v33_evidence_locked_heuristic:bob_v29_delay_recovery\"]": {
+      "n": 7,
+      "sum": 2.8868846073167447,
+      "sum_sq": 1.4807647840249474
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"full\",2,2],\"v33_evidence_locked_heuristic:bob_v29_delay_recovery\"]": {
+      "n": 7,
+      "sum": 3.6886993196457944,
+      "sum_sq": 2.3533951237517003
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"full\",2,2],\"v33_evidence_locked_heuristic:alice_v27_champion\"]": {
+      "n": 3,
+      "sum": 1.431061404673977,
+      "sum_sq": 0.6934804418627301
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"hidden\",0,2],\"v33_evidence_locked_heuristic:alice_v27_champion\"]": {
+      "n": 3,
+      "sum": 1.7600957785628564,
+      "sum_sq": 1.0582921706799993
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"hidden\",2,2],\"v33_evidence_locked_heuristic:bob_v29_delay_recovery\"]": {
+      "n": 6,
+      "sum": 4.143722714133657,
+      "sum_sq": 3.1838538646821353
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"hidden\",2,1],\"v33_evidence_locked_heuristic:alice_v27_champion\"]": {
+      "n": 11,
+      "sum": 6.9981616006090395,
+      "sum_sq": 4.891853269746559
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"full\",0,3],\"v33_evidence_locked_heuristic:bob_v29_delay_recovery\"]": {
+      "n": 8,
+      "sum": 4.965001578765869,
+      "sum_sq": 3.564741081239849
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"hidden\",2,3],\"v33_evidence_locked_heuristic:alice_v27_champion\"]": {
+      "n": 8,
+      "sum": 4.3698783453649614,
+      "sum_sq": 2.753611766150699
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"hidden\",0,3],\"v33_evidence_locked_heuristic:bob_v29_delay_recovery\"]": {
+      "n": 4,
+      "sum": 1.762523506080836,
+      "sum_sq": 1.0148275766663835
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"hidden\",0,1],\"v33_evidence_locked_heuristic:bob_v29_delay_recovery\"]": {
+      "n": 9,
+      "sum": 5.176500613374057,
+      "sum_sq": 3.497707243499138
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"hidden\",2,2],\"v33_evidence_locked_heuristic:alice_v27_champion\"]": {
+      "n": 2,
+      "sum": 1.0172618149390686,
+      "sum_sq": 0.7170235294419615
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"full\",0,3],\"v33_evidence_locked_heuristic:alice_v27_champion\"]": {
+      "n": 2,
+      "sum": 1.2408310953431383,
+      "sum_sq": 0.8632261065576535
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"full\",0,1],\"v33_evidence_locked_heuristic:alice_v27_champion\"]": {
+      "n": 4,
+      "sum": 1.4856378272166844,
+      "sum_sq": 0.5606398223634421
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"full\",0,2],\"v33_evidence_locked_heuristic:bob_v29_delay_recovery\"]": {
+      "n": 10,
+      "sum": 5.99680778256229,
+      "sum_sq": 4.044654877229945
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"full\",2,1],\"v33_evidence_locked_heuristic:alice_v27_champion\"]": {
+      "n": 11,
+      "sum": 4.571458002712105,
+      "sum_sq": 1.968896752385326
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"full\",0,2],\"v33_evidence_locked_heuristic:alice_v27_champion\"]": {
+      "n": 3,
+      "sum": 1.716492096551964,
+      "sum_sq": 1.1213692108957714
+    },
+    "[\"local\",\"bargaining\",\"player_1\",[\"player_1\",\"full\",2,3],\"v33_evidence_locked_heuristic:alice_v27_champion\"]": {
+      "n": 1,
+      "sum": 0.6748052725823175,
+      "sum_sq": 0.4553621559048958
+    },
+    "[\"local\",\"bargaining\",\"player_2\",[\"player_2\",\"hidden\",2,3],\"v33_evidence_locked_heuristic:bob_v29_delay_recovery\"]": {
+      "n": 2,
+      "sum": 0.9631597424058223,
+      "sum_sq": 0.6392508942401538
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"binary\",\"known\",2,2,2],\"v33_evidence_locked_heuristic:seller_obedience_paced_pool\"]": {
+      "n": 2,
+      "sum": 0.5060687468820628,
+      "sum_sq": 0.12805457447331295
+    },
+    "[\"global\",\"persuasion\",\"seller\",null,\"v33_evidence_locked_heuristic:seller_obedience_paced_pool\"]": {
+      "n": 41,
+      "sum": 21.260969648086263,
+      "sum_sq": 12.833051361984353
+    },
+    "[\"local\",\"persuasion\",\"buyer\",[\"buyer\",\"text\",\"known\",2,1,2],\"v33_evidence_locked_heuristic:buyer_v23_champion\"]": {
+      "n": 10,
+      "sum": 5.4360427211977544,
+      "sum_sq": 2.9742463162495483
+    },
+    "[\"global\",\"persuasion\",\"buyer\",null,\"v33_evidence_locked_heuristic:buyer_v23_champion\"]": {
+      "n": 37,
+      "sum": 20.240052227451624,
+      "sum_sq": 12.61989393508028
+    },
+    "[\"local\",\"persuasion\",\"buyer\",[\"buyer\",\"binary\",\"known\",2,2,2],\"v33_evidence_locked_heuristic:buyer_v23_champion\"]": {
+      "n": 2,
+      "sum": 0.7919740894907511,
+      "sum_sq": 0.3583190014836329
+    },
+    "[\"local\",\"persuasion\",\"buyer\",[\"buyer\",\"text\",\"known\",2,2,2],\"v33_evidence_locked_heuristic:buyer_v23_champion\"]": {
+      "n": 2,
+      "sum": 0.9247434989698311,
+      "sum_sq": 0.5847325240209331
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"binary\",\"known\",2,1,0],\"v33_evidence_locked_heuristic:seller_obedience_paced_pool\"]": {
+      "n": 3,
+      "sum": 2.1306358327282506,
+      "sum_sq": 1.6048465445793747
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"text\",\"hidden\",2,1,2],\"v33_evidence_locked_heuristic:seller_obedience_paced_pool\"]": {
+      "n": 12,
+      "sum": 6.029047012184461,
+      "sum_sq": 3.579388364210333
+    },
+    "[\"local\",\"persuasion\",\"buyer\",[\"buyer\",\"text\",\"known\",2,1,0],\"v33_evidence_locked_heuristic:buyer_v23_champion\"]": {
+      "n": 7,
+      "sum": 4.072882362057482,
+      "sum_sq": 2.884171319415637
+    },
+    "[\"local\",\"persuasion\",\"buyer\",[\"buyer\",\"binary\",\"known\",2,1,0],\"v33_evidence_locked_heuristic:buyer_v23_champion\"]": {
+      "n": 4,
+      "sum": 2.2745894085811025,
+      "sum_sq": 1.6205698574425271
+    },
+    "[\"local\",\"persuasion\",\"buyer\",[\"buyer\",\"binary\",\"known\",2,1,2],\"v33_evidence_locked_heuristic:buyer_v23_champion\"]": {
+      "n": 2,
+      "sum": 0.868367838276918,
+      "sum_sq": 0.3773962926599128
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"text\",\"known\",2,1,0],\"v33_evidence_locked_heuristic:seller_obedience_paced_pool\"]": {
+      "n": 3,
+      "sum": 1.6955591322522352,
+      "sum_sq": 1.0573219160958192
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"binary\",\"hidden\",2,1,2],\"v33_evidence_locked_heuristic:seller_obedience_paced_pool\"]": {
+      "n": 8,
+      "sum": 4.156895342671967,
+      "sum_sq": 2.389470150708797
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"binary\",\"hidden\",2,2,2],\"v33_evidence_locked_heuristic:seller_obedience_paced_pool\"]": {
+      "n": 3,
+      "sum": 1.1590743812018414,
+      "sum_sq": 0.4588866527085434
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"text\",\"known\",2,1,2],\"v33_evidence_locked_heuristic:seller_obedience_paced_pool\"]": {
+      "n": 1,
+      "sum": 0.8754466418125824,
+      "sum_sq": 0.7664068226609279
+    },
+    "[\"local\",\"persuasion\",\"buyer\",[\"buyer\",\"binary\",\"known\",2,1,1],\"v33_evidence_locked_heuristic:buyer_v23_champion\"]": {
+      "n": 1,
+      "sum": 0.31324327335609287,
+      "sum_sq": 0.09812134830283992
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"text\",\"hidden\",2,2,2],\"v33_evidence_locked_heuristic:seller_obedience_paced_pool\"]": {
+      "n": 3,
+      "sum": 1.096893907575169,
+      "sum_sq": 0.44229805571618525
+    },
+    "[\"local\",\"persuasion\",\"buyer\",[\"buyer\",\"text\",\"known\",2,1,1],\"v33_evidence_locked_heuristic:buyer_v23_champion\"]": {
+      "n": 1,
+      "sum": 0.871859391755242,
+      "sum_sq": 0.7601387989918205
+    },
+    "[\"local\",\"persuasion\",\"buyer\",[\"buyer\",\"binary\",\"known\",2,2,1],\"v33_evidence_locked_heuristic:buyer_v23_champion\"]": {
+      "n": 1,
+      "sum": 0.6124209393479252,
+      "sum_sq": 0.37505940695179507
+    },
+    "[\"local\",\"persuasion\",\"buyer\",[\"buyer\",\"binary\",\"known\",2,2,0],\"v33_evidence_locked_heuristic:buyer_v23_champion\"]": {
+      "n": 6,
+      "sum": 3.657511819935789,
+      "sum_sq": 2.413736047879331
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"text\",\"known\",2,2,1],\"v33_evidence_locked_heuristic:seller_obedience_paced_pool\"]": {
+      "n": 1,
+      "sum": 0.7441211943032834,
+      "sum_sq": 0.5537163518113448
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"binary\",\"known\",2,1,2],\"v33_evidence_locked_heuristic:seller_obedience_paced_pool\"]": {
+      "n": 3,
+      "sum": 1.5108593594954782,
+      "sum_sq": 0.8945579983786203
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"binary\",\"known\",2,1,1],\"v33_evidence_locked_heuristic:seller_obedience_paced_pool\"]": {
+      "n": 1,
+      "sum": 0.5399148845555719,
+      "sum_sq": 0.29150808256465655
+    },
+    "[\"local\",\"persuasion\",\"seller\",[\"seller\",\"text\",\"known\",2,2,2],\"v33_evidence_locked_heuristic:seller_obedience_paced_pool\"]": {
+      "n": 1,
+      "sum": 0.8164532124233688,
+      "sum_sq": 0.6665958480764386
+    },
+    "[\"local\",\"persuasion\",\"buyer\",[\"buyer\",\"text\",\"known\",2,2,1],\"v33_evidence_locked_heuristic:buyer_v23_champion\"]": {
+      "n": 1,
+      "sum": 0.4164168844827303,
+      "sum_sq": 0.17340302168230354
+    },
+    "[\"local\",\"negotiation\",\"seller\",[\"seller\",\"full\",0],\"v33_evidence_locked_heuristic:seller_v27_champion\"]": {
+      "n": 3,
+      "sum": 0.8764298061746845,
+      "sum_sq": 0.257109320454842
+    },
+    "[\"global\",\"negotiation\",\"seller\",null,\"v33_evidence_locked_heuristic:seller_v27_champion\"]": {
+      "n": 9,
+      "sum": 3.7244324393466552,
+      "sum_sq": 1.8488184562648458
+    },
+    "[\"local\",\"negotiation\",\"buyer\",[\"buyer\",\"hidden\",0],\"v33_evidence_locked_heuristic:buyer_v23_rollback\"]": {
+      "n": 6,
+      "sum": 3.1641568711485895,
+      "sum_sq": 1.9126214372892076
+    },
+    "[\"global\",\"negotiation\",\"buyer\",null,\"v33_evidence_locked_heuristic:buyer_v23_rollback\"]": {
+      "n": 11,
+      "sum": 4.436314313540128,
+      "sum_sq": 2.2915136234762015
+    },
+    "[\"local\",\"negotiation\",\"seller\",[\"seller\",\"hidden\",0],\"v33_evidence_locked_heuristic:seller_v27_champion\"]": {
+      "n": 4,
+      "sum": 1.795023760278228,
+      "sum_sq": 0.9619596421166321
+    },
+    "[\"local\",\"negotiation\",\"buyer\",[\"buyer\",\"full\",0],\"v33_evidence_locked_heuristic:buyer_v23_rollback\"]": {
+      "n": 3,
+      "sum": 0.8416708288792052,
+      "sum_sq": 0.28595366228608055
+    },
+    "[\"local\",\"negotiation\",\"seller\",[\"seller\",\"hidden\",1],\"v33_evidence_locked_heuristic:seller_v27_champion\"]": {
+      "n": 2,
+      "sum": 1.0529788728937426,
+      "sum_sq": 0.6297494936933716
+    },
+    "[\"local\",\"negotiation\",\"buyer\",[\"buyer\",\"full\",1],\"v33_evidence_locked_heuristic:buyer_v23_rollback\"]": {
+      "n": 2,
+      "sum": 0.43048661351233336,
+      "sum_sq": 0.09293852390091359
+    }
+  }
+}

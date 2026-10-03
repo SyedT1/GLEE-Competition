@@ -1,0 +1,1224 @@
+ Auditing a Deterministic Agent in Language-Based
+                       Economic Games
+
+                                            Syed Mohaiminul Hoque
+                              Center For Computational and Data Sciences Lab
+
+                                      Independent University Bangladesh
+                                      syedmuhaimintahsin@gmail.com
+
+                                            Abstract
+
+          We audit ELP-AGENT, a deterministic, role-separated entrant for GLEE bargain-
+           ing, bilateral negotiation, and persuasion. The submitted policy uses no language
+           model at inference time: numeric actions come from explicit opponent-path sum-
+           maries and heuristic thresholds, while validators and a one-assignment controller
+           constrain execution and exposure. Three development failures motivated the au-
+           dit: a legal 99-round cycle, assignment overshoot, and family totals that concealed
+           a losing role. Across the complete 1,704-game dashboard history, displayed
+           changes sum to +535.9/ + 695.0/ + 833.0 for the three families, while sequen-
+           tial role comparisons show observed sign reversals even under unchanged code.
+           In the final adaptively stopped trace, bargaining/persuasion/negotiation changed
+          +190.94/ + 55.67/ - 33.73 over 150/78/20 games. An author-supplied next-day
+           snapshot placed the entrant 95th overall at 1674.3. These outcomes neither es-
+           timate policy effects nor validate the persuasion seller's static Bayes calibration:
+           matchmaking was uncontrolled, policies were selected using earlier live runs, and
+           two families were censored by drawdown guards. The contribution is therefore an
+           executable policy specification and a failure-oriented case study of how strategic
+           decisions, action validity, and exposure monitoring can diverge.
+
+1 Scope and contributions
+
+GLEE evaluates agents in bargaining, bilateral trade, and persuasion with optional natural-language
+interaction, heterogeneous horizons, and incomplete information [10]. We study a deliberately in-
+spectable entrant: its economic actions are produced by fixed Python rules rather than model infer-
+ence. This makes failures attributable to explicit state summaries, branch logic, validation, or the
+run controller.
+This paper makes three bounded contributions. First, it gives a self-contained specification of the six
+deployed role policies and their memory boundaries (Appendix A). Second, it audits failures that
+legal-action rate or aggregate rating alone would hide: cycling, uncontrolled exposure, role reversals,
+and a monitoring-order bug. Third, it releases the exact executable, ordered evidence, analysis code,
+and a 248-game sequential trace. We do not claim strategic superiority, causal mechanism effects,
+dynamic receiver obedience, or generalization beyond this run.
+The methodological novelty is the alignment of three normally separate audit layers--strategic deci-
+sions, contract enforcement, and sequential exposure-- on one immutable event trace. This decom-
+position reveals when legal execution, apparently safe monitoring, and rating success disagree; it is
+an audit design, not a new equilibrium or learning algorithm.
+
+40th Conference on Neural Information Processing Systems (NeurIPS 2026). Workshop: The 1st Workshop on Interpreting
+Agent Behavior (IAB) at NeurIPS 2026.
+2 Related work
+
+GLEE joins economic games with language-agent evaluation [10]. Automated-negotiation research
+has long separated opponent preference, strategy, and deadline modeling [2]; learned dialogue agents
+instead optimize negotiation end to end [6]. Our explicit separation of numeric policy from fixed
+language resembles modular strategy-generation designs [3], but we contribute neither a learned
+dialogue model nor a new equilibrium solution. Interactive-agent benchmarks emphasize task-level
+success and failure [7]; internal algorithmic audits emphasize lifecycle evidence [8], while runtime
+shields enforce action-level specifications [1]. Our narrower contribution aligns strategic output, a
+contract validator, and an exposure controller against the same ordered trace; unlike a formal shield,
+its validator guarantees action legality rather than reward. The persuasion inequality below is a di-
+rect static Bayes constraint related to Bayesian persuasion [5], not a dynamic result. Confidence
+sequences address optional stopping [4], but this trace does not establish an estimand or the condi-
+tional dependence assumptions needed for a valid anytime analysis.
+
+3 Submitted policy and safety layers
+
+State and memory. The dispatcher locks a family-role branch for each game. The policy is de-
+terministic conditional on the complete visible history, persistent memory, and game identifier--not
+on the current state alone. Bargaining memory stores opponent demands and rejected shares by role,
+information regime, discount configuration, and disclosed opponent; negotiation stores role-specific
+price paths; the persuasion buyer updates signal precision only when purchase reveals quality. Undis-
+closed opponents receive game-local keys. Messages verbalize an already selected action, although
+they may indirectly affect later states. Figure 1 summarizes the three role-specific decision paths
+and the shared controls applied to every action.
+
+                            Visible game state + role-keyed memory
+
+         Bargaining                 Negotiation                           Persuasion
+   Demand trend + prior      Surplus or price trend                 Purchased-only score
+Share search; Bob recovery  Offer; accept; walk away                 or low-item pacing
+                                                                    Purchase; pass; signal
+
+           Legal-action validator  one-assignment controller  family/role guards
+
+Figure 1: Core decision flow. The three game families select role-specific economic actions from
+visible state and keyed memory; the shared wrapper then checks action legality and controls assign-
+ment exposure.
+
+Bargaining. For pot M , both roles predict the opponent's demanded share from a robust median
+
+step, blend it with a configuration prior, and search responder shares y  {0.10, 0.105, . . . , 0.94}.
+
+The score
+
+           ((y - f + 0.007)/w)(1 - y) - [1 - ((y - f + 0.007)/w)]c                          (1)
+
+uses role-specific floor f , width w, curvature , and delay cost c listed in Appendix A. Alice uses
+the resulting branch directly. Bob then transfers
+
+T = min{M [r(B) + 0.008t], max(0, xB - 0.24M )}, r = 0.018 if B < 0.95 else 0.008, (2)
+
+and may override a rejection when the received share exceeds max{0.16, (0.30 if B <
+0.95 else 0.33) - 0.09t - 0.055s}. These are hand-set heuristics, not Rubinstein equilibrium claims.
+
+Negotiation. Complete-information targets allocate a declining fraction of feasible surplus;
+hidden-information targets extrapolate half the opponent's median favorable price step. Offers re-
+main on the individually rational side of own value. Responses compare offered utility with a de-
+clining continuation threshold; repeated profitable offers can be accepted and repeated infeasible
+unknown- horizon paths can trigger walkaway. Buyer and seller constants differ, and the seller has
+a short-horizon midpoint repair; Appendix A specifies every branch.
+
+                            2
+Table 1: Branch-level sequential development provenance. B/N/P denote bargain-
+ing/negotiation/persuasion; outcomes are displayed /n and are uncontrolled historical obser-
+vations.
+
+Method  Changed branches/controller Frozen or reused                       Live   Observed /n
+AD
+SP-TP   Alice; negotiation B/S; peak       Earlier Bob; persuasion B/S     B,N,P  B -12.83/11; N +177.77/50;
+RA-DC   guard                                                              B,P    P -13.85/10
+ARC     Alice; P seller; tighter guards    AD Bob; P buyer; N supported,   B,N    B -8.13/10; P +4.15/10
+EG-CR                                      not run                         B,N,P
+ELP     Portfolio/guards only; no new de-  SP-TP bargaining; exact AD ne-  B,N,P  B +5.86/8; N +10.30/43
+        cision branch                      gotiation                       B,N,P
+        Bob; context-conditioned negoti-   SP-TP Alice; persuasion B/S            B +10.10/11; N +47.41/46;
+        ation B/S
+        Full-information A/B; weak-        P buyer; remaining contexts            P +14.56/16
+        context N B/S; P seller gate
+        Bob recovery; N buyer rollback;    EG-CR Alice; N seller; P buyer         B +7.81/41; N +30.97/68; P
+        P seller pacing; wider guards
+                                                                                  -11.73/30
+
+                                                                                  B +190.94/150;          N
+
+                                                                                  -33.73/20; P +55.67/78
+
+Persuasion. The buyer purchases below low value, passes above high value, and otherwise com-
+pares price with a purchased-only pseudo-count reliability score. This is a heuristic, not a Bayesian
+posterior across heterogeneous games. The seller always recommends high quality. With known
+buyer values v > u, price P , prior p, and a static randomized model Pr(+ | H) = 1, Pr(+ | L) = q,
+purchase after "+" requires
+
+        c = (P - u)/(v - u), q  qmax = min{1, p(1 - c)/[c(1 - p)]}.                                       (3)
+
+ELP sets a target q = 0.88qmax off-terminal and 0.94qmax terminal (capped at 0.92), then determin-
+istically signals the nth observed low item when (n + 1)q > nq. Because q changes and the
+schedule can be inferred, Eq. 3 is only a calibration heuristic: it does not prove history-conditional
+obedience. When receiver values are hidden, q = clip(0.12 + 0.28p + 0.051terminal, 0, 0.40) is
+explicitly ad hoc and carries no obedience interpretation.
+
+Validation and exposure. Actions are checked for exact keys, finite values, budget balance, le-
+gal enums, required counteroffers, and message length; exceptions invoke a legal fallback. The
+controller queues one assignment, leaves on assignment, drains the game, and audits authoritative
+counts and ratings. Family and role loss/drawdown thresholds fixed before the ELP run bound expo-
+sure but are not statistical tests.
+
+4 Failure-driven method lineage
+
+Three failures became shared invariants: a legal 99-round cycle motivated repeated-state escape; a
+24-game request returning 53 motivated one-assignment recounting; and hidden role losses moti-
+vated role-local guards.
+
+Table 1 records branch changes, frozen components, and run coverage. Adaptive defender (AD)
+adds role-local defense and the guard Rt < R0 - 20 or Rt < maxst Rs - 15. Surplus protection-
+terminal pooling (SP-TP) uses f = .75f0 + .25fb for Alice and gated low-quality signaling. Role-
+aware reuse-drawdown control (RA-DC) composes  = (SBP, AND) without a new decision branch.
+
+Adaptive role calibration-contextual concession (ARC) uses c = c0 - .04Imsg - .02Iknown,seller.
+Evidence-guided context repair (EG-CR) blends weak-context negotiation offers toward the mid-
+point, p = .85p0 + .15m. The submitted evidence-locked portfolio (ELP) uses q = .88qmax and
+paced low-quality signaling an = (n + 1)q - nq. These are representative branch rules rather
+than complete method definitions; Appendix A gives the executed ELP specification.
+
+5 Sequential development variants and live trace
+
+The complete dashboard export contains 1,704 games. Summed one-decimal changes were +535.9,
++695.0, and +833.0 for bargaining, negotiation, and persuasion. Their per-game mean/median/SD
+were respectively 1.11/0.0/5.02, 1.24/1.2/4.39, and 1.26/0.9/4.57; sign counts were 240/3/240,
+
+                                           3
+363/0/199, and 361/5/293. Chronological-third gains attenuated from 364.4 to -27.6 to 199.1,
+422.8 to 159.0 to 113.2, and 508.1 to 261.7 to 63.2. The platform initializes each family rating at
+1,000, so all three final ratings exceed their true platform starts. Displayed gains are non-monotone
+and attenuate across chronological thirds.
+
+Table 1 adds the historical method baselines. These uncontrolled role-level observations are sequen-
+tial development variants. Alice's observed mean was -3.03 under AD (n = 5) and +0.43 under
+SP-TP (n = 4); the retained Bob branch means were +0.38 and -1.64 (n = 6 each). More strongly,
+the unchanged defensive negotiation rule averaged +3.56 under AD (n = 50) but only +0.24 under
+RA-DC (n = 43), consistent with substantial temporal and matchmaking variation. Bob's observed
+mean was -1.13 under EG-CR (n = 27) and +1.29 under ELP (n = 86); the corresponding
+persuasion-seller means were -1.58 (n = 19) and +0.51 (n = 41). Negotiation-buyer means re-
+mained negative (-1.59 and -1.85), while the frozen seller means were +1.98 and -1.49. The
+role-isolated rollback, Bob-recovery, and binary-pooling notebooks have executable offline designs
+but no live outcomes.
+
+ELP then targeted 150 games per family in fixed order at concurrency one. Bargaining reached
+150; persuasion stopped at 78 after a 23.19-point drawdown, and negotiation at 20 after a 33.73-
+point loss. Its family mean/median/SD were 1.27/0.19/4.36, 0.71/ - 0.22/3.90, and -1.69/ -
+2.98/3.65. The next-day snapshot ranked the entrant 95th at 1674.3 overall. These are descriptive
+sequential contrasts: policies were selected from earlier runs, matchmaking and rating drift are
+uncontrolled, and stopping is outcome-dependent. We report no mechanism-effect estimate or IID
+interval. Appendix C gives full support, role, dispersion, guard-sensitivity, and execution tables.
+
+6 Agent behavior audit
+
+The executable targets three process properties: individual rationality, escape from repeated paths,
+and role-separated evidence. Validators test action legality; cycle counters test termination behav-
+ior; and family/role guards test exposure. None is a certificate of rating performance. Likewise,
+the seller's deterministic frequency target controls aggregate signaling frequency but not dynamic
+receiver obedience.
+
+The transcript export covers 220 of 248 rated assignments and omits game IDs, so behavior cannot
+be linked safely to assignment rating. In the 127 available bargaining games, 113 reached agree-
+ment (47/54 for Alice and 66/73 for Bob). This measures agreement behavior, not the effect of the
+recovery override.
+
+In 40 available seller games, ELP positively signaled all 397 high-quality and 135/403 low-quality
+products. Of 532 positive signals, 397 were high quality (74.6% available-case precision); opposing
+buyers purchased 309/532 positive- signal and 24/268 negative-signal products. These aggregate re-
+sponses neither establish counterfactual purchase lift nor verify obedience. In 34 buyer games, ELP
+purchased 350/680 products (245 high, 105 low); passed quality is hidden, so this purchased subset
+is selectively revealed. Negotiation reached 11/19 deals, with four no-deals and four walkaways,
+while both role totals were negative.
+
+The audit's defensible conclusion is diagnostic: action validity, agreement, signal calibration, and
+rating success are distinct outcomes. The missing ID linkage prevents attributing rating changes to
+particular behaviors.
+
+7 Limitations and conclusion
+
+This post-selection, fixed-order trace has uncontrolled matchmaking, role, configuration, opponent,
+rating shrinkage, and time; two families are adaptively censored. Rating deltas are platform mea-
+sures, not welfare, and transcripts are incomplete and unlinked. Fixed text cannot test richer dialogue.
+Strategic persuasion can transfer to manipulative settings despite its calibration-heuristic label and
+the competition setting.
+
+Bundled V33 evidence regenerates the final-trace tables and figure; the 1,704-game dashboard ex-
+port is unavailable in this package. Mutable ratings, missing transcripts, and counterfactual actions
+cannot be replayed. Legal execution, behavior, exposure, and rating effects must be evaluated sepa-
+rately; these totals do not identify mechanism effects.
+
+                                                           4
+References
+
+ [1] Mohammed Alshiekh, Roderick Bloem, Ruediger Ehlers, Bettina Koenighofer, Scott Niekum,
+      and Ufuk Topcu. Safe reinforcement learning via shielding. In Proceedings of the AAAI
+      Conference on Artificial Intelligence, volume 32, 2018. doi: 10.1609/aaai.v32i1.11797.
+
+ [2] Tim Baarslag, Mark J. C. Hendrikx, Koen V. Hindriks, and Catholijn M. Jonker. Learning
+      about the opponent in automated bilateral negotiation: A comprehensive survey of opponent
+      modeling techniques. Autonomous Agents and Multi-Agent Systems, 30:849-898, 2016. doi:
+      10.1007/s10458-015-9309-1.
+
+ [3] He He, Derek Chen, Anusha Balakrishnan, and Percy Liang. Decoupling strategy and gener-
+      ation in negotiation dialogues. In Proceedings of the 2018 Conference on Empirical Methods
+      in Natural Language Processing, pages 2333-2343, 2018. doi: 10.18653/v1/D18-1256. URL
+      https://aclanthology.org/D18-1256/.
+
+ [4] Steven R. Howard, Aaditya Ramdas, Jon McAuliffe, and Jasjeet Sekhon. Time-uniform, non-
+      parametric, nonasymptotic confidence sequences. The Annals of Statistics, 49(2):1055-1080,
+      2021. doi: 10.1214/20-AOS1991.
+
+ [5] Emir Kamenica and Matthew Gentzkow. Bayesian persuasion. American Economic Review,
+      101(6):2590-2615, 2011. doi: 10.1257/aer.101.6.2590.
+
+ [6] Mike Lewis, Denis Yarats, Yann Dauphin, Devi Parikh, and Dhruv Batra. Deal or no
+      deal? end-to-end learning of negotiation dialogues. In Proceedings of the 2017 Confer-
+      ence on Empirical Methods in Natural Language Processing, pages 2443-2453, 2017. doi:
+      10.18653/v1/D17-1259. URL https://aclanthology.org/D17-1259/.
+
+ [7] Xiao Liu, Hao Yu, Hanchen Zhang, Yifan Xu, Xuanyu Lei, Hanyu Lai, Yu Gu, Hangliang Ding,
+      Kaiwen Men, Kejuan Yang, et al. AgentBench: Evaluating LLMs as agents. In The Twelfth
+      International Conference on Learning Representations, 2024. URL https://openreview.
+      net/forum?id=zAdUB0aCTQ.
+
+ [8] Inioluwa Deborah Raji, Andrew Smart, Rebecca N. White, Margaret Mitchell, Timnit Gebru,
+      Ben Hutchinson, Jamila Smith-Loud, Daniel Theron, and Parker Barnes. Closing the AI ac-
+      countability gap: Defining an end-to-end framework for internal algorithmic auditing. In Pro-
+      ceedings of the 2020 Conference on Fairness, Accountability, and Transparency, pages 33-44,
+      2020. doi: 10.1145/3351095.3372873.
+
+ [9] Ariel Rubinstein. Perfect equilibrium in a bargaining model. Econometrica, 50(1):97-109,
+      1982. doi: 10.2307/1912531.
+
+[10] Eilam Shapira, Omer Madmon, Itamar Reinman, Samuel Joseph Amouyal, Roi Reichart, and
+      Moshe Tennenholtz. GLEE: A unified framework and benchmark for language-based eco-
+      nomic environments. arXiv preprint arXiv:2410.05254, 2024. URL https://arxiv.org/
+      abs/2410.05254.
+
+                                                           5
+A Executable evidence-locked portfolio specification
+
+This appendix transcribes the executed notebook rather than reconstructing the policy from notebook
+labels. It is pseudocode-equivalent to the six ELP branches; the archived notebook remains author-
+itative. The definitions below also state the parsing, update, tie-breaking, tolerance, and rounding
+choices needed to map visible states to actions.
+
+Shared notation and state. clip(z, a, b) = max(a, min(b, z)) and (z) = (1 + e-z)-1. For
+known horizon R at round r, t = (r - 1)/ max(1, R - 1); otherwise t = min(0.65, (r - 1)/16). A
+stall count is the minimum length of the two players' trailing approximately repeated offer sequences
+(relative tolerance 0.003 in bargaining and 0.001 in negotiation). Robust trend is the median adjacent
+step among the five most recent observations; volatility is their median absolute deviation. Offer and
+price outputs are rounded to eight decimals. Bargaining threshold comparisons use a 10-12 slack
+and negotiation profitability/threshold comparisons use 10-9.
+
+Memory persists across games only when an opponent name is disclosed. Otherwise the game ID
+makes it game-local. Bargaining keys additionally include role, information regime, own discount,
+and visible opponent discount; negotiation keys include role and information regime; persuasion
+keys include buyer/seller perspective and signal mode. An event set prevents reprocessing history.
+Thus the action is a deterministic function of visible history, game ID, and this internal memory.
+
+A.1 Bargaining branches
+
+For own player i, let dj be the opponent shares in their observed offers, d~the predicted next demand
+(last demand plus robust trend), s the stall count, and i own discount. With visible discounts,
+the configuration prior is b0 = 1 - (1 - j)/(1 - ij), clipped to [.001, .999]; it is .5 when
+the denominator is at most 10-12 [9]. Otherwise it is 0.46 + 0.02t against a disclosed human
+and 0.43 + 0.02t otherwise. If z is the largest opponent share in a rejected own proposal (zero
+before one exists) and m the median of the five latest demands, the base floor used below is b =
+clip(max{b0, z+.006, m-.065+.020t}, .20, .999), omitting unavailable terms. In the role formulas
+below, freject = z.
+
+Alice. If demands exist, set
+
+                     f = clip{max[freject, .75b + .25(d~- .035 - .020t)], .18, .90};
+
+otherwise f = clip(b, .18, .90). On an offer turn:
+
+       1. If s  3, give the responder their last demanded share clipped to [.20, .82] (or [.20, .94] on
+           the final round).
+
+       2. Otherwise set fs = clip(f -.010, .18, .88), w = clip(.016+.65 MAD(d), .014, .045), and
+           c = .045 + .25t + .50(1 - i). Search y = 0.10, 0.105, . . . , 0.94 and maximize Eq. 1 with
+            = 1.18. Candidate tuples (score, 1 - y, y) are compared lexicographically, so an exact
+           score tie retains more for the proposer. The responder amount is rounded to eight decimals
+           and the proposer receives the exact residual.
+
+       3. Under complete information only, transfer an additional min{M (.018 +
+           .012t), max(0, xi - .22M )} from Alice to Bob.
+
+On a response turn, accept a strictly positive final-round offer. Before the final round, accept if s  3
+and own share is at least .18; otherwise accept when own share is at least
+
+            max{.18, .36 - .08t - .055s, i(1 - f ) clip(.80 + g + .10t - .06s, .48, .92)},
+
+where the favorable opponent concession is minus the median adjacent step of the recent demand
+path and g = clip(.25 × favorable opponent concession, -.02, .02). Under complete information, a
+rejection is finally overridden when own share is at least max(.20, .33 - .10t).
+
+Bob. Bob uses the same structure with the following replacements: f = clip(max[freject, .78b +
+.22(d~ - .035 - .020t)], .18, .90), fs = clip(f - .006, .18, .88), w = clip(.016 +
+.60 MAD(d), .014, .044), c = .045 + .24t + .50(1 - i),  = 1.16, and pre-override risk floor
+
+                                                           6
+max(.18, .35 - .08t - .055s). ELP then applies the offer transfer in Eq. 2. If the base branch rejects,
+it accepts whenever own share is at least
+
+                            max{.16, (.30 if i < .95 else .33) - .09t - .055s}.
+
+All proposals divide M exactly. Fixed messages describe the selected split but do not change it.
+
+A.2 Bilateral negotiation branches
+
+Let role   {buyer, seller}, own value vi, latest opponent price po, robust median opponent step ,
+and feasible surplus S = vb - vs when both values are visible. Seller utility is P - vs and buyer
+utility is vb - P ; these are definitions, not an invocation of the Nash bargaining solution.
+
+Buyer target. Under complete information, start with capture a = .66 - .10t, add
+.35 clip(-/S, -.10, .10), subtract .025 min(s, 2)(.35 + t), and clip a to [.54, .80]. Target
+P  = vb - aS. Under hidden information with an opponent offer, project the seller's price as
+p^ = max(0, po + .5 min(0, )) and set P  = vi - (.64 - .09t)(vi - p^) when p^  vi, otherwise
+P  = vi. With no offer, P  = vi(.82 + .09t).
+
+Seller target. Under complete information, start with a = .72 - .12t, subtract .04 when messages
+are enabled and .02 when the horizon is known, add .35 clip(/S, -.10, .10), subtract the same stall
+term, and clip to [.54, .80]. Target P  = vs + aS. Under hidden information, project a buyer's price
+as p^ = max(0, po + .5 max(0, )) and set P  = vi + a(p^ - vi) for a = .70 - .11t - .041messages
+when p^  vi, otherwise P  = vi. With no offer, P  = vi(1.32 - .14t).
+
+Responses. Both branches accept a final offer iff its utility is nonnegative. The buyer accepts a
+profitable repeated path at s  3; the seller does so at s  2. At s  2, a negative-utility path under
+an unknown horizon causes walkaway. Otherwise compare offered utility U with |P  - vi|k, where
+
+                             kbuyer = clip(.76 - .13t - .08 min(s, 2), .38, .80),
+
+                   kseller = clip(.80 - .061messages - .13t - .08 min(s, 2), .38, .80).
+
+Accept if U exceeds that continuation value or, when S > 0, captures at least .52 + .06(1 - t) (buyer
+and no-message seller) or .48 + .06(1 - t) (message seller). Otherwise counter with (1 - b)P  + bP ,
+clipped to the individually rational side, using b = clip(.22 + .38t + .08 min(s, 2), 0, .70) for buyer
+and adding .10 with an .80 cap for a message-enabled seller.
+
+For complete-information seller contexts with recorded horizon below five rounds (including a miss-
+ing horizon encoded as zero), ELP additionally blends offers 15% toward the surplus midpoint,
+accepts nonnegative offers capturing at least .40 + .08(1 - t), and blends rejected counters 18%
+toward the received price. These historical constants are not estimated equilibrium parameters.
+
+A.3 Persuasion branches
+
+Buyer. Let high/low values be v > u, price P , and high-quality prior p. Buy if P  u and
+
+pass if P > v. Otherwise parse the seller signal as positive, negative, or unknown. The parser
+
+lowercases text, converts underscores to spaces, removes non-alphanumeric punctuation, and col-
+
+lapses whitespace. Exact negative forms are {no, false, negative, not recommended}; negative
+
+phrases are {do not buy, don't buy, should not buy, shouldn't buy, do not recommend, don't rec-
+
+ommend, recommend against, not worth, not a good, not high quality, low quality, bad product,
+
+buying would be foolish}, and any of {pass, skip, avoid} is negative. These checks precede exact
+
+positive forms {yes, true, recommended, buy} and phrases {buy this, recommend buying, recom-
+
+mend this, worth it, high quality, great product, good product, positive}; unmatched text is unknown.
+
+For a positive signal use qH = .90, qL = .24; for a negative signal use .10, .76, and first compute
+
+0 = pqH /[pqH + (1 - p)qL]. Purchased products update high/low counts; passed products do not
+
+update precision because quality is hidden. With  = 40 + nH and  = 4(1 - 0) + nL, use the
+
+conservative value       (           )
+
+                                   
+                    p^ = clip  +  - .55 ( + )2( +  + 1) , 0, 1 .
+
+                                7
+For an unknown signal use p. Buy when p^v + (1 - p^)u + B  P . Here p^ is only a pseudo-count
+reliability score: named-opponent memory may pool purchased labels across different priors and
+prices, so no exchangeable Bayesian model is asserted. The bonus B = .010(v - u) times the
+remaining-round fraction divided by 1 + n only for a positive signal within .08(v - u) of the
+cutoff and with fewer than four observed labels; otherwise B = 0.
+
+Seller. Always signal positive for high quality. For low quality, compute the target in Eq. 3; return
+q = 1 when c  0, q = 0 when c  1, and q = 0 for an interior cutoff with p  {0, 1}. When
+buyer values are hidden use the ad hoc rule reported in the main text. The notebook defines terminal
+as r  R after replacing a missing R with the current round; thus an absent horizon receives the
+terminal .05 increment and .94 utilization. If n low-quality products precede the current one, signal
+positive exactly when (n + 1)q > nq. Text mode emits fixed BUY/PASS sentences and binary
+mode emits yes/no.
+
+For constant q, the floor-difference sequence has prefix discrepancy below one. ELP recomputes q
+and reveals signals, so this arithmetic fact supplies no dynamic persuasion or incentive-compatibility
+guarantee.
+
+A.4 Contract wrapper and exposure controller
+
+The wrapper rejects unexpected keys, nonfinite or negative amounts, allocations that do not sum to
+the pot within tolerance, illegal decisions, missing nonterminal counteroffers, and messages over
+2,000 characters. Its fallbacks are: equal split/accept in bargaining; own-value offer, profitable ac-
+ceptance, or own-value counter in negotiation; PASS/no as seller; and prior expected-value purchase
+as buyer. Every fallback is logged.
+
+The controller starts only at zero active games, queues one family, leaves the queue after observing
+an assignment, drains it, and checks that assignment and authoritative count increments are at most
+one. Family baseline-loss limits for bargaining/negotiation/persuasion are 30/40/28 and peak draw-
+downs are 24/30/22 after 20 games. Role limits are 24/28/20 and role drawdowns 18/22/16 after
+ten role games. Three consecutive matchmaking timeouts stop a family. The executed notebook
+measured new telemetry before reward harvesting; the 500 caught HTTP 422 errors appended dur-
+ing harvesting therefore escaped the abort check. This historical monitoring-order bug is preserved
+in the executed artifact and corrected only in the documented future protocol.
+
+Method map. "EG-CR Alice" denotes the Alice branch plus its complete-information correc-
+tion; "delay-aware Bob" denotes the transfer/acceptance recovery; "AD buyer rollback" denotes
+the negotiation-buyer equations above; "EG-CR seller" denotes the seller branch plus short-horizon
+repair; and "AD persuasion buyer" denotes the purchased-only pseudo-count reliability rule. These
+labels record methodological provenance and are not separate algorithms required to reconstruct
+ELP.
+
+B Reproducibility and artifact record
+
+Executed  agent. The  submitted        agent  is                    ELP-AGENT,  build
+
+v33-heuristic-150-each-2026-08-30. The exact executed source is artifacts/v33/
+
+33_evidence_locked_role_portfolio_frequency_paced_bayesian_pooling.ipynb. It
+
+used Python 3.12 and glee-sdk==0.0.5 in a hosted Kaggle session, concurrency one, no training,
+
+no model weights, and no external inference API. The run took approximately 13,497 seconds (3.75
+
+hours); Kaggle's exact CPU and memory allocation was not recorded.
+
+Bundled evidence. The same directory contains the session report, rating-outcome CSV, pol-
+icy state, and append-only evidence JSONL. The notebook, policy state, and rating CSV are
+byte-identical to the executed exports. The evidence replaces only the submitting account UUID
+and dashboard name with fixed tokens; game states, actions, timestamps, scores, and controller
+records are unchanged. The rating CSV contains one named synthetic contract-test row and 248
+live rows. The JSONL contains ordered decision, move-result, checkpoint (including harvested
+credit), and family-summary records. File sizes and SHA-256 hashes are listed in artifacts/
+
+                                 8
+Table 2: Complete dashboard-history rating statistics. Each family has the platform start of 1,000. 
+sums displayed one-decimal game changes and need not equal Final minus Start because of rounding
+and platform-wide recalculation.
+
+Family  n  Start  Final                     Mean Median SD +/0/-
+
+Bargaining 483 1000.00 1535.92 +535.9 1.11   0.0 5.02 240/3/240
+Negotiation 562 1000.00 1661.30 +695.0 1.24  1.2 4.39 363/0/199
+Persuasion 659 1000.00 1825.84 +833.0 1.26   0.9 4.57 361/5/293
+
+v33/ARTIFACT_MANIFEST.sha256; these hashes, rather than a mutable or identifying reposi-
+tory URL, identify the bundled files. The root-level PACKAGE_MANIFEST.sha256 additionally
+hashes every bundled source and data file except itself and disposable compiler outputs. The ex-
+act AD through EG-CR development notebooks are additionally bundled in artifacts/methods/;
+METHOD_MANIFEST.sha256 records their full hashes and the relative path and hash of the executed
+ELP notebook.
+
+Development notebook provenance. The notebook filenames and SHA-256 prefixes
+
+for the method lineage in Table 1 are: AD, 23_adaptive_defender_peak_drawdown_
+
+reservation_protection.ipynb (98904272); SP-TP, 24_bargaining_persuasion_
+
+repair_surplus_protection_terminal_pooling.ipynb (9988cecf); RA-DC, 25_role_
+
+aware_bargaining_defensive_negotiation_drawdown_control.ipynb  (6d203e29);
+
+ARC, 26_three_family_adaptive_role_calibration_contextual_concession.ipynb
+
+(8995a751); EG-CR, 27_evidence_guided_context_repair_configuration_gated_
+
+pooling.ipynb (2dd8d2df); and ELP, 33_evidence_locked_role_portfolio_frequency_
+
+paced_bayesian_pooling.ipynb (50248f96). Full hashes and bundled paths are listed in
+
+artifacts/methods/METHOD_MANIFEST.sha256.
+
+Regenerating the audit. The final-trace audit can be regenerated with Python 3.12 or later:
+
+python -m pip install -r requirements-analysis.txt
+python analysis/analyze_v33_transcripts.py
+
+This script regenerates the ELP CSVs, tables, JSON summary, and sequential figure from bundled
+V33 data; it resolves paths from its own location. The complete dashboard-history export and its
+parser were unavailable in this package, so the 1,704-game history statistics cannot be regenerated
+from it. The live notebook dependency is separately pinned in requirements-live.txt; live
+execution additionally requires a valid competition credential and a mutable matchmaking service,
+and is not needed to verify reported totals.
+
+Replay boundary. Recorded ELP decisions and controller checkpoints can be audited from the
+append-only evidence. We do not claim complete counterfactual replay: 28 human- readable tran-
+scripts are absent, that export lacks IDs, the opponent population and rating model evolve, and
+unobserved alternative actions do not exist. Exact leaderboard ratings and missing transcript behav-
+ior therefore cannot be reproduced. The policy action map can be inspected from the executable and
+the states that are present in the evidence.
+
+Known executed defect. The 500 telemetry rows are caught HTTP 422 failures for six stale
+component-test IDs. Synthetic classification was overwritten or incomplete, and the controller mea-
+sured new telemetry before harvesting. The defect did not alter recorded actions or ratings, but
+it prevented the intended telemetry abort. It is not silently patched in the executed notebook; Ap-
+pendix C specifies the corrected future ordering.
+
+C Supplementary statistical and systems audit
+
+Sources, order, and linkage. The author-reported complete dashboard history comprises 1,704
+rated entries from August 24-30: 483 bargaining, 562 negotiation, and 659 persuasion. The under-
+lying export and parser are unavailable in this package, so these descriptive summaries cannot be
+
+                         9
+Table 3: Leaderboard snapshot supplied by the author. The player label is the study's agent alias.
+
+                                            Rank   Player     Type                Rating  Bargaining         Negotiation    Persuasion
+                                               95  ELP-agent  Agent               1674.3       1535.9             1661.3        1825.8
+
+Cumulative displayed rating change  200     Bargaining +190.94 80                 Persuasion                                   Negotiation
+                                    150
+                                    100                       60                                             +55.67 -10
+                                     50
+                                                              40 -20
+                                      0                       20
+
+                                         0                    0                                              -30                                        -33.73
+
+                                                                             -20  20 40 60                      -40         5           10          15  20
+                                            25 50 75 100 125 150 0                    Assignment             80                         Assignment
+
+                                                   Assignment
+
+                                                              Cumulative change           Trailing boundary  Baseline loss
+
+Figure 2: Cumulative displayed rating changes. The dotted line is the family baseline-loss limit, the
+dashed curve is running peak minus drawdown limit, and the vertical line is the 20-game activation
+point. These are controller boundaries, not inferential thresholds.
+
+independently regenerated from it. Four games were against humans and remain in the reported
+history. The platform starts each family rating at 1,000. Summed displayed changes are rounded
+to one decimal and need not equal the difference between this start and the higher-precision final
+rating; platform-wide recalculation can also prevent exact additivity.
+
+Chronological thirds sum to +364.4/ - 27.6/ + 199.1 for bargaining, +422.8/ + 159.0/ + 113.2
+for negotiation, and +508.1/ + 261.7/ + 63.2 for persuasion. Long-run role means were +1.11
+Alice, +1.11 Bob, +0.67 negotiation buyer, +1.84 negotiation seller, +1.71 persuasion buyer, and
++0.86 persuasion seller. These partitions describe attenuation and role asymmetry across changing
+policies and opponents; they are not stationarity tests or estimates of version effects. The family and
+role statistics for this complete history are not machine-readable in the supplied package.
+
+The rating analysis uses all 248 live rows in data/v33_rating_outcomes.csv after excluding
+the explicitly named synthetic contract-test row. File order is the executed assignment order; the
+analysis writes data/v33_rating_outcomes_sequenced.csv with an explicit 1-248 index. The
+append-only evidence and session report independently retain checkpoint order and assigned game
+IDs.
+
+Table 3 records the separate author-supplied August 31 dashboard snapshot; it is not reconstructed
+from assignment deltas.
+
+The text export contains 220 complete records: 127/150 bargaining, 74/78 persuasion, and 19/20
+negotiation (88.7% overall). Two records omit a repeated header but retain separate setup and re-
+sult blocks, which the parser recovers. The export has no game IDs, so transcript records are not
+positionally joined to ratings. No missing-at-random assumption is made; behavioral quantities are
+available-case process summaries. For example, the 113 observed bargaining agreements imply
+only the worst-case full-run range 113/150-136/150 (75.3-90.7%) without assumptions about the
+23 missing records.
+
+Descriptive rating paths. Table 5 reports signs, means, medians, dispersion, and no confidence
+interval. The positive bargaining mean coexists with an almost even sign split; persuasion has a
+positive mean but negative median. Lag-one sample autocorrelations were 0.05, -0.08, and 0.07
+for bargaining, persuasion, and negotiation, but do not establish independence. Repeated opponents
+cannot be identified from the rating extract. Consequently neither a fixed-sample IID interval nor a
+post hoc confidence sequence would have a clear estimand or justified dependence structure.
+
+Figure 2 plots cumulative changes against the executed family guards. Bargaining's maximum
+within-run drawdown was 24.75 points before the 20-game activation point. Persuasion crossed
+its 22-point boundary at game 78; negotiation crossed 30 points at game 20.
+
+                                                           10
+Table 4: Executed safeguard and repair activations. "Units" counts distinct games, or families for
+the drawdown row.
+
+Mechanism                    Units   Activations    Detail
+
+Contract fallback                 0              0  of 1,838 decisions
+Bob recovery override           38             46   29 offers; 17 accepts
+Cycle intervention                3              3  1 match; 2 walkaways
+Seller short-horizon repair       3              6  4 from unknown horizon
+Family drawdown stop              2              2  persuasion; negotiation
+Assignment overshoot              0              0  across 248 checkpoints
+Telemetry abort                   0              0  500 errors after checks
+
+Table 5: Descriptive distribution of assignment-level displayed rating changes. No inferential inter-
+val is reported because matchmaking, opponent repetition, drift, and stopping are uncontrolled.
+
+Family       +/0/- Mean Median SD IQR
+
+Bargaining   76/1/73                  1.27   0.19 4.36 7.64
+Persuasion   38/0/40                  0.71  -0.22 3.90 6.62
+Negotiation   7/0/13                 -1.69  -2.98 3.65 6.16
+
+Support and confounding. Table 6 gives the full role-mode-value-visibility support. Every
+hidden-value persuasion assignment placed ELP in the seller role. Hidden-versus-known marginal
+totals therefore combine information and role effects and are not compared. The machine-readable
+context CSV retains role, information, horizon, discount, signal mode, prior, and cutoff buckets;
+small cells remain exploratory and no multiplicity-adjusted claims are made.
+
+Available-case behavior. Among 127 exported bargaining games, 113 reached agreement and
+14 ended in walkaway; agreements used a median one observed round (mean 1.40, maximum 12).
+Negotiation produced 11/19 agreements, four no-deals, and four walkaways. The 74 persuasion
+games contain 1,480 decisions. In 40 seller games, 397/397 observed high-quality products and
+135/403 low-quality products received a positive signal. Opponents bought 309/532 positive-signal
+and 24/268 negative-signal products. In 34 buyer games, ELP bought 350/680 products, including
+245 high and 105 low; passed quality is hidden. None of these unlinked summaries estimates a
+rating effect or counterfactual behavior.
+
+Guard sensitivity. Table 9 replays the observed sequence while jointly scaling all family and
+role thresholds. At half thresholds, bargaining would have stopped at game 17, persuasion at 24,
+and negotiation at 19. At 1.25 times the thresholds, neither adaptively stopped family crosses a
+guard in its observed prefix. These are path-dependent replays, not counterfactual estimates: later
+matchmaking need not remain the same after a different stopping decision.
+
+Executed horizons and safeguards. All 78 persuasion games recorded 20 rounds, so its missing-
+horizon terminal branch was never activated. Horizons were unknown in 76 bargaining games (113
+decisions) and 10 negotiation games (28 decisions). One complete-information seller game with an
+unknown horizon triggered the short-horizon repair on all four of its decisions; two further repair
+activations occurred in known short-horizon games. A future policy should use a separate unknown-
+horizon branch rather than encode it as zero.
+
+The evidence-level audit in data/v33_execution_activation_audit.csv counts 1,838 live
+policy decisions. Table 4 distinguishes safeguards that fired from those merely present in code.
+
+Telemetry defect. The session report contains 500 caught HTTP 422 reward-harvest failures from
+six non-UUID component-test IDs. Two IDs were queried 84 times and four were queried 83 times.
+The ELP wrapper overwrote three synthetic flags, three other IDs did not match the synthetic prefix
+classifier, and the checkpoint measured new telemetry before harvesting. Hence the abort guard saw
+zero newly appended errors. The queries occurred after actions and did not change recorded ratings,
+but they invalidate any claim that the monitoring layer worked as intended. The future protocol
+must preserve synthetic flags, classify test IDs by an explicit registry, and measure telemetry after
+harvesting.
+
+                                     11
+Table 6: Persuasion role-mode-information support. Hidden-value assignments contain no ELP
+buyers, so hidden/known marginal differences are not role-adjusted comparisons.
+
+             Role Mode Values n Sum Mean +/0/-
+
+             Buyer binary known 16 11.63 0.73                      8/0/8
+                                                                  14/0/7
+             Buyer text       known 21 23.14 1.10
+                                                                   3/0/8
+             Seller binary hidden 11 -2.07 -0.19                   4/0/5
+                                                                  5/0/10
+             Seller binary known 9           4.79 0.53             4/0/2
+
+             Seller text      hidden 15 -3.93 -0.26
+
+             Seller text      known 6 22.11 3.68
+
+Table 7: Role-stratified assignment-level rating changes.
+
+             Family  Role     n    Sum Median SD +/0/-
+
+             Bargaining Alice 64 80.15            0.25 3.82       33/1/30
+             Bargaining Bob 86 110.79            -0.08 4.74       43/0/43
+             Persuasion Buyer 37 34.77            0.73 3.89       22/0/15
+             Persuasion Seller 41 20.90          -0.45 3.95       16/0/25
+             Negotiation Buyer 11 -20.33         -2.91 4.02
+             Negotiation Seller 9 -13.40         -3.04 3.37          4/0/7
+                                                                     3/0/6
+
+Table 8: Outcome counts in the transcript export. Coverage is 220 of 248 rated assignments, so these
+are available-case behavioral summaries and are not joined to rating rows.
+
+             Family           Role n Agreement Walkaway No deal
+
+             Bargaining alice 54             47                7          0
+
+             Bargaining bob 73               66                7          0
+
+             Persuasion buyer 34             0                 0          0
+
+             Persuasion seller 40            0                 0          0
+
+             Negotiation buyer 11            6                 3          2
+
+             Negotiation seller 8            5                 1          2
+
+Table 9: Stop-guard sensitivity when all four loss/drawdown thresholds are multiplied by a common
+factor. Entries are simulated stop game and reason from the observed family sequence.
+
+Family                0.50×           0.75×           1.00×         1.25×         1.50×
+
+Bargaining    17 (Bob loss)    17 (Bob DD)       150 (target)  150 (target)  150 (target)
+Persuasion   24 (buyer DD)    75 (buyer DD)  78 (family DD)       78 (end)      78 (end)
+Negotiation  19 (buyer loss)  20 (buyer DD)  20 (family DD)       20 (end)      20 (end)
+
+                                   12
+NeurIPS Paper Checklist
+
+       1. Claims
+
+          Question: Do the main claims made in the abstract and introduction accurately reflect the
+          paper's contributions and scope?
+
+          Answer: [Yes]
+
+          Justification: The abstract and Section 1 define the contribution as an audited case study,
+          report the exact ELP outcomes and adaptive stopping, and explicitly disclaim superiority,
+          causal, dynamic-obedience, and generalization claims.
+
+          Guidelines:
+
+              · The answer [N/A] means that the abstract and introduction do not include the claims
+                made in the paper.
+
+              · The abstract and/or introduction should clearly state the claims made, including the
+                contributions made in the paper and important assumptions and limitations. A [No] or
+                [N/A] answer to this question will not be perceived well by the reviewers.
+
+              · The claims made should match theoretical and experimental results, and reflect how
+                much the results can be expected to generalize to other settings.
+
+              · It is fine to include aspirational goals as motivation as long as it is clear that these
+                goals are not attained by the paper.
+
+       2. Limitations
+
+          Question: Does the paper discuss the limitations of the work performed by the authors?
+
+          Answer: [Yes]
+
+          Justification: Section 6 discusses post-selection, fixed order, adaptive censoring, rating
+          drift, missing matched baselines and transcript linkage, fixed-language limits, and potential
+          misuse.
+
+          Guidelines:
+
+              · The answer [N/A] means that the paper has no limitation while the answer [No] means
+                that the paper has limitations, but those are not discussed in the paper.
+
+              · The authors are encouraged to create a separate "Limitations" section in their paper.
+              · The paper should point out any strong assumptions and how robust the results are to
+
+                violations of these assumptions (e.g., independence assumptions, noiseless settings,
+                model well-specification, asymptotic approximations only holding locally). The au-
+                thors should reflect on how these assumptions might be violated in practice and what
+                the implications would be.
+              · The authors should reflect on the scope of the claims made, e.g., if the approach was
+                only tested on a few datasets or with a few runs. In general, empirical results often
+                depend on implicit assumptions, which should be articulated.
+              · The authors should reflect on the factors that influence the performance of the ap-
+                proach. For example, a facial recognition algorithm may perform poorly when image
+                resolution is low or images are taken in low lighting. Or a speech-to-text system might
+                not be used reliably to provide closed captions for online lectures because it fails to
+                handle technical jargon.
+              · The authors should discuss the computational efficiency of the proposed algorithms
+                and how they scale with dataset size.
+              · If applicable, the authors should discuss possible limitations of their approach to ad-
+                dress problems of privacy and fairness.
+              · While the authors might fear that complete honesty about limitations might be used by
+                reviewers as grounds for rejection, a worse outcome might be that reviewers discover
+                limitations that aren't acknowledged in the paper. The authors should use their best
+                judgment and recognize that individual actions in favor of transparency play an impor-
+                tant role in developing norms that preserve the integrity of the community. Reviewers
+                will be specifically instructed to not penalize honesty concerning limitations.
+
+       3. Theory assumptions and proofs
+
+                                                          13
+   Question: For each theoretical result, does the paper provide the full set of assumptions and
+   a complete (and correct) proof?
+
+   Answer: [N/A]
+
+   Justification: The paper introduces no theorem or formal guarantee. Equation 3 is labeled
+   a static calibration constraint and the paper explicitly states that it does not prove dynamic
+   receiver obedience.
+
+   Guidelines:
+
+       · The answer [N/A] means that the paper does not include theoretical results.
+       · All the theorems, formulas, and proofs in the paper should be numbered and cross-
+
+         referenced.
+       · All assumptions should be clearly stated or referenced in the statement of any theo-
+
+         rems.
+       · The proofs can either appear in the main paper or the supplemental material, but if
+
+         they appear in the supplemental material, the authors are encouraged to provide a
+         short proof sketch to provide intuition.
+       · Inversely, any informal proof provided in the core of the paper should be comple-
+         mented by formal proofs provided in appendix or supplemental material.
+       · Theorems and Lemmas that the proof relies upon should be properly referenced.
+
+4. Experimental result reproducibility
+
+   Question: Does the paper fully disclose all the information needed to reproduce the main
+   experimental results of the paper to the extent that it affects the main claims and/or conclu-
+   sions of the paper (regardless of whether the code and data are provided or not)?
+
+   Answer: [Yes]
+
+   Justification: The supplement bundles the exact notebook, ordered evidence, session report,
+   policy state, rating rows, pinned dependencies, hashes, a complete policy transcription, and
+   one-command audit regeneration. It also states what cannot be replayed.
+
+   Guidelines:
+
+       · The answer [N/A] means that the paper does not include experiments.
+       · If the paper includes experiments, a [No] answer to this question will not be per-
+
+         ceived well by the reviewers: Making the paper reproducible is important, regardless
+         of whether the code and data are provided or not.
+       · If the contribution is a dataset and/or model, the authors should describe the steps
+         taken to make their results reproducible or verifiable.
+       · Depending on the contribution, reproducibility can be accomplished in various ways.
+         For example, if the contribution is a novel architecture, describing the architecture
+         fully might suffice, or if the contribution is a specific model and empirical evaluation,
+         it may be necessary to either make it possible for others to replicate the model with
+         the same dataset, or provide access to the model. In general. releasing code and data
+         is often one good way to accomplish this, but reproducibility can also be provided via
+         detailed instructions for how to replicate the results, access to a hosted model (e.g., in
+         the case of a large language model), releasing of a model checkpoint, or other means
+         that are appropriate to the research performed.
+       · While NeurIPS does not require releasing code, the conference does require all sub-
+         missions to provide some reasonable avenue for reproducibility, which may depend
+         on the nature of the contribution. For example
+         (a) If the contribution is primarily a new algorithm, the paper should make it clear
+
+              how to reproduce that algorithm.
+         (b) If the contribution is primarily a new model architecture, the paper should describe
+
+              the architecture clearly and fully.
+         (c) If the contribution is a new model (e.g., a large language model), then there should
+
+              either be a way to access this model for reproducing the results or a way to re-
+              produce the model (e.g., with an open-source dataset or instructions for how to
+              construct the dataset).
+
+                                                   14
+         (d) We recognize that reproducibility may be tricky in some cases, in which case au-
+              thors are welcome to describe the particular way they provide for reproducibility.
+              In the case of closed-source models, it may be that access to the model is limited in
+              some way (e.g., to registered users), but it should be possible for other researchers
+              to have some path to reproducing or verifying the results.
+
+5. Open access to data and code
+
+   Question: Does the paper provide open access to the data and code, with sufficient instruc-
+   tions to faithfully reproduce the main experimental results, as described in supplemental
+   material?
+
+   Answer: [Yes]
+
+   Justification: The submitted supplement itself contains the executable ELP notebook, rat-
+   ing CSV, session report, policy state, append-only evidence, SHA-256 manifest, pinned
+   analysis dependency, and clean-extraction instructions.
+
+   Guidelines:
+
+       · The answer [N/A] means that paper does not include experiments requiring code.
+       · Please see the NeurIPS code and data submission guidelines (https://neurips.cc/
+
+         public/guides/CodeSubmissionPolicy) for more details.
+       · While we encourage the release of code and data, we understand that this might not
+
+         be possible, so [No] is an acceptable answer. Papers cannot be rejected simply for not
+         including code, unless this is central to the contribution (e.g., for a new open-source
+         benchmark).
+       · The instructions should contain the exact command and environment needed to run to
+         reproduce the results. See the NeurIPS code and data submission guidelines (https:
+         //neurips.cc/public/guides/CodeSubmissionPolicy) for more details.
+       · The authors should provide instructions on data access and preparation, including how
+         to access the raw data, preprocessed data, intermediate data, and generated data, etc.
+       · The authors should provide scripts to reproduce all experimental results for the new
+         proposed method and baselines. If only a subset of experiments are reproducible, they
+         should state which ones are omitted from the script and why.
+       · At submission time, to preserve anonymity, the authors should release anonymized
+         versions (if applicable).
+       · Providing as much information as possible in supplemental material (appended to the
+         paper) is recommended, but including URLs to data and code is permitted.
+
+6. Experimental setting/details
+
+   Question: Does the paper specify all the training and test details (e.g., data splits, hyperpa-
+   rameters, how they were chosen, type of optimizer) necessary to understand the results?
+
+   Answer: [Yes]
+
+   Justification: Section 2 and Appendix A specify all six action branches, memory keys,
+   constants, fallbacks, family order, concurrency, guards, and the absence of training; the
+   exact executable is bundled.
+
+   Guidelines:
+
+       · The answer [N/A] means that the paper does not include experiments.
+       · The experimental setting should be presented in the core of the paper to a level of
+
+         detail that is necessary to appreciate the results and make sense of them.
+       · The full details can be provided either with the code, in appendix, or as supplemental
+
+         material.
+
+7. Experiment statistical significance
+
+   Question: Does the paper report error bars suitably and correctly defined or other appropri-
+   ate information about the statistical significance of the experiments?
+
+   Answer: [No]
+
+   Justification: Live matchmaking produced one sequential, adaptively stopped trace rather
+   than repeated randomized trials. Section 4 reports exact outcomes and explicitly avoids
+   significance claims.
+
+                                                   15
+   Guidelines:
+
+       · The answer [N/A] means that the paper does not include experiments.
+       · The authors should answer [Yes] if the results are accompanied by error bars, confi-
+
+         dence intervals, or statistical significance tests, at least for the experiments that support
+         the main claims of the paper.
+       · The factors of variability that the error bars are capturing should be clearly stated (for
+         example, train/test split, initialization, random drawing of some parameter, or overall
+         run with given experimental conditions).
+       · The method for calculating the error bars should be explained (closed form formula,
+         call to a library function, bootstrap, etc.)
+       · The assumptions made should be given (e.g., Normally distributed errors).
+       · It should be clear whether the error bar is the standard deviation or the standard error
+         of the mean.
+       · It is OK to report 1-sigma error bars, but one should state it. The authors should prefer-
+         ably report a 2-sigma error bar than state that they have a 96% CI, if the hypothesis of
+         Normality of errors is not verified.
+       · For asymmetric distributions, the authors should be careful not to show in tables or fig-
+         ures symmetric error bars that would yield results that are out of range (e.g., negative
+         error rates).
+       · If error bars are reported in tables or plots, the authors should explain in the text how
+         they were calculated and reference the corresponding figures or tables in the text.
+
+8. Experiments compute resources
+
+   Question: For each experiment, does the paper provide sufficient information on the com-
+   puter resources (type of compute workers, memory, time of execution) needed to reproduce
+   the experiments?
+
+   Answer: [No]
+
+   Justification: Section 6 reports a hosted Kaggle Python 3.12 session, no training or GPU
+   requirement, and 13,497 seconds of runtime, but the provider's exact hardware allocation
+   was not recorded.
+
+   Guidelines:
+
+       · The answer [N/A] means that the paper does not include experiments.
+       · The paper should indicate the type of compute workers CPU or GPU, internal cluster,
+
+         or cloud provider, including relevant memory and storage.
+       · The paper should provide the amount of compute required for each of the individual
+
+         experimental runs as well as estimate the total compute.
+       · The paper should disclose whether the full research project required more compute
+
+         than the experiments reported in the paper (e.g., preliminary or failed experiments
+         that didn't make it into the paper).
+
+9. Code of ethics
+
+   Question: Does the research conducted in the paper conform, in every respect, with the
+   NeurIPS Code of Ethics https://neurips.cc/public/EthicsGuidelines?
+
+   Answer: [Yes]
+
+   Justification: The work analyzes the author's competition agent and logged competition
+   interactions, reports negative results, avoids causal overclaiming, and releases no private
+   personal data.
+
+   Guidelines:
+
+       · The answer [N/A] means that the authors have not reviewed the NeurIPS Code of
+         Ethics.
+
+       · If the authors answer [No], they should explain the special circumstances that require
+         a deviation from the Code of Ethics.
+
+       · The authors should make sure to preserve anonymity (e.g., if there is a special consid-
+         eration due to laws or regulations in their jurisdiction).
+
+                                                   16
+10. Broader impacts
+
+     Question: Does the paper discuss both potential positive societal impacts and negative
+     societal impacts of the work performed?
+
+     Answer: [Yes]
+
+     Justification: Section 6 discusses auditability and exposure control as benefits and identifies
+     manipulative sales persuasion as a potential misuse.
+
+     Guidelines:
+
+        · The answer [N/A] means that there is no societal impact of the work performed.
+        · If the authors answer [N/A] or [No], they should explain why their work has no soci-
+
+           etal impact or why the paper does not address societal impact.
+        · Examples of negative societal impacts include potential malicious or unintended uses
+
+           (e.g., disinformation, generating fake profiles, surveillance), fairness considerations
+           (e.g., deployment of technologies that could make decisions that unfairly impact spe-
+           cific groups), privacy considerations, and security considerations.
+        · The conference expects that many papers will be foundational research and not tied
+           to particular applications, let alone deployments. However, if there is a direct path to
+           any negative applications, the authors should point it out. For example, it is legitimate
+           to point out that an improvement in the quality of generative models could be used to
+           generate Deepfakes for disinformation. On the other hand, it is not needed to point out
+           that a generic algorithm for optimizing neural networks could enable people to train
+           models that generate Deepfakes faster.
+        · The authors should consider possible harms that could arise when the technology is
+           being used as intended and functioning correctly, harms that could arise when the
+           technology is being used as intended but gives incorrect results, and harms following
+           from (intentional or unintentional) misuse of the technology.
+        · If there are negative societal impacts, the authors could also discuss possible mitiga-
+           tion strategies (e.g., gated release of models, providing defenses in addition to attacks,
+           mechanisms for monitoring misuse, mechanisms to monitor how a system learns from
+           feedback over time, improving the efficiency and accessibility of ML).
+
+11. Safeguards
+
+     Question: Does the paper describe safeguards that have been put in place for responsible
+     release of data or models that have a high risk for misuse (e.g., pre-trained language models,
+     image generators, or scraped datasets)?
+
+     Answer: [N/A]
+
+     Justification: The work releases deterministic competition heuristics and no pretrained
+     model, scraped dataset, or high-risk generative asset; behavioral safeguards are neverthe-
+     less described in Sections 2 and 5.
+
+     Guidelines:
+
+        · The answer [N/A] means that the paper poses no such risks.
+        · Released models that have a high risk for misuse or dual-use should be released with
+
+           necessary safeguards to allow for controlled use of the model, for example by re-
+           quiring that users adhere to usage guidelines or restrictions to access the model or
+           implementing safety filters.
+        · Datasets that have been scraped from the Internet could pose safety risks. The authors
+           should describe how they avoided releasing unsafe images.
+        · We recognize that providing effective safeguards is challenging, and many papers do
+           not require this, but we encourage authors to take this into account and make a best
+           faith effort.
+
+12. Licenses for existing assets
+
+     Question: Are the creators or original owners of assets (e.g., code, data, models), used in
+     the paper, properly credited and are the license and terms of use explicitly mentioned and
+     properly respected?
+
+     Answer: [No]
+
+                                                     17
+     Justification: The paper credits the GLEE benchmark and retains the official NeurIPS 2026
+     author files, but the available competition materials do not state a license for every platform
+     artifact used in the logged evaluation.
+
+     Guidelines:
+
+        · The answer [N/A] means that the paper does not use existing assets.
+        · The authors should cite the original paper that produced the code package or dataset.
+        · The authors should state which version of the asset is used and, if possible, include a
+
+           URL.
+        · The name of the license (e.g., CC-BY 4.0) should be included for each asset.
+        · For scraped data from a particular source (e.g., website), the copyright and terms of
+
+           service of that source should be provided.
+        · If assets are released, the license, copyright information, and terms of use in the pack-
+
+           age should be provided. For popular datasets, paperswithcode.com/datasets has
+           curated licenses for some datasets. Their licensing guide can help determine the li-
+           cense of a dataset.
+        · For existing datasets that are re-packaged, both the original license and the license of
+           the derived asset (if it has changed) should be provided.
+        · If this information is not available online, the authors are encouraged to reach out to
+           the asset's creators.
+
+13. New assets
+
+     Question: Are new assets introduced in the paper well documented and is the documenta-
+     tion provided alongside the assets?
+
+     Answer: [No]
+
+     Justification: The code and evidence are documented with provenance, replay limits,
+     pinned dependencies, and hashes. The artifact notice does not assert a new license over
+     platform-generated logs, so full licensing remains unresolved.
+
+     Guidelines:
+
+        · The answer [N/A] means that the paper does not release new assets.
+        · Researchers should communicate the details of the dataset/code/model as part of their
+
+           submissions via structured templates. This includes details about training, license,
+           limitations, etc.
+        · The paper should discuss whether and how consent was obtained from people whose
+           asset is used.
+        · At submission time, remember to anonymize your assets (if applicable). You can
+           either create an anonymized URL or include an anonymized zip file.
+
+14. Crowdsourcing and research with human subjects
+
+     Question: For crowdsourcing experiments and research with human subjects, does the pa-
+     per include the full text of instructions given to participants and screenshots, if applicable,
+     as well as details about compensation (if any)?
+
+     Answer: [N/A]
+
+     Justification: The authors conducted no crowdsourcing or human-subject study; evaluation
+     used ordinary competition matchmaking and platform-provided outcomes.
+
+     Guidelines:
+
+        · The answer [N/A] means that the paper does not involve crowdsourcing nor research
+           with human subjects.
+
+        · Including this information in the supplemental material is fine, but if the main contri-
+           bution of the paper involves human subjects, then as much detail as possible should
+           be included in the main paper.
+
+        · According to the NeurIPS Code of Ethics, workers involved in data collection, cura-
+           tion, or other labor should be paid at least the minimum wage in the country of the
+           data collector.
+
+                                                     18
+15. Institutional review board (IRB) approvals or equivalent for research with human
+     subjects
+     Question: Does the paper describe potential risks incurred by study participants, whether
+     such risks were disclosed to the subjects, and whether Institutional Review Board (IRB)
+     approvals (or an equivalent approval/review based on the requirements of your country or
+     institution) were obtained?
+     Answer: [N/A]
+     Justification: The work did not recruit participants, intervene on people, or collect human-
+     subject data outside standard competition operation.
+     Guidelines:
+        · The answer [N/A] means that the paper does not involve crowdsourcing nor research
+           with human subjects.
+        · Depending on the country in which research is conducted, IRB approval (or equiva-
+           lent) may be required for any human subjects research. If you obtained IRB approval,
+           you should clearly state this in the paper.
+        · We recognize that the procedures for this may vary significantly between institutions
+           and locations, and we expect authors to adhere to the NeurIPS Code of Ethics and the
+           guidelines for their institution.
+        · For initial submissions, do not include any information that would break anonymity
+           (if applicable), such as the institution conducting the review.
+
+16. Declaration of LLM usage
+     Question: Does the paper describe the usage of LLMs if it is an important, original, or
+     non-standard component of the core methods in this research? Note that if the LLM is used
+     only for writing, editing, or formatting purposes and does not impact the core methodology,
+     scientific rigor, or originality of the research, declaration is not required.
+     Answer: [N/A]
+     Justification: The submitted ELP agent and core research method use no LLM for training,
+     planning, messages, or economic actions; any writing or formatting assistance does not
+     affect the methodology or reported evidence.
+     Guidelines:
+        · The answer [N/A] means that the core method development in this research does not
+           involve LLMs as any important, original, or non-standard components.
+        · Please refer to our LLM policy in the NeurIPS handbook for what should or should
+           not be described.
+
+                                                     19
+
